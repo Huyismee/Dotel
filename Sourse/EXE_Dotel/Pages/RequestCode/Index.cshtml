@@ -1,0 +1,88 @@
+﻿@page
+@model EXE_Dotel.Pages.RequestCode.IndexModel
+@{
+}
+<body>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100">
+                <form method="post" class="login100-form validate-form">
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Verification Code
+                    </span>
+
+                    <div class="wrap-input100">
+                        <span class="input100" style="padding-top: 15px">@Model.Email</span>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter code">
+                        <input class="input100" type="text" name="code" placeholder="Verification Code">
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button id="submitBtn" class="login100-form-btn" style="margin-right: 10px;">
+                            Submit
+                        </button>
+                        <button id="resendBtn" class="login100-form-btn">
+                            Resend Code
+                        </button>
+                        <span id="countdown" style="margin-left: 10px;"></span>
+                    </div>
+
+                    <div class="text-center p-t-90">
+                        <a class="txt1" href="login">
+                            Sign In
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main1.js"></script>
+
+    <script>
+        var timeLeft = 60; // Thời gian còn lại để gửi lại mã
+        var countdown = document.getElementById('countdown');
+        var submitBtn = document.getElementById('submitBtn');
+        var resendBtn = document.getElementById('resendBtn');
+
+        function startCountdown() {
+            resendBtn.disabled = true; // Không thể nhấp vào nút gửi lại mã trong thời gian đếm ngược
+            var timerId = setInterval(function () {
+                timeLeft--;
+                countdown.innerHTML = 'Resend code in ' + timeLeft + ' seconds';
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    countdown.innerHTML = ''; // Xóa văn bản đếm ngược khi hết thời gian
+                    resendBtn.disabled = false; // Kích hoạt lại nút gửi lại mã
+                }
+            }, 1000);
+        }
+
+        // Bắt đầu đếm ngược khi trang được tải
+        startCountdown();
+    </script>
+
+
+</body>
