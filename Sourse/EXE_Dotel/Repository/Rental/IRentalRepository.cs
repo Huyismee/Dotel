@@ -9,5 +9,7 @@ namespace EXE_Dotel.Repository.Rental
         public List<EXE_Dotel.Models.Rental> GetRentals();
 
         //public List<EXE_Dotel.Models.Rental> GetRentalByFilters();
+
+        public List<EXE_Dotel.Models.Rental> getRentalWithImage();
     }
 }

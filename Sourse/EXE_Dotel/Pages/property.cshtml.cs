@@ -16,7 +16,7 @@ namespace EXE_Dotel.Pages
         public List<Rental>? rentals { get; private set; }
         public void OnGet()
         {
-            rentals= rentalRepository.GetRentals();
+            rentals = rentalRepository.getRentalWithImage();
         }
     }
 }

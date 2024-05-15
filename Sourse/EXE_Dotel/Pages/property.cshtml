@@ -266,7 +266,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="property-pic">
-                                                <img src="@rental.RentalListImages.SingleOrDefault(image=> image.ImageId==1)" alt="@rental.RentalId">
+                                                <img src="@rental.RentalListImages.FirstOrDefault()?.Sourse" alt="@rental.RentalId">
                                             </div>
                                         </div>
                                         <div class="col-md-8">
@@ -284,7 +284,7 @@
                                                 <ul class="room-features">
                                                     <li>
                                                         <i class="fa fa-arrows"></i>
-                                                        <p>@rental.MaxPeople sqft</p>
+                                                        <p>@rental.RoomArea sqft</p>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-bed"></i>
