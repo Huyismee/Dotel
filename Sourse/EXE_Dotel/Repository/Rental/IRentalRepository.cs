@@ -11,5 +11,10 @@ namespace EXE_Dotel.Repository.Rental
         //public List<EXE_Dotel.Models.Rental> GetRentalByFilters();
 
         public List<EXE_Dotel.Models.Rental> getRentalWithImage();
+
+
+        public List<Models.Rental> getRentersPaging(int  page, int pageSize);
+
+        public int getListRentalsCount();
     }
 }

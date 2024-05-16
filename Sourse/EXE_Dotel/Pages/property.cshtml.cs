@@ -13,10 +13,24 @@ namespace EXE_Dotel.Pages
             rentalRepository = repository;
         }
 
-        public List<Rental>? rentals { get; private set; }
+       
+
+        public int Total { get ; private set; }
+
+        public int PageSize { get; private set; } = 3;
+
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+
+        public int TotalPages { get; private set; } 
+        public List<Rental>? rentals { get; private set; } 
         public void OnGet()
         {
-            rentals = rentalRepository.getRentalWithImage();
+
+            Console.WriteLine($"Current Page: {CurrentPage}");
+            Total = rentalRepository.getListRentalsCount();
+            TotalPages= (int)Math.Ceiling(Total / (double)PageSize);
+            rentals = rentalRepository.getRentersPaging(CurrentPage, PageSize);
         }
     }
 }
