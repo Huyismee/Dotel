@@ -16,5 +16,7 @@ namespace EXE_Dotel.Repository.Rental
         public List<Models.Rental> getRentersPaging(int  page, int pageSize);
 
         public int getListRentalsCount();
+
+        public Models.Rental getRentalWithListImages(int rentalId);
     }
 }

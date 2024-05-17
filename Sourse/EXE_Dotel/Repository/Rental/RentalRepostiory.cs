@@ -14,15 +14,21 @@ namespace EXE_Dotel.Repository.Rental
             return dBContext.Rentals.Count();
         }
 
-        public Models.Rental GetRental(int id)
+        public Models.Rental GetRental(int rentalId)
         {
-            EXE_Dotel.Models.Rental? currentRental = dBContext.Rentals.Include(rental=> rental.RentalListImages)
-                                                                      .FirstOrDefault(rental=> rental.RentalId== id);
-            if (currentRental != null)
+            Console.WriteLine($"Fetching rental with ID: {rentalId}");
+
+            var rental = dBContext.Rentals
+                                 .Include(r => r.RentalListImages)
+                                 .FirstOrDefault(r => r.RentalId == rentalId);
+
+            if (rental == null)
             {
-                return currentRental;
+                // Debugging: Log if rental not found
+                Console.WriteLine($"No rental found for ID: {rentalId}");
             }
-            return currentRental;
+
+            return rental;
         }
 
         public List<Models.Rental> GetRentals()
@@ -36,6 +42,11 @@ namespace EXE_Dotel.Repository.Rental
             return dBContext.Rentals
             .Include(r => r.RentalListImages).ToList();
             ;
+        }
+
+        public Models.Rental getRentalWithListImages(int rentalId)
+        {
+            return dBContext.Rentals.Include(r => r.RentalListImages).FirstOrDefault(rental => rental.RentalId == rentalId);
         }
 
         public List<Models.Rental> getRentersPaging(int page, int pageSize)
