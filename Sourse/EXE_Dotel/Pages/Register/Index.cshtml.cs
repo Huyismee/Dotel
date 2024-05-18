@@ -38,7 +38,7 @@ namespace EXE_Dotel.Pages.Register
                 Email = Request.Form["Email"],
                 Password = hashedPassword,
                 MainPhoneNumber = Request.Form["Phone"],
-                UserId = 2,
+/*                UserId = 2,*/
                 Status = true,
             };
             _context.Users.Add(newUser);
