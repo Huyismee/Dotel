@@ -82,8 +82,7 @@
                         <nav class="main-menu">
                             <ul>
                                 <li class="active"><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Danh sách trọ</a></li>
-                                <li><a href="#">Tin tức</a></li>
+                                <li><a href="property">Danh sách trọ</a></li>
                                 <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </nav>
@@ -91,8 +90,15 @@
                     <div class="col-lg-5">
                         <div class="top-right">
                             <a href="#" class="property-sub">Submit Property</a>
-                            <a href="/Login" class="btn btn-primary">Login</a>
-                            <a href="/Register" class="btn btn-primary">Register</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Logout" class="btn btn-primary">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Login" class="btn btn-primary">Login</a>
+                                <a href="/Register" class="btn btn-primary">Register</a>
+                            }
                         </div>
                     </div>
                 </div>
