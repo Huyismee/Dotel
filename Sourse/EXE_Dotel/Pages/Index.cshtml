@@ -145,7 +145,7 @@
     </header>
     <!-- Header End -->
     <!-- Hero Section Begin -->
-    <section class="hero-section">
+@*     <section class="hero-section">
         <div class="hero-items owl-carousel">
             <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
                 <div class="container">
@@ -263,7 +263,64 @@
                 </div>
             </div>
         </div>
+    </section> *@
+
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+        @if (Model.rentals != null)
+        {
+            foreach (var r in Model.rentals)
+            {
+                
+
+                    <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 offset-lg-2">
+                                    <div class="hero-text">
+                                        <p class="room-location"><i class="icon_pin"></i> Địa chỉ
+                                        <h2>Tên trọ</h2>
+                                        <div class="room-price">
+                                            <span>Giá</span>
+                                            <p>@r.Price</p>
+                                        </div>
+                                        <ul class="room-features">
+                                            <li>
+                                                <i class="fa fa-arrows"></i>
+                                                <p>xxx</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <p>xxx</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath"></i>
+                                                <p>xxx</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-car"></i>
+                                                <p>xxx</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+            }
+        }
+            <div class="thumbnail-pic">
+                <div class="thumbs owl-carousel">
+                    <div class="item">
+                        <img src="img/hero/dot-1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    
+
     <!-- Hero Section End -->
     <!-- Search Form Section Begin -->
     <div class="search-form">

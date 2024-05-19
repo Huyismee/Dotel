@@ -1,10 +1,12 @@
 using EXE_Dotel.Models;
+using EXE_Dotel.Repository.Rental;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DotelDBContext>();
+builder.Services.AddScoped<IRentalRepository, RentalRepostiory>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
