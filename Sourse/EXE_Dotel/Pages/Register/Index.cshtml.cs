@@ -1,4 +1,4 @@
-using EXE_Dotel.Models;
+﻿using EXE_Dotel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Numerics;
@@ -38,7 +38,7 @@ namespace EXE_Dotel.Pages.Register
                 Email = Request.Form["Email"],
                 Password = hashedPassword,
                 MainPhoneNumber = Request.Form["Phone"],
-/*                UserId = 2,*/
+                RoleId = 2,// admin = 1, guest = 2, đã có role trong db mới add được
                 Status = true,
             };
             _context.Users.Add(newUser);
