@@ -49,6 +49,13 @@ namespace EXE_Dotel.Repository.Rental
             return dBContext.Rentals.Include(r => r.RentalListImages).FirstOrDefault(rental => rental.RentalId == rentalId);
         }
 
+        public Models.Rental getRentalWithListImagesAndVideo(int rentalId)
+        {
+            return dBContext.Rentals.Include(r => r.RentalListImages)
+                                    .Include(rental => rental.RentalVideos).AsSplitQuery()
+                                    .FirstOrDefault(rental=> rental.RentalId==rentalId);
+        }
+
         public List<Models.Rental> getRentersPaging(int page, int pageSize)
         {
             return dBContext.Rentals.Include(rental => rental.RentalListImages)

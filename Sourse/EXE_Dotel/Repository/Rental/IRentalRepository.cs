@@ -18,5 +18,8 @@ namespace EXE_Dotel.Repository.Rental
         public int getListRentalsCount();
 
         public Models.Rental getRentalWithListImages(int rentalId);
+
+
+        public Models.Rental getRentalWithListImagesAndVideo(int rentalId);
     }
 }
