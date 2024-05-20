@@ -40,6 +40,16 @@ namespace EXE_Dotel.Pages.Login
 				return false;
 			}else
             {
+                if (user.Status == false) // Deactived
+                {
+                    TempData["ErrorMessage"] = "Account has been banned.";
+                    return false;
+                }else if (user.RoleId != 2) //Guest
+                {
+                    TempData["ErrorMessage"] = "Access denied.";
+                    return false;
+                }
+
                 return true;
 			}
         }
