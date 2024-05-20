@@ -32,7 +32,7 @@ namespace EXE_Dotel.Pages
         public List<Rental> rentals { get; private set; }
 
 
-        public Rental rentalTest {  get; private set; }
+        public Rental Rental { get; private set; }
         public void OnGet()
 
         {
@@ -42,11 +42,15 @@ namespace EXE_Dotel.Pages
             rentals= rentalRepository.GetRentals();
 
             currRental = rentalRepository.GetRental(PropertyId);
+
+            Rental = rentalRepository.getRentalWithListImagesAndVideo(PropertyId);
             foreach (Rental rentla in rentals)
             {
                 Console.WriteLine(rentla);
                 
                 Console.WriteLine(currRental);
+
+                Console.WriteLine(Rental.RentalVideos.Count);
             }
             
             if (PropertyId < 0)
@@ -55,7 +59,7 @@ namespace EXE_Dotel.Pages
                 return ;
             }
             
-            Images = imageRepository.GetListImageByRentalId(1);
+            Images = imageRepository.GetListImageByRentalId(PropertyId);
 
             Console.WriteLine(currRental);
             if (currRental == null)
