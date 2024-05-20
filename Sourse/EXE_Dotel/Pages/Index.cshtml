@@ -271,50 +271,49 @@
         {
             foreach (var r in Model.rentals)
             {
-                
-
-                    <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 offset-lg-2">
-                                    <div class="hero-text">
-                                        <p class="room-location"><i class="icon_pin"></i> Địa chỉ
-                                        <h2>Tên trọ</h2>
-                                        <div class="room-price">
-                                            <span>Giá</span>
-                                            <p>@r.Price</p>
-                                        </div>
-                                        <ul class="room-features">
-                                            <li>
-                                                <i class="fa fa-arrows"></i>
-                                                <p>xxx</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bed"></i>
-                                                <p>xxx</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bath"></i>
-                                                <p>xxx</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>xxx</p>
-                                            </li>
-                                        </ul>
+                <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="hero-text">
+                                    <p class="room-location"><i class="icon_pin"></i> Địa chỉ
+                                        <a href="/property_details?PropertyId=@r.RentalId">
+                                            <h2>Tên trọ</h2>
+                                        </a>
+                                    <div class="room-price">
+                                        <span>Giá</span>
+                                        <p>@r.Price</p>
                                     </div>
+                                    <ul class="room-features">
+                                        <li>
+                                            <i class="fa fa-arrows"></i>
+                                            <p>xxx</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>xxx</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bath"></i>
+                                            <p>xxx</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-car"></i>
+                                            <p>xxx</p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
+                </div>
             }
         }
-            <div class="thumbnail-pic">
-                <div class="thumbs owl-carousel">
-                    <div class="item">
-                        <img src="img/hero/dot-1.jpg" alt="">
-                    </div>
+        </div>
+        <div class="thumbnail-pic">
+            <div class="thumbs owl-carousel">
+                <div class="item">
+                    <img src="img/hero/dot-1.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -428,236 +427,60 @@
             </div>
             <div class="row">
                 <div class="feature-carousel owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-1.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">Hot</div>
-                                    <div class="s-text">Còn phòng</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-1.jpg" alt="">
+                    @if (Model.rentals != null)
+                    {
+                        foreach (var r in Model.rentals)
+                        {
+                            <div class="col-lg-4">
+                                <div class="feature-item">
+                                    <div class="fi-pic set-bg" data-setbg="img/feature/feature-1.jpg">
+                                        <div class="pic-tag">
+                                            <div class="f-text">Hot</div>
+                                            <div class="s-text">Còn phòng</div>
+                                        </div>
+                                        <div class="feature-author">
+                                            <div class="fa-pic">
+                                                <img src="img/feature/f-author-1.jpg" alt="">
+                                            </div>
+                                            <div class="fa-text">
+                                                <span>Rena Simmons</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="fa-text">
-                                        <span>Rena Simmons</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>Tên trọ 1</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> Địa chỉ 1</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-2.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">Hot</div>
-                                    <div class="s-text">Còn phòng</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-2.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Rena Johnston</span>
+                                    <div class="fi-text">
+                                        <div class="inside-text">
+                                            <a href="/property_details?PropertyId=@r.RentalId">
+                                                <h4>Tên trọ 1</h4>
+                                            </a>
+                                            <ul>
+                                                <li><i class="fa fa-map-marker"></i> Địa chỉ 1</li>
+                                                <li><i class="fa fa-tag"></i> Villa</li>
+                                            </ul>
+                                            <h5 class="price">@r.Price<span>/month</span></h5>
+                                        </div>
+                                        <ul class="room-features">
+                                            <li>
+                                                <i class="fa fa-arrows"></i>
+                                                <p>@r.RoomArea sqft</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <p>4</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath"></i>
+                                                <p>3</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-car"></i>
+                                                <p>2</p>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>Tên trọ 2</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> Địa chỉ 2</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-3.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">Hot</div>
-                                    <div class="s-text">Còn phòng</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>Tên trọ 3</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> Địa chỉ 3 </li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-4.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">Hot</div>
-                                    <div class="s-text">Còn phòng</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>Tên trọ 4</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> Địa chỉ 4 </li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-5.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">Hot</div>
-                                    <div class="s-text">Còn phòng</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>Tên trọ 5</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> Địa chỉ 5 </li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -688,91 +511,57 @@
                             <span>Top Property For You</span>
                             <h2>Top Properties</h2>
                         </div>
-                        <a href="#" class="top-property-all">View All Property</a>
+                        <a href="/property" class="top-property-all">View All Property</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="top-properties-carousel owl-carousel">
-                <div class="single-top-properties">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="stp-pic">
-                                <img src="img/properties/properties-1.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="stp-text">
-                                <div class="s-text">For Sale</div>
-                                <h2>Villa 9721 Glen Creek</h2>
-                                <div class="room-price">
-                                    <span>Start From:</span>
-                                    <h4>$3.000.000</h4>
+                @if (Model.rentals != null)
+                {
+                    foreach (var r in Model.rentals){
+                        <div class="single-top-properties">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="stp-pic">
+                                        <img src="img/properties/properties-1.jpg" alt="">
+                                    </div>
                                 </div>
-                                <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>5201 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>8 Bed Room</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>7 Baths Bed</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>1 Garage</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-top-properties">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="stp-pic">
-                                <img src="img/properties/properties-2.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="stp-text">
-                                <div class="s-text">For Sale</div>
-                                <h2>Villa 9721 Glen Creek</h2>
-                                <div class="room-price">
-                                    <span>Start From:</span>
-                                    <h4>$3.000.000</h4>
+                                <div class="col-lg-6">
+                                    <div class="stp-text">
+                                        <div class="s-text">For Sale</div>
+                                        <h2>Villa 9721 Glen Creek</h2>
+                                        <div class="room-price">
+                                            <span>Start From:</span>
+                                            <h4>@r.Price</h4>
+                                        </div>
+                                        <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
+                                        <p>@r.Description</p>
+                                        <ul class="room-features">
+                                            <li>
+                                                <i class="fa fa-arrows"></i>
+                                                <p>@r.RoomArea sqft</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <p>8 Bed Room</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath"></i>
+                                                <p>7 Baths Bed</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-car"></i>
+                                                <p>1 Garage</p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>5201 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>8 Bed Room</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>7 Baths Bed</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>1 Garage</p>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </div>
