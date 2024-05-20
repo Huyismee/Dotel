@@ -1,5 +1,6 @@
 using EXE_Dotel.Models;
 using EXE_Dotel.Repository.Rental;
+using EXE_Dotel.Repository.RentalImages;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DotelDBContext>();
 builder.Services.AddScoped<IRentalRepository, RentalRepostiory>();
+builder.Services.AddScoped<iRentalImageRepository, RentalImageRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

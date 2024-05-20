@@ -16,9 +16,13 @@ namespace EXE_Dotel.Models
         {
         }
 
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Rental> Rentals { get; set; } = null!;
         public virtual DbSet<RentalListImage> RentalListImages { get; set; } = null!;
         public virtual DbSet<RentalVideo> RentalVideos { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<SponsorRental> SponsorRentals { get; set; } = null!;
+        public virtual DbSet<Sponsorship> Sponsorships { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,28 +30,76 @@ namespace EXE_Dotel.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionString"));
+                optionsBuilder.UseSqlServer("Server = localhost; Database = DotelDB; Integrated security = True;TrustServerCertificate=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.ToTable("Admin");
+
+                entity.Property(e => e.AdminId).HasColumnName("adminId");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Fullname)
+                    .HasMaxLength(50)
+                    .HasColumnName("fullname");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(32)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("phoneNumber");
+
+                entity.Property(e => e.RoleId).HasColumnName("roleId");
+
+                entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Admins)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_Admin_Role");
+            });
+
             modelBuilder.Entity<Rental>(entity =>
             {
                 entity.ToTable("Rental");
 
-                entity.Property(e => e.RentalId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("rentalId");
+                entity.Property(e => e.RentalId).HasColumnName("rentalId");
+
+                entity.Property(e => e.Approval).HasColumnName("approval");
+
+                entity.Property(e => e.Bathroom).HasColumnName("bathroom");
+
+                entity.Property(e => e.BedroomNumber).HasColumnName("bedroomNumber");
+
+                entity.Property(e => e.ContactPhoneNumber)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("contactPhoneNumber");
 
                 entity.Property(e => e.Description).HasColumnName("description");
+
+                entity.Property(e => e.Kitchen).HasColumnName("kitchen");
 
                 entity.Property(e => e.MaxPeople).HasColumnName("maxPeople");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("money")
                     .HasColumnName("price");
+
+                entity.Property(e => e.RentalTitle)
+                    .HasMaxLength(300)
+                    .HasColumnName("rentalTitle");
 
                 entity.Property(e => e.RoomArea)
                     .HasColumnType("decimal(18, 0)")
@@ -57,10 +109,11 @@ namespace EXE_Dotel.Models
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
+                entity.Property(e => e.ViewNumber).HasColumnName("viewNumber");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Rentals)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Rental_UserId");
             });
 
@@ -70,9 +123,7 @@ namespace EXE_Dotel.Models
 
                 entity.ToTable("RentalListImage");
 
-                entity.Property(e => e.ImageId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("imageId");
+                entity.Property(e => e.ImageId).HasColumnName("imageId");
 
                 entity.Property(e => e.RentalId).HasColumnName("rentalId");
 
@@ -83,7 +134,6 @@ namespace EXE_Dotel.Models
                 entity.HasOne(d => d.Rental)
                     .WithMany(p => p.RentalListImages)
                     .HasForeignKey(d => d.RentalId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RentalListImage_Rental");
             });
 
@@ -93,9 +143,7 @@ namespace EXE_Dotel.Models
 
                 entity.ToTable("RentalVideo");
 
-                entity.Property(e => e.VideoId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("videoId");
+                entity.Property(e => e.VideoId).HasColumnName("videoId");
 
                 entity.Property(e => e.RentalId).HasColumnName("rentalId");
 
@@ -106,20 +154,68 @@ namespace EXE_Dotel.Models
                 entity.HasOne(d => d.Rental)
                     .WithMany(p => p.RentalVideos)
                     .HasForeignKey(d => d.RentalId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RentalVideo_Rental");
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.ToTable("Role");
+
+                entity.Property(e => e.RoleId).HasColumnName("roleId");
+
+                entity.Property(e => e.RoleName)
+                    .HasMaxLength(50)
+                    .HasColumnName("roleName");
+            });
+
+            modelBuilder.Entity<SponsorRental>(entity =>
+            {
+                entity.ToTable("SponsorRental");
+
+                entity.Property(e => e.SponsorRentalId).HasColumnName("sponsorRentalId");
+
+                entity.Property(e => e.RentalId).HasColumnName("rentalId");
+
+                entity.Property(e => e.SponsorId).HasColumnName("sponsorId");
+
+                entity.HasOne(d => d.Rental)
+                    .WithMany(p => p.SponsorRentals)
+                    .HasForeignKey(d => d.RentalId)
+                    .HasConstraintName("FK_SponsorRental_Rental");
+
+                entity.HasOne(d => d.Sponsor)
+                    .WithMany(p => p.SponsorRentals)
+                    .HasForeignKey(d => d.SponsorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SponsorRental_Sponsor");
+            });
+
+            modelBuilder.Entity<Sponsorship>(entity =>
+            {
+                entity.HasKey(e => e.SponsorId);
+
+                entity.ToTable("Sponsorship");
+
+                entity.Property(e => e.SponsorId).HasColumnName("sponsorId");
+
+                entity.Property(e => e.SponsorDes)
+                    .HasMaxLength(1000)
+                    .HasColumnName("sponsorDes");
+
+                entity.Property(e => e.SponsorName)
+                    .HasMaxLength(50)
+                    .HasColumnName("sponsorName");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("userId");
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.Property(e => e.Email)
-                    .HasMaxLength(30)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
                     .HasColumnName("email");
 
                 entity.Property(e => e.Fullname)
@@ -127,18 +223,28 @@ namespace EXE_Dotel.Models
                     .HasColumnName("fullname");
 
                 entity.Property(e => e.MainPhoneNumber)
-                    .HasMaxLength(20)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
                     .HasColumnName("mainPhoneNumber");
 
                 entity.Property(e => e.Password)
-                    .HasMaxLength(30)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
                     .HasColumnName("password");
 
+                entity.Property(e => e.RoleId).HasColumnName("roleId");
+
                 entity.Property(e => e.SecondaryPhoneNumber)
-                    .HasMaxLength(20)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
                     .HasColumnName("secondaryPhoneNumber");
 
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_User_Role");
             });
 
             OnModelCreatingPartial(modelBuilder);

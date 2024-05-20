@@ -271,14 +271,16 @@
         {
             foreach (var r in Model.rentals)
             {
-                <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
+                var curImages = Model.images[r.RentalId];
+                var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
+                <div class="single-hero-item set-bg" data-setbg="@firstImgUrl">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 offset-lg-2">
                                 <div class="hero-text">
-                                    <p class="room-location"><i class="icon_pin"></i> Địa chỉ
+                                    <p class="room-location"><i class="icon_pin"></i> 
                                         <a href="/property_details?PropertyId=@r.RentalId">
-                                            <h2>Tên trọ</h2>
+                                            <h2>@r.RentalTitle</h2>
                                         </a>
                                     <div class="room-price">
                                         <span>Giá</span>
@@ -287,19 +289,15 @@
                                     <ul class="room-features">
                                         <li>
                                             <i class="fa fa-arrows"></i>
-                                            <p>xxx</p>
+                                            <p>@r.RoomArea</p>
                                         </li>
                                         <li>
                                             <i class="fa fa-bed"></i>
-                                            <p>xxx</p>
+                                            <p>@r.BedroomNumber</p>
                                         </li>
                                         <li>
                                             <i class="fa fa-bath"></i>
-                                            <p>xxx</p>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-car"></i>
-                                            <p>xxx</p>
+                                            <p>@r.Bathroom</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -314,6 +312,12 @@
             <div class="thumbs owl-carousel">
                 <div class="item">
                     <img src="img/hero/dot-1.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img src="img/hero/dot-2.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img src="img/hero/dot-3.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -431,26 +435,28 @@
                     {
                         foreach (var r in Model.rentals)
                         {
+                            var curImages = Model.images[r.RentalId];
+                            var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
                             <div class="col-lg-4">
                                 <div class="feature-item">
-                                    <div class="fi-pic set-bg" data-setbg="img/feature/feature-1.jpg">
+                                    <div class="fi-pic set-bg" data-setbg="firstImgUrl">
                                         <div class="pic-tag">
                                             <div class="f-text">Hot</div>
                                             <div class="s-text">Còn phòng</div>
                                         </div>
-                                        <div class="feature-author">
+                                       @*  <div class="feature-author">
                                             <div class="fa-pic">
                                                 <img src="img/feature/f-author-1.jpg" alt="">
                                             </div>
                                             <div class="fa-text">
                                                 <span>Rena Simmons</span>
                                             </div>
-                                        </div>
+                                        </div> *@
                                     </div>
                                     <div class="fi-text">
                                         <div class="inside-text">
                                             <a href="/property_details?PropertyId=@r.RentalId">
-                                                <h4>Tên trọ 1</h4>
+                                                <h4>@r.RentalTitle</h4>
                                             </a>
                                             <ul>
                                                 <li><i class="fa fa-map-marker"></i> Địa chỉ 1</li>
@@ -461,19 +467,15 @@
                                         <ul class="room-features">
                                             <li>
                                                 <i class="fa fa-arrows"></i>
-                                                <p>@r.RoomArea sqft</p>
+                                                <p>@r.RoomArea m2</p>
                                             </li>
                                             <li>
                                                 <i class="fa fa-bed"></i>
-                                                <p>4</p>
+                                                <p>@r.BedroomNumber</p>
                                             </li>
                                             <li>
                                                 <i class="fa fa-bath"></i>
-                                                <p>3</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>2</p>
+                                                <p>@r.Bathroom</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -521,39 +523,37 @@
                 @if (Model.rentals != null)
                 {
                     foreach (var r in Model.rentals){
+                        var curImages = Model.images[r.RentalId];
+                        var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
                         <div class="single-top-properties">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="stp-pic">
-                                        <img src="img/properties/properties-1.jpg" alt="">
+                                        <img src="@firstImgUrl" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="stp-text">
                                         <div class="s-text">For Sale</div>
-                                        <h2>Villa 9721 Glen Creek</h2>
+                                        <h2>@r.RentalTitle</h2>
                                         <div class="room-price">
                                             <span>Start From:</span>
                                             <h4>@r.Price</h4>
                                         </div>
-                                        <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
+                                        <div class="properties-location"><i class="icon_pin"></i> Location </div>
                                         <p>@r.Description</p>
                                         <ul class="room-features">
                                             <li>
                                                 <i class="fa fa-arrows"></i>
-                                                <p>@r.RoomArea sqft</p>
+                                                <p>@r.RoomArea m2</p>
                                             </li>
                                             <li>
                                                 <i class="fa fa-bed"></i>
-                                                <p>8 Bed Room</p>
+                                                <p>@r.BedroomNumber</p>
                                             </li>
                                             <li>
                                                 <i class="fa fa-bath"></i>
-                                                <p>7 Baths Bed</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>1 Garage</p>
+                                                <p>@r.Bathroom</p>
                                             </li>
                                         </ul>
                                     </div>
