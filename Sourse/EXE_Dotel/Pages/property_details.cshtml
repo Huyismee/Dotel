@@ -161,16 +161,16 @@
                         <h2>Villa 9721 Glen Creek</h2>
                         <div class="room-price">
                             <span>Start Form:</span>
-                            <p>$3.000.000</p>
+                            <p>$@Model.currRental.Price</p>
                         </div>
                         <ul class="room-features">
                             <li>
                                 <i class="fa fa-arrows"></i>
-                                <p>5201 sqft</p>
+                                <p>@Model.currRental.RoomArea sqft</p>
                             </li>
                             <li>
                                 <i class="fa fa-bed"></i>
-                                <p>8 Bed Room</p>
+                                <p>@Model.currRental.MaxPeople Bed Room</p>
                             </li>
                             <li>
                                 <i class="fa fa-bath"></i>
@@ -207,27 +207,41 @@
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt" data-imgbigurl="img/properties/property-details-b2.jpg"><img
-                                            src="img/properties/thumb-1.jpg" alt=""></div>
-                                    <div class="pt active" data-imgbigurl="img/properties/property-details-b1.jpg"><img
-                                            src="img/properties/thumb-2.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/properties/property-details-b3.jpg"><img
-                                            src="img/properties/thumb-3.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/properties/property-details-b4.jpg"><img
-                                            src="img/properties/thumb-4.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/properties/property-details-b5.jpg"><img
-                                            src="img/properties/thumb-5.jpg" alt=""></div>
+                                    @if (Model.currRental != null)
+                                    {
+                                        
+                                        <div>
+                                            @foreach (var image in Model.currRental.RentalListImages)
+                                            {
+                                                <div class="pt">
+                                                    <img src="@image.Sourse" alt="Property Image" style="max-width: 200px; max-height: 200px;" />
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>No images available for this property.</p>
+                                    }
+
+                                    @if (Model.Rental != null)
+                                    {
+                                        <div>
+                                            @foreach(var rental in Model.Rental.RentalVideos)
+                                            {
+                                                <div class="pt">
+                                                    <video src="@rental.Sourse" alt="Property Image" controls  style="max-width: 200px; max-height: 200px;" />
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="pd-desc">
                             <h4>Description</h4>
-                            <p>Learn how to improve your playing quality and even overall understanding of online gaming
-                                and how you perform while playing online. Gaming online is a huge business nowadays and
-                                that means that there are millions of people worldwide at online game sites all the
-                                time. Many are people just like you and me that like to play online and have fun doing
-                                it. Some of these people enjoy it so much, that they often do not even care about
-                                improving their skill and raising their chances of winning.</p>
+                            <p>@Model.currRental.Description/p>
                         </div>
                         <div class="pd-details-tab">
                             <div class="tab-item">
@@ -251,7 +265,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="pt-name">Price</td>
-                                                        <td class="p-value">$ 138,000</td>
+                                                        <td class="p-value">@Model.currRental.Price</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Property Type</td>
@@ -267,7 +281,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Rooms</td>
-                                                        <td class="p-value">12</td>
+                                                        <td class="p-value">@Model.currRental.MaxPeople</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Parking lots</td>
@@ -275,7 +289,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Lot area</td>
-                                                        <td class="p-value">200 spft</td>
+                                                        <td class="p-value">@Model.currRental.RoomArea</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -303,7 +317,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Home area</td>
-                                                        <td class="p-value">1200 sqft</td>
+                                                        <td class="p-value">@Model.currRental.RoomArea</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pt-name">Gara Size</td>
@@ -315,17 +329,9 @@
                                     </div>
                                     <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                         <div class="pd-table-desc">
-                                            <p>Learn how to improve your playing quality and even overall understanding
-                                                of online gaming and how you perform while playing online. Gaming online
-                                                is a huge business nowadays and that means that there are millions of
-                                                people worldwide at online game sites all the time. Many are people just
-                                                like you and me that like to play online and have fun doing it. Some of
-                                                these people enjoy it so much, that they often do not even care about
-                                                improving their skill and raising their chances of winning.</p>
-                                            <p>Learn how to improve your playing quality and even overall understanding
-                                                of online gaming and how you perform while playing online. Gaming online
-                                                is a huge business nowadays and that means that there are millions of
-                                                people worldwide at online game sites all the time. Many are people just
+                                            <p>Lea means that there are millions of
+                                                people worldwide at online game sites all the time..</p>
+                                            <p> Many are people just
                                                 like you and me that like to play online and have fun doing it. Some of
                                                 these people enjoy it so much, that they often do not even care about
                                                 improving their skill and raising their chances of winning.</p>
@@ -333,19 +339,8 @@
                                     </div>
                                     <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                         <div class="pd-table-amenities">
-                                            <p>Learn how to improve your playing quality and even overall understanding
-                                                of online gaming and how you perform while playing online. Gaming online
-                                                is a huge business nowadays and that means that there are millions of
-                                                people worldwide at online game sites all the time. Many are people just
-                                                like you and me that like to play online and have fun doing it. Some of
-                                                these people enjoy it so much, that they often do not even care about
-                                                improving their skill and raising their chances of winning.</p>
-                                            <p>Learn how to improve your playing quality and even overall understanding
-                                                of online gaming and how you perform while playing online. Gaming online
-                                                is a huge business nowadays and that means that there are millions of
-                                                people worldwide at online game sites all the time. Many are people just
-                                                like you and me that like to play online and have fun doing it. Some of
-                                                these people enjoy it so much, that they often do not even care about
+                                            <p>L. Many are people just
+                                                like you and me even care about
                                                 improving their skill and raising their chances of winning.</p>
                                         </div>
                                     </div>

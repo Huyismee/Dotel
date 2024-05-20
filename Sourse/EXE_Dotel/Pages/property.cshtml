@@ -1,5 +1,8 @@
 ﻿@page
 @model EXE_Dotel.Pages.propertyModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper , Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, EXE_Dotel
 @{
 }
 <body>
@@ -258,191 +261,73 @@
                 <div class="col-lg-9">
                     <h4 class="property-title">Property</h4>
                     <div class="property-list">
-                        <div class="single-property-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="property-pic">
-                                        <img src="img/properties/property-1.jpg" alt="">
+                        @if (Model.rentals != null)
+                        {
+                            foreach (var rental in Model.rentals)
+                            {
+                                <div class="single-property-item">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="property-pic">
+                                                <img src="@rental.RentalListImages.FirstOrDefault()?.Sourse" alt="@rental.RentalId">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="property-text">
+                                                <div class="s-text">@rental.Status</div>
+                                                <h5 class="r-title">Rental A</h5>
+                                                <div class="room-price">
+                                                    <span>Start From:</span>
+                                                    <h5>@rental.Price</h5>
+                                                </div>
+                                                <div class="properties-location">
+                                                    <i class="icon_pin"></i> Local
+                                                </div>
+                                                <p>@rental.Description</p>
+                                                <a href="/property_details?PropertyId=@rental.RentalId">View Details</a>
+                                                <ul class="room-features">
+                                                    <li>
+                                                        <i class="fa fa-arrows"></i>
+                                                        <p>@rental.RoomArea sqft</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-bed"></i>
+                                                        <p> Bed Room</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-bath"></i>
+                                                        <p> Baths Bed</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-car"></i>
+                                                        <p>Garage</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="property-text">
-                                        <div class="s-text">For Sale</div>
-                                        <h5 class="r-title">Villa 9721 Glen Creek</h5>
-                                        <div class="room-price">
-                                            <span>Start From:</span>
-                                            <h5>$3.000.000</h5>
-                                        </div>
-                                        <div class="properties-location">
-                                            <i class="icon_pin"></i> 9721 Glen Creek Ave.
-                                            Ballston Spa, NY
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore.
-                                        </p>
-                                        <ul class="room-features">
-                                            <li>
-                                                <i class="fa fa-arrows"></i>
-                                                <p>5201 sqft</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bed"></i>
-                                                <p>8 Bed Room</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bath"></i>
-                                                <p>7 Baths Bed</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>1 Garage</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-property-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="property-pic">
-                                        <img src="img/properties/property-2.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="property-text">
-                                        <div class="s-text">For Sale</div>
-                                        <h5 class="r-title">Villa 9721 Glen Creek</h5>
-                                        <div class="room-price">
-                                            <span>Start From:</span>
-                                            <h5>$3.000.000</h5>
-                                        </div>
-                                        <div class="properties-location">
-                                            <i class="icon_pin"></i> 9721 Glen Creek Ave.
-                                            Ballston Spa, NY
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore.
-                                        </p>
-                                        <ul class="room-features">
-                                            <li>
-                                                <i class="fa fa-arrows"></i>
-                                                <p>5201 sqft</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bed"></i>
-                                                <p>8 Bed Room</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bath"></i>
-                                                <p>7 Baths Bed</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>1 Garage</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-property-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="property-pic">
-                                        <img src="img/properties/property-3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="property-text">
-                                        <div class="s-text">For Sale</div>
-                                        <h5 class="r-title">Villa 9721 Glen Creek</h5>
-                                        <div class="room-price">
-                                            <span>Start From:</span>
-                                            <h5>$3.000.000</h5>
-                                        </div>
-                                        <div class="properties-location">
-                                            <i class="icon_pin"></i> 9721 Glen Creek Ave.
-                                            Ballston Spa, NY
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore.
-                                        </p>
-                                        <ul class="room-features">
-                                            <li>
-                                                <i class="fa fa-arrows"></i>
-                                                <p>5201 sqft</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bed"></i>
-                                                <p>8 Bed Room</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bath"></i>
-                                                <p>7 Baths Bed</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>1 Garage</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-property-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="property-pic">
-                                        <img src="img/properties/property-4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="property-text">
-                                        <div class="s-text">For Sale</div>
-                                        <h5 class="r-title">Villa 9721 Glen Creek</h5>
-                                        <div class="room-price">
-                                            <span>Start From:</span>
-                                            <h5>$3.000.000</h5>
-                                        </div>
-                                        <div class="properties-location">
-                                            <i class="icon_pin"></i> 9721 Glen Creek Ave.
-                                            Ballston Spa, NY
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore.
-                                        </p>
-                                        <ul class="room-features">
-                                            <li>
-                                                <i class="fa fa-arrows"></i>
-                                                <p>5201 sqft</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bed"></i>
-                                                <p>8 Bed Room</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-bath"></i>
-                                                <p>7 Baths Bed</p>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-car"></i>
-                                                <p>1 Garage</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No rentals found.</p>
+                        }
                     </div>
-                    <div class="property-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+                    
+                        <div class="property-pagination">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <a asp-page="property" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+                        }
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <a href="/property?CurrentPage=@i">@i</a>
+                        }
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <a href="/property?CurrentPage=@(Model.CurrentPage + 1)">Next</a>
+                        }
                     </div>
                 </div>
             </div>
