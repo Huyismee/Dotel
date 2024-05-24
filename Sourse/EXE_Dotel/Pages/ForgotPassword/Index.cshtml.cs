@@ -15,7 +15,7 @@ namespace EXE_Dotel.Pages.Forgot
         public void OnGet()
         {
             var emailSession = HttpContext.Session.GetString("EmailSession");
-            if (string.IsNullOrEmpty(emailSession))
+            if (!string.IsNullOrEmpty(emailSession))
             {
                 HttpContext.Session.Remove("EmailSession");
             }

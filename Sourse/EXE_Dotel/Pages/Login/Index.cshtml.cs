@@ -1,4 +1,4 @@
-using EXE_Dotel.Models;
+﻿using EXE_Dotel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Cryptography;
@@ -17,6 +17,11 @@ namespace EXE_Dotel.Pages.Login
         [BindProperty] public string password { get; set; }
         public void OnGet()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            if (!string.IsNullOrEmpty(userSession))
+            {
+                HttpContext.Session.Remove("UserSession");
+            }
         }
         public IActionResult OnPost()
         {
@@ -50,6 +55,7 @@ namespace EXE_Dotel.Pages.Login
                     return false;
                 }
 
+                HttpContext.Session.SetString("UserSession", user.Email);// tạo session khi login
                 return true;
 			}
         }
