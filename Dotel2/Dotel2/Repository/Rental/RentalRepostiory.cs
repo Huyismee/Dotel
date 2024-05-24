@@ -61,8 +61,18 @@ namespace EXE_Dotel.Repository.Rental
         {
             return dBContext.Rentals.Include(rental => rental.RentalListImages)
                 .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+                .Take(pageSize).OrderBy(re=>re.Price)
                 .ToList();
+        }
+
+        public void getViewCountIncrease(Dotel2.Models.Rental rental)
+        {
+            if(rental == null) return;
+            else
+            {
+                rental.ViewNumber += 1;
+                dBContext.SaveChanges();
+            }
         }
     }
 }

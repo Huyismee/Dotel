@@ -1,5 +1,7 @@
 
-﻿
+
+
+using Dotel2.Models;
 
 namespace Dotel2.Repository.Rental
 {
@@ -22,5 +24,7 @@ namespace Dotel2.Repository.Rental
 
 
         public Models.Rental getRentalWithListImagesAndVideo(int rentalId);
+
+        public void getViewCountIncrease(Models.Rental rental);
     }
 }
