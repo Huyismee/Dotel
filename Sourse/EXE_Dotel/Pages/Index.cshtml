@@ -4,7 +4,6 @@
     ViewData["Title"] = "Home page";
 }
 
-
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -82,30 +81,24 @@
                     <div class="col-lg-7">
                         <nav class="main-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./property.html">Property</a></li>
-                                <li><a href="./about-us.html">Agets</a></li>
-                                <li><a href="./blog.html">News</a></li>
-                                <li><a href="./property-details.html">Pages</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li class="active"><a href="#">Trang chủ</a></li>
+                                <li><a href="property">Danh sách trọ</a></li>
+                                <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="col-lg-5">
                         <div class="top-right">
-                            <div class="language-option">
-                                <img src="img/flag.png" alt="">
-                                <span>English</span>
-                                <i class="fa fa-angle-down"></i>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">Germany</a></li>
-                                        <li><a href="#">China</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                             <a href="#" class="property-sub">Submit Property</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Logout" class="btn btn-primary">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Login" class="btn btn-primary">Login</a>
+                                <a href="/Register" class="btn btn-primary">Register</a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -116,7 +109,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="#" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -125,22 +118,22 @@
                                 <li>
                                     <i class="icon_phone"></i>
                                     <div class="info-text">
-                                        <span>Phone:</span>
+                                        <span>Điện thoại:</span>
                                         <p>(+12) 345 6789</p>
                                     </div>
                                 </li>
                                 <li>
                                     <i class="icon_map"></i>
                                     <div class="info-text">
-                                        <span>Address:</span>
-                                        <p>16 Creek Ave, <span>NY</span></p>
+                                        <span>Địa chỉ:</span>
+                                        <p>Thạch Thất <span>Hà Nội</span></p>
                                     </div>
                                 </li>
                                 <li>
                                     <i class="icon_mail"></i>
                                     <div class="info-text">
                                         <span>Email:</span>
-                                        <p>Info.cololib@gmail.com</p>
+                                        <p>dotel@gmail.com</p>
                                     </div>
                                 </li>
                             </ul>
@@ -152,35 +145,35 @@
     </header>
     <!-- Header End -->
     <!-- Hero Section Begin -->
-    <section class="hero-section">
+@*     <section class="hero-section">
         <div class="hero-items owl-carousel">
             <div class="single-hero-item set-bg" data-setbg="img/hero/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <div class="hero-text">
-                                <p class="room-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</p>
-                                <h2>Villa 9721 Glen Creek</h2>
+                                <p class="room-location"><i class="icon_pin"></i> Thạch Thất, Hà Nội</p>
+                                <h2>Nhà Trọ xxx</h2>
                                 <div class="room-price">
-                                    <span>Start Form:</span>
-                                    <p>$3.000.000</p>
+                                    <span>Giá</span>
+                                    <p>$2000</p>
                                 </div>
                                 <ul class="room-features">
                                     <li>
                                         <i class="fa fa-arrows"></i>
-                                        <p>5201 sqft</p>
+                                        <p>xxx</p>
                                     </li>
                                     <li>
                                         <i class="fa fa-bed"></i>
-                                        <p>8 Bed Room</p>
+                                        <p>xxx</p>
                                     </li>
                                     <li>
                                         <i class="fa fa-bath"></i>
-                                        <p>7 Baths Bed</p>
+                                        <p>xxx</p>
                                     </li>
                                     <li>
                                         <i class="fa fa-car"></i>
-                                        <p>1 Garage</p>
+                                        <p>xxx</p>
                                     </li>
                                 </ul>
                             </div>
@@ -193,8 +186,8 @@
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <div class="hero-text">
-                                <p class="room-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</p>
-                                <h2>Villa 9721 Glen Creek</h2>
+                                <p class="room-location"><i class="icon_pin"></i> Địa chỉ 2 </p>
+                                <h2>Nhà Trọ yyy</h2>
                                 <div class="room-price">
                                     <span>Start Form:</span>
                                     <p>$3.000.000</p>
@@ -270,7 +263,67 @@
                 </div>
             </div>
         </div>
+    </section> *@
+
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+        @if (Model.rentals != null)
+        {
+            foreach (var r in Model.rentals)
+            {
+                var curImages = Model.images[r.RentalId];
+                var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
+                <div class="single-hero-item set-bg" data-setbg="@firstImgUrl">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="hero-text">
+                                    <p class="room-location"><i class="icon_pin"></i> 
+                                        <a href="/property_details?PropertyId=@r.RentalId">
+                                            <h2>@r.RentalTitle</h2>
+                                        </a>
+                                    <div class="room-price">
+                                        <span>Giá</span>
+                                        <p>@r.Price</p>
+                                    </div>
+                                    <ul class="room-features">
+                                        <li>
+                                            <i class="fa fa-arrows"></i>
+                                            <p>@r.RoomArea</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bed"></i>
+                                            <p>@r.BedroomNumber</p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-bath"></i>
+                                            <p>@r.Bathroom</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        </div>
+        <div class="thumbnail-pic">
+            <div class="thumbs owl-carousel">
+                <div class="item">
+                    <img src="img/hero/dot-1.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img src="img/hero/dot-2.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img src="img/hero/dot-3.jpg" alt="">
+                </div>
+            </div>
+        </div>
     </section>
+    
+
     <!-- Hero Section End -->
     <!-- Search Form Section Begin -->
     <div class="search-form">
@@ -280,15 +333,15 @@
                     <div class="search-form-text">
                         <div class="search-text">
                             <i class="fa fa-search"></i>
-                            Find Your Home
+                            Tìm trọ
                         </div>
-                        <div class="home-text">
+                        <!-- <div class="home-text">
                             <i class="fa fa-home"></i>
                             House For Sell
-                        </div>
+                        </div> -->
                     </div>
                     <form action="#" class="filter-form">
-                        <div class="first-row">
+                        <!-- <div class="first-row">
                             <select>
                                 <option value="">Villa & Pool</option>
                             </select>
@@ -301,26 +354,26 @@
                             <select>
                                 <option value="">Any Bithrooms</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="second-row">
                             <select>
                                 <option value="">Any Bedrooms</option>
                             </select>
                             <div class="price-range-wrap">
                                 <div class="price-text">
-                                    <label for="priceRange">Price:</label>
+                                    <label for="priceRange">Giá</label>
                                     <input type="text" id="priceRange" readonly>
                                 </div>
                                 <div id="price-range" class="slider"></div>
                             </div>
                             <div class="room-size-range">
                                 <div class="price-text">
-                                    <label for="roomsizeRange">Size:</label>
+                                    <label for="roomsizeRange">Diện tích</label>
                                     <input type="text" id="roomsizeRange" readonly>
                                 </div>
                                 <div id="roomsize-range" class="slider"></div>
                             </div>
-                            <button type="button" class="search-btn">Search</button>
+                            <button type="button" class="search-btn">Tìm kiếm</button>
                         </div>
                     </form>
                 </div>
@@ -334,7 +387,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>Find Your Dream House</span>
+                        <span>Tìm kiếm phòng trọ</span>
                         <h2>How It Work</h2>
                     </div>
                 </div>
@@ -343,22 +396,22 @@
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="img/howit-works/howit-works-1.png" alt="">
-                        <h4>Search & Find Apertment</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        <h4>Tìm kiếm phòng trọ ưng ý</h4>
+                        <p> Với tính năng tìm kiếm thông minh, bạn có thể dễ dàng lọc và tìm kiếm nhà trọ theo vị trí, giá cả, tiện nghi và nhiều tiêu chí khác để nhanh chóng tìm được nơi ở phù hợp nhất.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="img/howit-works/howit-works-2.png" alt="">
-                        <h4>Find Your Room</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        <h4>Đăng thông tin về nhà trọ</h4>
+                        <p> Bạn có thể tạo tài khoản, đăng thông tin chi tiết về nhà trọ của mình, bao gồm hình ảnh, giá cả, và các tiện nghi. Bài đăng của bạn sẽ được hiển thị ngay lập tức đến hàng nghìn người dùng tiềm năng đang tìm kiếm nơi ở phù hợp.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="img/howit-works/howit-works-3.png" alt="">
-                        <h4>Talk To Agent</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        <h4>Giao tiếp dễ dàng</h4>
+                        <p>Trang web của chúng tôi không chỉ giúp người tìm trọ dễ dàng tìm được nơi ở phù hợp, mà còn cung cấp nền tảng kết nối trực tiếp giữa người tìm trọ và chủ trọ. Thông qua hệ thống nhắn tin trực tiếp, bạn có thể liên hệ, đặt câu hỏi và thỏa thuận chi tiết với chủ trọ một cách nhanh chóng và tiện lợi. Điều này giúp đảm bảo một quá trình tìm kiếm và thuê nhà trọ minh bạch và hiệu quả.</p>
                     </div>
                 </div>
             </div>
@@ -371,250 +424,72 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>Listing From Our Agents</span>
-                        <h2>Featured Properties</h2>
+                        <span>Danh sách trọ</span>
+                        <h2>Thông tin</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="feature-carousel owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-1.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">feauture</div>
-                                    <div class="s-text">For Sale</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-1.jpg" alt="">
+                    @if (Model.rentals != null)
+                    {
+                        foreach (var r in Model.rentals)
+                        {
+                            var curImages = Model.images[r.RentalId];
+                            var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
+                            <div class="col-lg-4">
+                                <div class="feature-item">
+                                    <div class="fi-pic set-bg" data-setbg="firstImgUrl">
+                                        <div class="pic-tag">
+                                            <div class="f-text">Hot</div>
+                                            <div class="s-text">Còn phòng</div>
+                                        </div>
+                                       @*  <div class="feature-author">
+                                            <div class="fa-pic">
+                                                <img src="img/feature/f-author-1.jpg" alt="">
+                                            </div>
+                                            <div class="fa-text">
+                                                <span>Rena Simmons</span>
+                                            </div>
+                                        </div> *@
                                     </div>
-                                    <div class="fa-text">
-                                        <span>Rena Simmons</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>French Riviera Villa</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> 180 York Road, London, UK</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-2.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">feauture</div>
-                                    <div class="s-text">For Sale</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-2.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Rena Johnston</span>
+                                    <div class="fi-text">
+                                        <div class="inside-text">
+                                            <a href="/property_details?PropertyId=@r.RentalId">
+                                                <h4>@r.RentalTitle</h4>
+                                            </a>
+                                            <ul>
+                                                <li><i class="fa fa-map-marker"></i> Địa chỉ 1</li>
+                                                <li><i class="fa fa-tag"></i> Villa</li>
+                                            </ul>
+                                            <h5 class="price">@r.Price<span>/month</span></h5>
+                                        </div>
+                                        <ul class="room-features">
+                                            <li>
+                                                <i class="fa fa-arrows"></i>
+                                                <p>@r.RoomArea m2</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <p>@r.BedroomNumber</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath"></i>
+                                                <p>@r.Bathroom</p>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>French Riviera Villa</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> 180 York Road, London, UK</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-3.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">feauture</div>
-                                    <div class="s-text">For Sale</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>French Riviera Villa</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> 180 York Road, London, UK</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-4.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">feauture</div>
-                                    <div class="s-text">For Sale</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>French Riviera Villa</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> 180 York Road, London, UK</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature-item">
-                            <div class="fi-pic set-bg" data-setbg="img/feature/feature-5.jpg">
-                                <div class="pic-tag">
-                                    <div class="f-text">feauture</div>
-                                    <div class="s-text">For Sale</div>
-                                </div>
-                                <div class="feature-author">
-                                    <div class="fa-pic">
-                                        <img src="img/feature/f-author-3.jpg" alt="">
-                                    </div>
-                                    <div class="fa-text">
-                                        <span>Jonathan Walters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fi-text">
-                                <div class="inside-text">
-                                    <h4>French Riviera Villa</h4>
-                                    <ul>
-                                        <li><i class="fa fa-map-marker"></i> 180 York Road, London, UK</li>
-                                        <li><i class="fa fa-tag"></i> Villa</li>
-                                    </ul>
-                                    <h5 class="price">$5900<span>/month</span></h5>
-                                </div>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>780 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>4</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>2</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
     </section>
     <!-- Feature Section End -->
     <!-- Video Section Begin -->
-    <div class="video-section set-bg" data-setbg="img/video-bg.jpg">
+    <!-- <div class="video-section set-bg" data-setbg="img/video-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -626,7 +501,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Video Section End -->
     <!-- Top Properties Section Begin -->
     <div class="top-properties-section spad">
@@ -638,91 +513,55 @@
                             <span>Top Property For You</span>
                             <h2>Top Properties</h2>
                         </div>
-                        <a href="#" class="top-property-all">View All Property</a>
+                        <a href="/property" class="top-property-all">View All Property</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="top-properties-carousel owl-carousel">
-                <div class="single-top-properties">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="stp-pic">
-                                <img src="img/properties/properties-1.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="stp-text">
-                                <div class="s-text">For Sale</div>
-                                <h2>Villa 9721 Glen Creek</h2>
-                                <div class="room-price">
-                                    <span>Start From:</span>
-                                    <h4>$3.000.000</h4>
+                @if (Model.rentals != null)
+                {
+                    foreach (var r in Model.rentals){
+                        var curImages = Model.images[r.RentalId];
+                        var firstImgUrl = curImages?.FirstOrDefault().Sourse ?? "img/feature/feature-1.jpg";
+                        <div class="single-top-properties">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="stp-pic">
+                                        <img src="@firstImgUrl" alt="">
+                                    </div>
                                 </div>
-                                <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>5201 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>8 Bed Room</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>7 Baths Bed</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>1 Garage</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-top-properties">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="stp-pic">
-                                <img src="img/properties/properties-2.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="stp-text">
-                                <div class="s-text">For Sale</div>
-                                <h2>Villa 9721 Glen Creek</h2>
-                                <div class="room-price">
-                                    <span>Start From:</span>
-                                    <h4>$3.000.000</h4>
+                                <div class="col-lg-6">
+                                    <div class="stp-text">
+                                        <div class="s-text">For Sale</div>
+                                        <h2>@r.RentalTitle</h2>
+                                        <div class="room-price">
+                                            <span>Start From:</span>
+                                            <h4>@r.Price</h4>
+                                        </div>
+                                        <div class="properties-location"><i class="icon_pin"></i> Location </div>
+                                        <p>@r.Description</p>
+                                        <ul class="room-features">
+                                            <li>
+                                                <i class="fa fa-arrows"></i>
+                                                <p>@r.RoomArea m2</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bed"></i>
+                                                <p>@r.BedroomNumber</p>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath"></i>
+                                                <p>@r.Bathroom</p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="properties-location"><i class="icon_pin"></i> 9721 Glen Creek Ave. Ballston Spa, NY</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <ul class="room-features">
-                                    <li>
-                                        <i class="fa fa-arrows"></i>
-                                        <p>5201 sqft</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bed"></i>
-                                        <p>8 Bed Room</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-bath"></i>
-                                        <p>7 Baths Bed</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>1 Garage</p>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </div>
@@ -750,7 +589,7 @@
                                     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                                 </div>
                             </div>
-                            <h5>Matthew Robbins <span>Founder & Ceo</span></h5>
+                            <h5> Person 1 <span>Founder & Ceo</span></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -763,7 +602,7 @@
                                     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                                 </div>
                             </div>
-                            <h5>Tillie Burns <span>Marketing Manager</span></h5>
+                            <h5> Person 2 <span>Marketing Manager</span></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -776,7 +615,7 @@
                                     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                                 </div>
                             </div>
-                            <h5>Derrick Lawson <span>Company Agents</span></h5>
+                            <h5> Person 3 <span>Company Agents</span></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -789,7 +628,7 @@
                                     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                                 </div>
                             </div>
-                            <h5>Clifford Colon <span>Saler Manager</span></h5>
+                            <h5> Person 4 <span>Saler Manager</span></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -802,7 +641,7 @@
                                     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                                 </div>
                             </div>
-                            <h5>Clifford Colon <span>Saler Manager</span></h5>
+                            <h5> Person 5 <span>Saler Manager</span></h5>
                         </div>
                     </div>
                 </div>
@@ -811,7 +650,7 @@
     </section>
     <!-- Agent Section End -->
     <!-- Latest Blog Section Begin -->
-    <section class="blog-section latest-blog spad">
+    <!-- <section class="blog-section latest-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -866,7 +705,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Latest Blog Section End -->
     <!-- Partner Carousel Section Begin -->
     <div class="partner-section">
@@ -909,7 +748,7 @@
                     <div class="col-lg-3">
                         <div class="footer-logo">
                             <div class="logo">
-                                <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                                <a href="#"><img src="" alt=""></a>
                             </div>
                             <p>Subscribe our newsletter gor get notification about new updates.</p>
                             <form action="#" class="newslatter-form">
@@ -918,7 +757,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-3 offset-lg-1">
+                    <!-- <div class="col-lg-3 offset-lg-1">
                         <div class="footer-widget">
                             <h4>Property City</h4>
                             <ul>
@@ -934,7 +773,7 @@
                                 <li><i class="fa fa-caret-right"></i> <a href="#">San Diego</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-2">
                         <div class="footer-widget">
                             <h4>Social</h4>
@@ -950,24 +789,26 @@
                         <div class="footer-widget">
                             <h4>Contact Us</h4>
                             <ul class="contact-option">
-                                <li><i class="fa fa-map-marker"></i> 16 Creek Ave. Farming, NY</li>
-                                <li><i class="fa fa-phone"></i> (+88) 666 121 4321</li>
-                                <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
-                                <li><i class="fa fa-clock-o"></i> Mon - Sat, 08 AM - 06 PM</li>
+                                <li><i class="fa fa-map-marker"></i> Thạch Thất, Hà Nội</li>
+                                <li><i class="fa fa-phone"></i> (+84) 123 456 789</li>
+                                <li><i class="fa fa-envelope"></i> dotel@gmail.com</li>
+                                <li><i class="fa fa-clock-o"></i> Thứ 2 - Thứ 7, 08 AM - 06 PM</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="copyright-text">
-                <p><p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p></p>
-            </div>
+
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
