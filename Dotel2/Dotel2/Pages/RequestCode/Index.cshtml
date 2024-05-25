@@ -1,0 +1,58 @@
+﻿@page
+@model Dotel2.Pages.RequestCode.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xác thực Email</title>
+    <link rel="stylesheet" href="css/loginsignin.css" />
+    <script src="https://kit.fontawesome.com/682f180637.js"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<section>
+    <!--Bắt Đầu Phần Hình Ảnh-->
+    <div class="img-bg">
+        <img src="img/signinlogin.jpg">
+    </div>
+    <!--Kết Thúc Phần Hình Ảnh-->
+    <!--Bắt Đầu Phần Nội Dung-->
+    <div class="noi-dung">
+        <div class="form1">
+            <h2>Xác minh tài khoản</h2>
+            <form id="verifyEmail">
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                <div class="input-form">
+                    <span>Nhập mã xác thực</span>
+                    <input type="text" id="code" required>
+                </div>
+
+                <div class="input-form">
+                    <input style="background-color: sandybrown; color: black" type="submit" value="Xác nhận">
+                </div>
+                <div class="input-form">
+                    <p><a href="register.html">Quay lại trang đăng ký</a> hoặc <a href="login.html">Đăng nhập</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!--Kết Thúc Phần Nội Dung-->
+</section>  
+</body>
+</html>
