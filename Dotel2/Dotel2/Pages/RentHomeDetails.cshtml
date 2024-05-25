@@ -1,0 +1,280 @@
+﻿@page "{id:int}"
+@model Dotel2.Pages.RentHomeDetailsModel
+@{
+}
+
+
+
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Header Start -->
+        <div class="container-fluid nav-bar bg-transparent" style="background-color: #0F172B;">
+            <nav class="navbar navbar-expand-lg  navbar-light py-0 px-4" style="background-color: #0F172B;">
+                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="img/index_img/Logo.png" alt="Icon" style="width: 100px; height: 100px;">
+                    </div>
+                    <h1 class="m-0 text-primary">MORO</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link">Trang chủ</a>
+                        <a href="RentHome.html" class="nav-item nav-link active">Cho thuê</a>
+                        <a href="Roommate.html" class="nav-item nav-link ">Ở ghép</a>
+                        <a href="delivery_page.html" class="nav-item nav-link">Vận chuyển</a>
+                        <a href="cleaningservice.html" class="nav-item nav-link">Dọn phòng</a>
+                        <a href="ServiceMotelRoom.html" class="nav-item nav-link">Dịch vụ</a>
+                        <a href="Blog_Full trang.html" class="nav-item nav-link">Bản tin</a>
+                        <a href="Về chúng tôi.html" class="nav-item nav-link">Về Moro</a>
+                    </div>
+                    <a href="Popupdangbai.html" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
+                    <a href="profile.html"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
+                </div>
+            </nav>
+        </div>
+        <!-- Header End -->
+        <!-- Hot Room start -->
+        <!-- Start Properties  -->
+        <section id="aa-properties">
+            <div class="container">
+                <div class="row">
+
+
+                    <div id="info" class="col-md-8">
+                        
+                            <h1>@Model.Rental.RentalTitle</h1>
+                            <img src="@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:auto;">
+                            <p>@Model.Rental.Description</p>
+                            
+                       
+                    </div>
+
+                    <div class="col-md-4">
+                        <aside class="aa-properties-sidebar">
+                            <div class="aa-properties-single-sidebar">
+                                <div id="contact">
+                                </div>
+                                <div class="aa-properties-single-sidebar">
+                                    <div class="heart-btn">
+                                        <div class="content">
+                                            <span class="heart"></span>
+                                            <span class="text">Yêu thích</span>
+                                            <span class="numb"></span>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('.content').click(function () {
+                                                $('.content').toggleClass("heart-active")
+                                                $('.text').toggleClass("heart-active")
+                                                $('.numb').toggleClass("heart-active")
+                                                $('.heart').toggleClass("heart-active")
+                                            });
+                                        });
+                                    </script>
+                                    <br>
+                                </div>
+
+
+                                <div class="aa-properties-single-sidebar">
+                                    <h3>Có thể bạn quan tâm</h3>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><a href="Blog_Full trang.html">Điểm nổi bật của căn hộ Legacy Central là gì?</a></h5>
+                                            <p>Khi tìm hiểu về bất kỳ dự án bất động sản nào, yếu tố về vị trí bao giờ cũng đóng vai trò quan trọng bậc nhất...</p>
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="aa-properties-single-sidebar">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Nỗi sợ mang tên không thuê được căn hộ giá rẻ</a></h5>
+                                                <p>Dưới cái tiết trời se lạnh đầu mùa của Hà Nội, anh Phùng cố gắng nán lại ngoài đường để nhận thêm vài cuốc Grab trong ngày đông mưa gió...</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="media">
+
+                                            <div class="media-body">
+                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Thuê phòng trọ qua Internet và những lưu ý</a></h5>
+                                                <p>Cuộc cách mạng công nghệ 4.0 đã phát triển một cách mạnh mẽ và nhanh chóng, chất lượng cuộc sống con người ngày càng được nâng cao...</p>
+
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="media">
+
+                                            <div class="media-body">
+                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Khách thuê căn hộ bất lực về tình trạng xả rác thiếu ý thức</a></h5>
+                                                <p>Anh Tâm trước đây từng thuê phòng trọ để ở, nhưng vì người hàng xóm kế bên mới...</p>
+
+                                            </div>
+                                        </div>
+                                        <hr>
+
+                                        <div class="media-body">
+                                            <h6 class="media-right"><a href="Renthome.html">Trở về trang thuê trọ </a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </aside>
+                    </div>
+                    <!-- Newsletter Start -->
+                    <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10 border rounded p-1">
+                                <div class="border rounded text-center p-1">
+                                    <div class="bg-white rounded text-center p-5">
+                                        <h4 class="mb-4">Thắc mắc của bạn<span class="text-primary text-uppercase"> - Hỗ trợ giải đáp</span></h4>
+                                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                                            <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Câu hỏi của bạn">
+                                            <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Gửi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Start -->
+                    <!-- Messenger Plugin chat Code -->
+                    <div id="fb-root"></div>
+
+                    <!-- Your Plugin chat code -->
+                    <div id="fb-customer-chat" class="fb-customerchat">
+                    </div>
+
+                    <script>
+                        var chatbox = document.getElementById('fb-customer-chat');
+                        chatbox.setAttribute("page_id", "101091636202575");
+                        chatbox.setAttribute("attribution", "biz_inbox");
+                    </script>
+
+                    <!-- Your SDK code -->
+                    <script>
+                        window.fbAsyncInit = function () {
+                            FB.init({
+                                xfbml: true,
+                                version: 'v15.0'
+                            });
+                        };
+
+                        (function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                    </script>
+                    <!-- Messenger Plugin chat Code -->
+                    <!-- Footer Start  -->
+                    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+                        <div class="container pb-5">
+                            <div class="row g-5">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="bg-primary rounded p-4">
+                                        <a href="index.html"><h1 class="text-white text-uppercase mb-3">MORO</h1></a>
+                                        <p class="text-white mb-0">
+                                            <a class="text-dark fw-medium" href="https://freewebsitecode.com/hotel-html-template-pro"></a>“Để việc tìm một mái ấm và chia sẻ không gian trở nên tối ưu và thuận tiện nhất, MORO
+                                            mang đến cho người dùng sự trải nghiệm hoàn mỹ về dịch vụ.”
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Liên hệ</h6>
+                                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Số 669 Quốc lộ 1, khu phố 3, Phường Linh Xuân, Thủ Đức, TP. Hồ Chí Minh</p>
+                                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 678</p>
+                                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>moro@gmail.com</p>
+                                    <div class="d-flex pt-2">
+                                        <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-youtube"></i></a>
+                                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="row gy-5 g-4">
+                                        <div class="col-md-6">
+                                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Chính sách</h6>
+                                            <a class="btn btn-link" href="">Chính sách bảo mật</a>
+                                            <a class="btn btn-link" href="">Chính sách giao dịch</a>
+                                            <a class="btn btn-link" href="">Chính sách dịch vụ</a>
+                                            <a class="btn btn-link" href="">Chính sách kiểm duyệt</a>
+                                            <a class="btn btn-link" href="">Hỗ trợ</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Dịch vụ</h6>
+                                            <a class="btn btn-link" href="RentHome.html">Cho thuê</a>
+                                            <a class="btn btn-link" href="Roommate.html">Ở ghép</a>
+                                            <a class="btn btn-link" href="delivery_page.html">Vận chuyển</a>
+                                            <a class="btn btn-link" href="cleaningservice.html">Dọn phòng</a>
+                                            <a class="btn btn-link" href="Blog_Full trang.html">Bản tin</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                        <a class="border-bottom" href="https://www.instagram.com/luoisskincare/"></a> Đã đăng ký với Bộ Công Thương.
+
+
+                                        <a class="border-bottom" href="https://www.instagram.com/luoisskincare/">CÔNG TY THHH MORO</a>
+                                    </div>
+                                    <div class="col-md-6 text-center text-md-end">
+                                        <div class="footer-menu">
+                                            <a href="">Trang chủ</a>
+                                            <a href="">Cookies</a>
+                                            <a href="">Hỗ trợ</a>
+                                            <a href="">FQAs</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    <!-- Footer End -->
+                    </div>
+                </div>
+        </section>
+        <!-- Booking End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/PostRent.js"></script>
+    </div>
+</body>
