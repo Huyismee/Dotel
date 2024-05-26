@@ -20,7 +20,7 @@ namespace Dotel2.Pages
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
         public void OnGet()
         {
-            rentals = rentalRepository.GetRentals();
+            rentals = rentalRepository.getRentalWithImage();
             images = new Dictionary<int, List<RentalListImage>>();
             foreach (var r in rentals)
             {
