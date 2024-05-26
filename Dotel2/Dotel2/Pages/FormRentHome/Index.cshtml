@@ -1,0 +1,91 @@
+﻿@page
+@model Dotel2.Pages.FormRentHome.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Bài Cho Thuê</title>
+    <link rel="stylesheet" href="css/styleform.css" />
+    <script src="https://kit.fontawesome.com/682f180637.js"
+            crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), #ec9305), url("img/backgroundform.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <form method="post" id="roommate" enctype="multipart/form-data">
+            <h1 style="
+            color: aliceblue;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+          ">
+                ĐĂNG BÀI CHO THUÊ
+            </h1>
+
+            <div class="input-group">
+                <input type="text" name="title" id="name" required />
+                <label for="title"><i class="fa-regular fa-newspaper"></i> Tiêu đề bài đăng</label>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" name="price" id="price" required />
+                    <label for="price"><i class="fa-solid fa-money-bill"></i> Giá thuê</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="area" id="area" required />
+                    <label for="area"><i class="fa-solid fa-layer-group"></i> Diện tích</label>
+                </div>
+@*                 <div class="input-group">
+                    <input type="text" name="address" id="address" required />
+                    <label for="address"><i class="fa-solid fa-location-dot"></i> Địa điểm</label>
+                </div> *@
+
+            </div>
+@*             <div class="input-group">
+                <h5 style="color: aliceblue;font-size: 15px;font-weight: bolder;">Cập nhật Giấy phép kinh doanh (Vui lòng chọn File PDF)</h5>
+                <label for="filepdf"></label>
+                <input type="file"
+                       id="filepdf"
+                       multiple="multiple"
+                       accept="application/pdf" />
+                <output style="display: flex; flex-wrap: wrap" id="resultpdf"></output>
+                <script src="js/form.js"></script>
+            </div> *@
+
+            <div class="input-group">
+                <textarea id="description" name="description" rows="5" required></textarea>
+                <label for="description"><i class="fa-solid fa-clipboard"></i> Mô tả chi tiết</label>
+            </div>
+            <div class="input-group">
+                <h5 style="color: aliceblue;font-size: 15px;font-weight: bolder;">Cập nhật hình ảnh hoặc video mô tả</h5>
+
+                <label for="files"></label>
+                <input type="file"
+                       id="files"
+                       name="mediaFiles"
+                       multiple="multiple"
+                       accept="image/jpeg, image/png, image/jpg, video/mp4, video/mov, video/avi, video/mkv" />
+                <output style="display: flex; flex-wrap: wrap" id="result"></output>
+                <script src="js/form.js"></script>
+            </div>
+
+            <div class="container">
+                <input type="submit" class="btn"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

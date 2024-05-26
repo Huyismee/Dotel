@@ -1,8 +1,8 @@
-using EXE_Dotel.Models;
+using Dotel2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EXE_Dotel.Pages.Forgot
+namespace Dotel2.Pages.ForgotPassword
 {
     public class IndexModel : PageModel
     {
@@ -20,7 +20,8 @@ namespace EXE_Dotel.Pages.Forgot
                 HttpContext.Session.Remove("EmailSession");
             }
         }
-        public IActionResult OnPost() {
+        public IActionResult OnPost()
+        {
             var user = _context.Users.FirstOrDefault(s => s.Email.Equals(username));
             if (user == null)
             {
