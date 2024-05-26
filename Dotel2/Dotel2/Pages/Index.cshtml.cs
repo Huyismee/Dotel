@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dotel2.Models;
+using Dotel2.Repository.Rental;
+using EXE_Dotel.Repository.Rental;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Dotel2.Models;
 using Dotel2.Repository.Rental;
@@ -6,6 +9,7 @@ namespace Dotel2.Pages
 {
     public class IndexModel : PageModel
     {
+
         private readonly ILogger<IndexModel> _logger;
         private readonly IRentalRepository rentalRepository;
         public IndexModel(IRentalRepository repository)
@@ -22,6 +26,7 @@ namespace Dotel2.Pages
             {
                 var curListImg = rentalRepository.getRentalWithListImages(r.RentalId);
                 //images[r.RentalId] = curListImg;
+
             }
         }
     }
