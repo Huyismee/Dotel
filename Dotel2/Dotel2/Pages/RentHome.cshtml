@@ -3,6 +3,7 @@
 @{
 }
 
+
 <body>
     <style>
         .rental-card-img {
@@ -153,7 +154,7 @@
                                         <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">@rental.RentalTitle</h5>
-                                            
+
                                             <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
                                             <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
                                             <form method="post" asp-page-handler="IncrementViewCount">
@@ -165,25 +166,26 @@
                                 </div>
                             }
                         </div>
-                        
+
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 @if (Model.CurrentPage > 1)
                                 {
                                     <li class="page-item"><a asp-page="RentHome" asp-route-page="@(Model.CurrentPage-1)" class="page-link">Previous</a></li>
-                                    
+
                                 }
                                 @for (int i = 1; i <= Model.TotalPages; i++)
                                 {
                                     <li class="page-item"><a href="/RentHome?CurrentPage=@i" class="page-link">@i</a></li>
-                                    
+
                                 }
                                 @if (Model.CurrentPage < Model.TotalPages)
                                 {
                                     <li class="page-item"><a href="/RentHome?CurrentPage=@(Model.CurrentPage + 1) " class="page-link">Next</a></li>
-                                    
+
                                 }
                                 
+
                             </ul>
                         </nav>
                     </div>
@@ -364,10 +366,17 @@
                     </div>
                     <br>
                 </div>
+
                 <!-- Footer End -->
                 <!-- Back to Top -->
                 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/IndexPage.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
