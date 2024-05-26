@@ -1,0 +1,18 @@
+﻿@page
+@model Dotel2.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+
+<div>
+    <ul>
+        <li>
+            <a asp-page="/Admin/Users/index">Người dùng</a>
+        </li>
+        <li>
+            <a asp-page="/Admin/Rental">Danh sách trọ</a>
+        </li>
+    </ul>
+</div>
