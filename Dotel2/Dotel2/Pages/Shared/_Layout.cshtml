@@ -6,13 +6,16 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>@ViewData["Title"] - Dotel2</title>
+
+
 </head>
 <body>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
