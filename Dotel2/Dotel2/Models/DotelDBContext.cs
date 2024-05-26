@@ -30,8 +30,7 @@ namespace Dotel2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionString"));
+                optionsBuilder.UseSqlServer("server =HUYISME\\SQLEXPRESS; database = DotelDB;uid=sa;pwd=123; trusted_connection = true; TrustServerCertificate=true ");
             }
         }
 
@@ -90,16 +89,21 @@ namespace Dotel2.Models
 
                 entity.Property(e => e.Description).HasColumnName("description");
 
+                entity.Property(e => e.GoogleMap)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("googleMap");
+
                 entity.Property(e => e.Kitchen).HasColumnName("kitchen");
 
                 entity.Property(e => e.Location)
-                    .IsUnicode(false)
+                    .HasMaxLength(500)
                     .HasColumnName("location");
 
                 entity.Property(e => e.MaxPeople).HasColumnName("maxPeople");
 
                 entity.Property(e => e.Price)
-                    .HasColumnType("money")
+                    .HasColumnType("decimal(18, 0)")
                     .HasColumnName("price");
 
                 entity.Property(e => e.RentalTitle)
@@ -119,6 +123,7 @@ namespace Dotel2.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Rentals)
                     .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Rental_UserId");
             });
 

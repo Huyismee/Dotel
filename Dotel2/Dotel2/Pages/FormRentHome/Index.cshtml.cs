@@ -33,7 +33,7 @@ namespace Dotel2.Pages.FormRentHome
             var userSession = HttpContext.Session.GetString("UserSession");
             if (string.IsNullOrEmpty(userSession))
             {
-                return RedirectToPage("/login");
+                return RedirectToPage("/Login/index");
             }
             return Page();
         }

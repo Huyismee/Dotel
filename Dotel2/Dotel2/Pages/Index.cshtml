@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +70,7 @@
                     @* <a href="Về chúng tôi.html" class="nav-item nav-link">Về Moro</a> *@
                 </div>
                 <a href="Popupdangbai" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
-                <a href="profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></i></a>
+                <a href="profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
                 <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
                 <a href="register" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng ký</a>
             </div>
@@ -257,7 +257,10 @@
                 {
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
+                            @if (rental.RentalListImages.Count > 0)
+                            {
+                                <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
+                            }
                             <div class="card-body">
                                 <h5 class="card-title"> <a href="/renhomedetail/@rental.RentalId">@rental.RentalTitle</a></h5>
                                 <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
