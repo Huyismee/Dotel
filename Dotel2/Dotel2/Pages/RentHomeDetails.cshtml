@@ -20,7 +20,7 @@
             <nav class="navbar navbar-expand-lg  navbar-light py-0 px-4" style="background-color: #0F172B;">
                 <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
                     <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="img/index_img/Logo.png" alt="Icon" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="~/img/index_img/Logo.png" alt="Icon" style="width: 100px; height: 100px;">
                     </div>
                     <h1 class="m-0 text-primary">MORO</h1>
                 </a>
@@ -158,29 +158,7 @@
                     <div id="fb-customer-chat" class="fb-customerchat">
                     </div>
 
-                    <script>
-                        var chatbox = document.getElementById('fb-customer-chat');
-                        chatbox.setAttribute("page_id", "101091636202575");
-                        chatbox.setAttribute("attribution", "biz_inbox");
-                    </script>
-
-                    <!-- Your SDK code -->
-                    <script>
-                        window.fbAsyncInit = function () {
-                            FB.init({
-                                xfbml: true,
-                                version: 'v15.0'
-                            });
-                        };
-
-                        (function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s); js.id = id;
-                            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-                    </script>
+                   
                     <!-- Messenger Plugin chat Code -->
                     <!-- Footer Start  -->
                     <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
@@ -266,12 +244,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>
         <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
