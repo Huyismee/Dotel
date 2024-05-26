@@ -18,16 +18,29 @@ namespace Dotel2.Pages
         }
         public List<Rental>? rentals { get; private set; }
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
+
+        public string ? SessionValue { get; private set; }
         public void OnGet()
         {
             rentals = rentalRepository.getRentalWithImage();
             images = new Dictionary<int, List<RentalListImage>>();
             foreach (var r in rentals)
             {
+                SessionValue = HttpContext.Session.GetString("UserSession");
                 var curListImg = rentalRepository.getRentalWithListImages(r.RentalId);
                 //images[r.RentalId] = curListImg;
 
             }
+        }
+        public IActionResult OnPostIncrementViewCount(int rentalId)
+        {
+            var rental = rentalRepository.GetRental(rentalId);
+            if (rental != null)
+            {
+                rentalRepository.getViewCountIncrease(rental);
+                return RedirectToPage("RentHomeDetails", new { id = rentalId });
+            }
+            return NotFound();
         }
     }
 }
