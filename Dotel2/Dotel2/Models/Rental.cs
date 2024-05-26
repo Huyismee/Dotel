@@ -27,7 +27,7 @@ namespace Dotel2.Models
         public string? Location { get; set; }
         public string? GoogleMap { get; set; }
         public bool Approval { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
 
         public virtual User? User { get; set; }
         public virtual ICollection<RentalListImage> RentalListImages { get; set; }
