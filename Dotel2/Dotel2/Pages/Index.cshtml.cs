@@ -3,39 +3,30 @@ using Dotel2.Repository.Rental;
 using EXE_Dotel.Repository.Rental;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using Dotel2.Models;
+using Dotel2.Repository.Rental;
 namespace Dotel2.Pages
 {
     public class IndexModel : PageModel
     {
-        
-        private readonly IRentalRepository repository;
 
-        public IndexModel(IRentalRepository repo)
+        private readonly ILogger<IndexModel> _logger;
+        private readonly IRentalRepository rentalRepository;
+        public IndexModel(IRentalRepository repository)
         {
-            repository = repo;
-
+            rentalRepository = repository;
         }
-        public List<Rental> Rentals { get; set; }
-        public int Total { get; private set; }
-
-        public int PageSize { get; private set; } = 3;
-
-        [BindProperty(SupportsGet = true)]
-        public int CurrentPage { get; set; } = 1;
-
-        public int TotalPages { get; private set; }
-
+        public List<Rental>? rentals { get; private set; }
+        public Dictionary<int, List<RentalListImage>> images { get; private set; }
         public void OnGet()
         {
-            Console.WriteLine($"Current Page: {CurrentPage}");
-
-            Total = repository.getListRentalsCount();
-            TotalPages = (int)Math.Ceiling(Total / (double)PageSize);
-            Rentals = repository.getRentersPaging(CurrentPage, PageSize);
-            foreach (var rental in Rentals)
+            rentals = rentalRepository.GetRentals();
+            images = new Dictionary<int, List<RentalListImage>>();
+            foreach (var r in rentals)
             {
-                Console.WriteLine(rental);
+                var curListImg = rentalRepository.getRentalWithListImages(r.RentalId);
+                //images[r.RentalId] = curListImg;
+
             }
         }
     }
