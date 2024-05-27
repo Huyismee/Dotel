@@ -16,10 +16,14 @@ namespace Dotel2.Pages
         {
             rentalRepository = repository;
         }
+        public bool IsLoggedIn { get; private set; }
         public List<Rental>? rentals { get; private set; }
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
         public void OnGet()
         {
+            var userSession = HttpContext.Session.GetString("UserSession");
+            IsLoggedIn = !string.IsNullOrEmpty(userSession);
+
             rentals = rentalRepository.getRentalWithImage();
             images = new Dictionary<int, List<RentalListImage>>();
             foreach (var r in rentals)
