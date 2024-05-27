@@ -1,5 +1,4 @@
-
-﻿@page
+@page
 @model IndexModel
 @{
 
@@ -42,6 +41,13 @@
 </head>
 
 <body>
+    <style>
+        .rental-card-img {
+            height: 200px; /* Set the desired fixed height */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+        }
+    </style>
+
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -161,7 +167,7 @@
                                     <option value="3">Nhà nguyên căn</option>
                                     <option value="4">Homestay</option>
                                     <option value="5">Chung cư mini</option>
-                                    <option value="6">Chung cư dịch vụ</option>
+                                    
                                     <option value="7">Chung cư cao cấp</option>
                                 </select>
                             </div>

@@ -39,6 +39,14 @@
 
 
 <body>
+    <style>
+        .sub-image {
+            height: 300px; /* Adjust the height as needed */
+            width: 100%; /* Maintain aspect ratio */
+            object-fit: cover; /* Ensure the image covers the entire container */
+            margin-top:24px;
+        }</style>
+    
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -83,10 +91,29 @@
                 <div class="row">
 
 
-                    <div id="info" class="col-md-8">
+                    <div id="info" class="col-md-8 mb-4">
                         
                             <h1>@Model.Rental.RentalTitle</h1>
-                            <img src="@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:auto;">
+                            <img src="@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:700px;">
+                            <br />
+
+                        <div class="row">
+                            @foreach (var image in Model.Rental.RentalListImages.Skip(1))
+                            {
+                                <div class="col-md-6 mb-3">
+                                    <img src="@image.Sourse" alt="Sub Image" class="img-fluid sub-image" height="150">
+                                </div>
+                            }
+                        </div>
+                        <div>
+                            @foreach(var video in Model.Rental.RentalVideos)
+                            {
+                                <div class="col-md-6 mb-3">
+                                    <video src="@video.Sourse" alt="Property Image" controls style="max-width: 400px; max-height: 300px;"></video>
+                                </div>
+                                    
+                            }
+                        </div>
                             <p>@Model.Rental.Description</p>
                             
                        

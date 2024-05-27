@@ -21,6 +21,7 @@ namespace EXE_Dotel.Repository.Rental
 
             var rental = dBContext.Rentals
                                  .Include(r => r.RentalListImages)
+                                 .Include(r=> r.RentalVideos).AsSplitQuery()
                                  .FirstOrDefault(r => r.RentalId == rentalId);
 
             if (rental == null)
