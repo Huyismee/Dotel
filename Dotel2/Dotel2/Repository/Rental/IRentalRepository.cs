@@ -26,5 +26,7 @@ namespace Dotel2.Repository.Rental
         public Models.Rental getRentalWithListImagesAndVideo(int rentalId);
 
         public void getViewCountIncrease(Models.Rental rental);
+
+        public List<Models.Rental> getFilteredRental(string location, string type, string square, string price);
     }
 }
