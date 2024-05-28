@@ -77,6 +77,74 @@ namespace EXE_Dotel.Repository.Rental
             return rentals;
         }
 
+        public List<Dotel2.Models.Rental> getFilterRentalPaging(string location, string type, string square, string price, int page, int pageSize)
+        {
+            List<Dotel2.Models.Rental> rentals= getRentersPaging(page, pageSize);
+
+            // Filter by location
+            if (!string.IsNullOrEmpty(location))
+            {
+                rentals = rentals.Where(rental => rental.Location.Contains(location)).ToList();
+            }
+
+            // Filter by type
+            if (!string.IsNullOrEmpty(type))
+            {
+                rentals = rentals.Where(rental => rental.Type.Contains(type)).ToList();
+            }
+
+            // Filter by area range
+            if (!string.IsNullOrEmpty(square))
+            {
+                var range = square.Split('-');
+                if (range.Length == 2 && decimal.TryParse(range[0], out var minArea) && decimal.TryParse(range[1], out var maxArea))
+                {
+                    rentals = rentals.Where(rental => rental.RoomArea >= minArea && rental.RoomArea <= maxArea).ToList();
+                }
+                else if (square.Contains("Dưới"))
+                {
+                    if (decimal.TryParse(square.Split(' ')[1].Replace("m2", "").Trim(), out var upperbound))
+                    {
+                        rentals = rentals.Where(rental => rental.RoomArea < upperbound).ToList();
+                    }
+                }
+                else if (square.Contains("Trên"))
+                {
+                    if (decimal.TryParse(square.Split(' ')[1].Replace("m2", "").Trim(), out var lowerbound))
+                    {
+                        rentals = rentals.Where(rental => rental.RoomArea > lowerbound).ToList();
+                    }
+                }
+            }
+
+            // Filter by price range
+            if (!string.IsNullOrEmpty(price))
+            {
+                var ranges = price.Split('-');
+                if (ranges.Length == 2 && decimal.TryParse(ranges[0].Replace(".", "").Trim(), out var minPrice) && decimal.TryParse(ranges[1].Replace(".", "").Trim(), out var maxPrice))
+                {
+                    rentals = rentals.Where(r => r.Price >= minPrice && r.Price <= maxPrice).ToList();
+                }
+                else if (price.Contains("Dưới"))
+                {
+                    if (decimal.TryParse(price.Split(' ')[1].Replace(".", "").Trim(), out var upper))
+                    {
+                        rentals = rentals.Where(r => r.Price < upper).ToList();
+                    }
+                }
+                else if (price.Contains("Trên"))
+                {
+                    if (decimal.TryParse(price.Split(' ')[1].Replace(".", "").Trim(), out var lower))
+                    {
+                        rentals = rentals.Where(r => r.Price > lower).ToList();
+                    }
+                }
+            }
+
+            return rentals;
+
+        }
+
         public int getListRentalsCount()
         {
             return dBContext.Rentals.Count();
