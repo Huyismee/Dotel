@@ -1,5 +1,8 @@
 @page
 @model IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper , Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Dotel2
 @{
 
 }
@@ -158,7 +161,7 @@
                                             <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm" asp-for="Location" id="location">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                   <div class="col-md-3">
                                         <select class="form-select" asp-for="Type" id="housingType">
                                             <option selected value="">Loại hình nhà ở</option>
                                             <option value="Nha Tro">Nhà trọ</option>
