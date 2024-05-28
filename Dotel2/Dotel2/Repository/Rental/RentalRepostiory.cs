@@ -109,7 +109,7 @@ namespace EXE_Dotel.Repository.Rental
         {
 
             return dBContext.Rentals
-            .Include(r => r.RentalListImages).ToList();
+            .Include(r => r.RentalListImages).OrderByDescending(r=>r.ViewNumber).ToList();
             ;
         }
 
