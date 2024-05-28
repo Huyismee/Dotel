@@ -3,6 +3,7 @@ using Dotel2.Repository.Rental;
 using EXE_Dotel.Repository.Rental;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages
 {
@@ -46,6 +47,13 @@ namespace Dotel2.Pages
             {
                 Console.WriteLine(image);
             }
+            if (TempData.ContainsKey("FilteredRentals"))
+            {
+                var rentalsJson = TempData["FilteredRentals"].ToString();
+                FilteredRenter = JsonConvert.DeserializeObject<List<Rental>>(rentalsJson);
+                rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
+            }
+
             foreach (var r in rentals)
             {
                 SessionValue = HttpContext.Session.GetString("UserSession");
@@ -71,14 +79,14 @@ namespace Dotel2.Pages
         {
             Console.WriteLine(Location);
             Console.WriteLine(Type);
-            rentals = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
-            foreach(var rental in rentals)
+            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
+            var jsonSettings = new JsonSerializerSettings
             {
-                Console.WriteLine(rental.RentalTitle);
-            }
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-            // Persist filter criteria across the redirect
-            return RedirectToPage(new { Location, Type, AreaRange, PriceRange });
+            TempData["FilteredRentals"] = JsonConvert.SerializeObject(FilteredRenter, jsonSettings);
+            return RedirectToPage(new {Location, Type, AreaRange, PriceRange});
         }
     }
 
