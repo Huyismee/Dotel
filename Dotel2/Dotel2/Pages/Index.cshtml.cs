@@ -42,11 +42,8 @@ namespace Dotel2.Pages
             IsLoggedIn = !string.IsNullOrEmpty(userSession);
 
             rentals = rentalRepository.getRentalWithImage();
-            FilteredRenter = rentalRepository.getFilteredRental(Location, "Nha Tro", AreaRange, PriceRange);
-            foreach (var image in FilteredRenter)
-            {
-                Console.WriteLine(image);
-            }
+            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
+           
             if (TempData.ContainsKey("FilteredRentals"))
             {
                 var rentalsJson = TempData["FilteredRentals"].ToString();
@@ -54,6 +51,8 @@ namespace Dotel2.Pages
                 rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
             }
 
+            
+            
             foreach (var r in rentals)
             {
                 SessionValue = HttpContext.Session.GetString("UserSession");
@@ -84,7 +83,7 @@ namespace Dotel2.Pages
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
-
+            
             TempData["FilteredRentals"] = JsonConvert.SerializeObject(FilteredRenter, jsonSettings);
             return RedirectToPage(new {Location, Type, AreaRange, PriceRange});
         }
