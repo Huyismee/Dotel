@@ -3,8 +3,7 @@ using Dotel2.Repository.Rental;
 using EXE_Dotel.Repository.Rental;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Dotel2.Models;
-using Dotel2.Repository.Rental;
+
 namespace Dotel2.Pages
 {
     public class IndexModel : PageModel
@@ -17,17 +16,36 @@ namespace Dotel2.Pages
             rentalRepository = repository;
         }
         public bool IsLoggedIn { get; private set; }
-        public List<Rental>? rentals { get; private set; }
+        public List<Rental> rentals { get; private set; }
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
 
-        public string ? SessionValue { get; private set; }
+        public string? SessionValue { get; private set; }
+
+
+        [BindProperty(SupportsGet = true)]
+        public string Location { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string Type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string AreaRange { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string PriceRange { get; set; }
+
+        public List<Rental> FilteredRenter { get; set; }
         public void OnGet()
         {
             var userSession = HttpContext.Session.GetString("UserSession");
             IsLoggedIn = !string.IsNullOrEmpty(userSession);
 
             rentals = rentalRepository.getRentalWithImage();
-            images = new Dictionary<int, List<RentalListImage>>();
+            FilteredRenter = rentalRepository.getFilteredRental(Location, "Nha Tro", AreaRange, PriceRange);
+            foreach (var image in FilteredRenter)
+            {
+                Console.WriteLine(image);
+            }
             foreach (var r in rentals)
             {
                 SessionValue = HttpContext.Session.GetString("UserSession");
@@ -39,6 +57,7 @@ namespace Dotel2.Pages
         public IActionResult OnPostIncrementViewCount(int rentalId)
         {
             var rental = rentalRepository.GetRental(rentalId);
+
             if (rental != null)
             {
                 rentalRepository.getViewCountIncrease(rental);
@@ -46,5 +65,22 @@ namespace Dotel2.Pages
             }
             return NotFound();
         }
+
+
+        public IActionResult OnPostIndex()
+        {
+            Console.WriteLine(Location);
+            Console.WriteLine(Type);
+            rentals = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
+            foreach(var rental in rentals)
+            {
+                Console.WriteLine(rental.RentalTitle);
+            }
+
+            // Persist filter criteria across the redirect
+            return RedirectToPage(new { Location, Type, AreaRange, PriceRange });
+        }
     }
+
+
 }
