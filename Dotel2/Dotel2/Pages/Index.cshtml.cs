@@ -21,9 +21,17 @@ namespace Dotel2.Pages
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
 
         public string ? SessionValue { get; private set; }
+
+        //Thanh
+        public string? userSessionTime { get; set; }
+        //
         public void OnGet()
         {
             var userSession = HttpContext.Session.GetString("UserSession");
+            //Thanh
+            userSessionTime = userSession;
+            //
+
             IsLoggedIn = !string.IsNullOrEmpty(userSession);
 
             rentals = rentalRepository.getRentalWithImage();

@@ -25,8 +25,18 @@ namespace Dotel2.Pages
 
         public int TotalPages { get; private set; }
 
+
+
+        //Thanh
+        public string? userSessionTime { get; set; }
+        //
+
         public void OnGet()
         {
+            //Thanh
+            var userSession = HttpContext.Session.GetString("UserSession");
+            userSessionTime = userSession;
+            //
             Console.WriteLine($"Current Page: {CurrentPage}");
 
             Total = repository.getListRentalsCount();
