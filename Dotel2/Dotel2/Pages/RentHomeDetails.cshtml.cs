@@ -15,9 +15,17 @@ namespace Dotel2.Pages
         
 
         public Rental Rental { get; set; }
+        //Thanh
+        public string? userSessionTime { get; set; }
+        //
+
         public void OnGet(int Id)
         {
-            Rental= repository.GetRental(Id);
+            //Thanh
+            var userSession = HttpContext.Session.GetString("UserSession");
+            userSessionTime = userSession;
+            //
+            Rental = repository.GetRental(Id);
             Console.WriteLine(Rental);
         }
     }

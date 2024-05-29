@@ -20,6 +20,7 @@ namespace Dotel2.Pages
         public List<Rental> rentals { get; private set; }
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
 
+
         public string? SessionValue { get; private set; }
 
 
@@ -36,9 +37,14 @@ namespace Dotel2.Pages
         public string PriceRange { get; set; }
 
         public List<Rental> FilteredRenter { get; set; }
+
         public void OnGet()
         {
             var userSession = HttpContext.Session.GetString("UserSession");
+            //Thanh
+            userSessionTime = userSession;
+            //
+
             IsLoggedIn = !string.IsNullOrEmpty(userSession);
 
             rentals = rentalRepository.getRentalWithImage();

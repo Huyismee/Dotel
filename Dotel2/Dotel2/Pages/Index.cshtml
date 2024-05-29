@@ -76,9 +76,24 @@
                         @* <a href="Blog_Full trang.html" class="nav-item nav-link">Bản tin</a> *@
                         @* <a href="Về chúng tôi.html" class="nav-item nav-link">Về Moro</a> *@
                     </div>
+
+                    @*Thanh*@
+                    @if (!string.IsNullOrEmpty(Model.userSessionTime))
+                    {
+                        <a href="/FormRentHome/Index" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
+                        <a href="profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
+                        <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
+                    }else{
+                        <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
+                        <a href="register" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng ký</a>
+                    }
+                    @*Thanh*@
+
+
+                    @*Code cu*@
+                    @*
                     <a href="/FormRentHome/Index" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
                     <a href="profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
-
                     @if (Model.SessionValue == null)
                     {
                         <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
@@ -88,7 +103,6 @@
                     {
                         <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
                     }
-
 
 
 

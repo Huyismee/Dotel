@@ -31,6 +31,27 @@ namespace Dotel2.Pages.Register
                 return Page();
             }
             var hashedPassword = GetHashedPassword(Request.Form["Password"]);
+
+
+            //Add role
+            var checkRole = _context.Roles.ToList();
+            if(checkRole.Any())
+            {
+                var addRole1 = new Role
+                {
+                    RoleName = "Admin",
+                };
+                _context.Roles.Add(addRole1);
+                var addRole2 = new Role
+                {
+                    RoleName = "Guest",
+                };
+                _context.Roles.Add(addRole2);
+                _context.SaveChanges();
+            }
+            //
+
+
             var newUser = new User
             {
                 Fullname = Request.Form["FullName"],
