@@ -118,57 +118,59 @@
         <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container">
                 <div class="bg-white shadow" style="padding: 35px;">
-                    <div class="row g-2">
-                        <div class="col-md-10">
-                            <div class="row g-2">
 
+                    <form method="post" asp-page-handler="Index" class="row g-2" id="filterForm">
+                        <div class="col-md-10">
+
+                            <div class="row g-2">
                                 <div class="col-md-3">
                                     <div>
-                                        <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm">
+                                        <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm" asp-for="Location" id="location">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-select">
-                                        <option selected>Loại hình nhà ở</option>
-                                        <option value="1">Nhà trọ</option>
-                                        <option value="2">Chung cư</option>
-                                        <option value="3">Nhà nguyên căn</option>
-                                        <option value="4">Homestay</option>
-                                        <option value="5">Chung cư mini</option>
-                                        <option value="6">Chung cư dịch vụ</option>
-                                        <option value="7">Chung cư cao cấp</option>
+                                    <select class="form-select" asp-for="Type" id="housingType">
+                                        <option selected value="">Loại hình nhà ở</option>
+                                        <option value="Nha Tro">Nhà trọ</option>
+                                        <option value="Chung cu">Chung cư</option>
+                                        <option value="Nha nguyen can">Nhà nguyên căn</option>
+                                        <option value="Homestay">Homestay</option>
+                                        <option value="Chung cu mini">Chung cư mini</option>
+
+                                        <option value="Chung cu cao cap">Chung cư cao cấp</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-select">
-                                        <option selected>Diện tích</option>
-                                        <option value="1">Dưới 20 m2</option>
-                                        <option value="2">Từ 20 m2 - 30 m2</option>
-                                        <option value="3">Từ 30 m2 - 50 m2</option>
-                                        <option value="4">Từ 50 m2 - 70 m2</option>
-                                        <option value="5">Từ 20 m2 - 90 m2</option>
-                                        <option value="6">Trên 90 m2</option>
+                                    <select class="form-select" asp-for="AreaRange" id="area">
+                                        <option selected value="">Diện tích</option>
+                                        <option value="Duoi 20 m2">Dưới 20 m2</option>
+                                        <option value="20-30">Từ 20 m2 - 30 m2</option>
+                                        <option value="30-50">Từ 30 m2 - 50 m2</option>
+                                        <option value="50-70">Từ 50 m2 - 70 m2</option>
+                                        <option value="70-90">Từ 70 m2 - 90 m2</option>
+                                        <option value="Tren 90">Trên 90 m2</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-select">
-                                        <option selected>Mức giá</option>
-                                        <option value="1">Dưới 1 triệu </option>
-                                        <option value="2">Từ 1 - 2 triệu</option>
-                                        <option value="3">Từ 2 - 3 triệu</option>
-                                        <option value="4">Từ 3 - 5 triệu</option>
-                                        <option value="5">Từ 5 - 7 triệu</option>
-                                        <option value="6">Từ 7 - 10 triệu</option>
-                                        <option value="7">Từ 10 - 15 triệu</option>
-                                        <option value="8">Trên 15 triệu</option>
+                                    <select class="form-select" asp-for="PriceRange" id="price">
+                                        <option selected value="">Mức giá</option>
+                                        <option value="Duoi 1000000">Dưới 1 triệu </option>
+                                        <option value="1000000-2000000">Từ 1 - 2 triệu</option>
+                                        <option value="2000000-3000000">Từ 2 - 3 triệu</option>
+                                        <option value="3000000-5000000">Từ 3 - 5 triệu</option>
+                                        <option value="5000000-7000000">Từ 5 - 7 triệu</option>
+                                        <option value="7000000-10000000">Từ 7 - 10 triệu</option>
+                                        <option value="10000000-15000000">Từ 10 - 15 triệu</option>
+                                        <option value="Tren 15000000">Trên 15 triệu</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-primary w-100">Tìm kiếm</button>
+                            <button class="btn btn-primary w-100" typw="Submit">Tìm kiếm</button>
                         </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </div>

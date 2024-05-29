@@ -6,9 +6,9 @@ namespace Dotel2.Models
     public partial class RentalVideo
     {
         public int VideoId { get; set; }
-        public string Sourse { get; set; } = null!;
+        public string Sourse { get; set; }
         public int RentalId { get; set; }
 
-        public virtual Rental Rental { get; set; } = null!;
+        public virtual Rental Rental { get; set; }
     }
 }

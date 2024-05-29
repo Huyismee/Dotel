@@ -56,7 +56,10 @@ namespace Dotel2.Pages.FormRentHome
                 Description = Description,
                 ContactPhoneNumber = user.MainPhoneNumber,
                 Status = true,
-                Approval = false
+                Approval = false,
+                ViewNumber = 0,
+                
+
             };
 
             _context.Rentals.Add(rental);
