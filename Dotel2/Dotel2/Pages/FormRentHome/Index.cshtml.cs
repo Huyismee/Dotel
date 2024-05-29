@@ -26,6 +26,7 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public string Title { get; set; }
         [BindProperty] public decimal Price { get; set; }
         [BindProperty] public decimal Area { get; set; }
+        [BindProperty] public string Address { get; set; }
         [BindProperty] public string Description { get; set; }
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
@@ -55,6 +56,7 @@ namespace Dotel2.Pages.FormRentHome
                 RoomArea = Area,
                 Description = Description,
                 ContactPhoneNumber = user.MainPhoneNumber,
+                Location = Address,
                 Status = true,
                 Approval = false
             };
