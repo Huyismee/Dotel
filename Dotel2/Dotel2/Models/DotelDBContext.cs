@@ -16,14 +16,14 @@ namespace Dotel2.Models
         {
         }
 
-        public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<Rental> Rentals { get; set; }
-        public virtual DbSet<RentalListImage> RentalListImages { get; set; }
-        public virtual DbSet<RentalVideo> RentalVideos { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<SponsorRental> SponsorRentals { get; set; }
-        public virtual DbSet<Sponsorship> Sponsorships { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Rental> Rentals { get; set; } = null!;
+        public virtual DbSet<RentalListImage> RentalListImages { get; set; } = null!;
+        public virtual DbSet<RentalVideo> RentalVideos { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<SponsorRental> SponsorRentals { get; set; } = null!;
+        public virtual DbSet<Sponsorship> Sponsorships { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,7 +31,7 @@ namespace Dotel2.Models
             {
                 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
                 optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionString"));
-                
+
             }
         }
 
@@ -44,23 +44,19 @@ namespace Dotel2.Models
                 entity.Property(e => e.AdminId).HasColumnName("adminId");
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("email");
 
                 entity.Property(e => e.Fullname)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("fullname");
 
                 entity.Property(e => e.Password)
-                    .IsRequired()
                     .HasMaxLength(32)
                     .HasColumnName("password");
 
                 entity.Property(e => e.PhoneNumber)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("phoneNumber");
@@ -88,7 +84,6 @@ namespace Dotel2.Models
                 entity.Property(e => e.BedroomNumber).HasColumnName("bedroomNumber");
 
                 entity.Property(e => e.ContactPhoneNumber)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("contactPhoneNumber");
@@ -103,17 +98,16 @@ namespace Dotel2.Models
                 entity.Property(e => e.Kitchen).HasColumnName("kitchen");
 
                 entity.Property(e => e.Location)
-                    .IsUnicode(false)
+                    .HasMaxLength(500)
                     .HasColumnName("location");
 
                 entity.Property(e => e.MaxPeople).HasColumnName("maxPeople");
 
                 entity.Property(e => e.Price)
-                    .HasColumnType("money")
+                    .HasColumnType("decimal(18, 0)")
                     .HasColumnName("price");
 
                 entity.Property(e => e.RentalTitle)
-                    .IsRequired()
                     .HasMaxLength(300)
                     .HasColumnName("rentalTitle");
 
@@ -134,6 +128,7 @@ namespace Dotel2.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Rentals)
                     .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Rental_UserId");
             });
 
@@ -148,7 +143,6 @@ namespace Dotel2.Models
                 entity.Property(e => e.RentalId).HasColumnName("rentalId");
 
                 entity.Property(e => e.Sourse)
-                    .IsRequired()
                     .HasMaxLength(1000)
                     .HasColumnName("sourse");
 
@@ -169,7 +163,6 @@ namespace Dotel2.Models
                 entity.Property(e => e.RentalId).HasColumnName("rentalId");
 
                 entity.Property(e => e.Sourse)
-                    .IsRequired()
                     .HasMaxLength(1000)
                     .HasColumnName("sourse");
 
@@ -186,7 +179,6 @@ namespace Dotel2.Models
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
 
                 entity.Property(e => e.RoleName)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("roleName");
             });
@@ -222,12 +214,10 @@ namespace Dotel2.Models
                 entity.Property(e => e.SponsorId).HasColumnName("sponsorId");
 
                 entity.Property(e => e.SponsorDes)
-                    .IsRequired()
                     .HasMaxLength(1000)
                     .HasColumnName("sponsorDes");
 
                 entity.Property(e => e.SponsorName)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("sponsorName");
             });
@@ -239,24 +229,20 @@ namespace Dotel2.Models
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("email");
 
                 entity.Property(e => e.Fullname)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("fullname");
 
                 entity.Property(e => e.MainPhoneNumber)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("mainPhoneNumber");
 
                 entity.Property(e => e.Password)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("password");

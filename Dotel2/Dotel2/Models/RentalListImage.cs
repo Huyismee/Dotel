@@ -7,8 +7,8 @@ namespace Dotel2.Models
     {
         public int ImageId { get; set; }
         public int RentalId { get; set; }
-        public string Sourse { get; set; }
+        public string Sourse { get; set; } = null!;
 
-        public virtual Rental Rental { get; set; }
+        public virtual Rental Rental { get; set; } = null!;
     }
 }

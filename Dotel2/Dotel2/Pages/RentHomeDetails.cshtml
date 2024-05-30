@@ -113,14 +113,14 @@
                     <div id="info" class="col-md-8 mb-4">
                         
                             <h1>@Model.Rental.RentalTitle</h1>
-                            <img src="@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:700px;">
+                            <img src="/@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:700px;">
                             <br />
 
                         <div class="row">
                             @foreach (var image in Model.Rental.RentalListImages.Skip(1))
                             {
                                 <div class="col-md-6 mb-3">
-                                    <img src="@image.Sourse" alt="Sub Image" class="img-fluid sub-image" height="150">
+                                    <img src="/@image.Sourse" alt="Sub Image" class="img-fluid sub-image" height="150">
                                 </div>
                             }
                         </div>
@@ -128,7 +128,7 @@
                             @foreach(var video in Model.Rental.RentalVideos)
                             {
                                 <div class="col-md-6 mb-3">
-                                    <video src="@video.Sourse" alt="Property Image" controls style="max-width: 400px; max-height: 300px;"></video>
+                                    <video src="/@video.Sourse" alt="Property Image" controls style="max-width: 400px; max-height: 300px;"></video>
                                 </div>
                                     
                             }
@@ -336,6 +336,5 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <!-- Template Javascript -->
         <script src="~/js/main.js"></script>
-        <script src="~/js/PostRent.js"></script>
     </div>
 </body>
