@@ -9,7 +9,7 @@ namespace Dotel2.Models
         public int RentalId { get; set; }
         public int SponsorId { get; set; }
 
-        public virtual Rental Rental { get; set; } = null!;
-        public virtual Sponsorship Sponsor { get; set; } = null!;
+        public virtual Rental Rental { get; set; }
+        public virtual Sponsorship Sponsor { get; set; }
     }
 }

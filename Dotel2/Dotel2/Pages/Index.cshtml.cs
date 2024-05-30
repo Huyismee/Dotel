@@ -3,8 +3,8 @@ using Dotel2.Repository.Rental;
 using EXE_Dotel.Repository.Rental;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Dotel2.Models;
-using Dotel2.Repository.Rental;
+using Newtonsoft.Json;
+
 namespace Dotel2.Pages
 {
     public class IndexModel : PageModel
@@ -17,14 +17,27 @@ namespace Dotel2.Pages
             rentalRepository = repository;
         }
         public bool IsLoggedIn { get; private set; }
-        public List<Rental>? rentals { get; private set; }
+        public List<Rental> rentals { get; private set; }
         public Dictionary<int, List<RentalListImage>> images { get; private set; }
 
-        public string ? SessionValue { get; private set; }
 
-        //Thanh
-        public string? userSessionTime { get; set; }
-        //
+        public string? SessionValue { get; private set; }
+
+
+        [BindProperty(SupportsGet = true)]
+        public string Location { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string Type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string AreaRange { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string PriceRange { get; set; }
+
+        public List<Rental> FilteredRenter { get; set; }
+
         public void OnGet()
         {
             var userSession = HttpContext.Session.GetString("UserSession");
@@ -35,7 +48,17 @@ namespace Dotel2.Pages
             IsLoggedIn = !string.IsNullOrEmpty(userSession);
 
             rentals = rentalRepository.getRentalWithImage();
-            images = new Dictionary<int, List<RentalListImage>>();
+            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
+           
+            if (TempData.ContainsKey("FilteredRentals"))
+            {
+                var rentalsJson = TempData["FilteredRentals"].ToString();
+                FilteredRenter = JsonConvert.DeserializeObject<List<Rental>>(rentalsJson);
+                rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
+            }
+
+            
+            
             foreach (var r in rentals)
             {
                 SessionValue = HttpContext.Session.GetString("UserSession");
@@ -47,6 +70,7 @@ namespace Dotel2.Pages
         public IActionResult OnPostIncrementViewCount(int rentalId)
         {
             var rental = rentalRepository.GetRental(rentalId);
+
             if (rental != null)
             {
                 rentalRepository.getViewCountIncrease(rental);
@@ -54,5 +78,22 @@ namespace Dotel2.Pages
             }
             return NotFound();
         }
+
+
+        public IActionResult OnPostIndex()
+        {
+            Console.WriteLine(Location);
+            Console.WriteLine(Type);
+            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
+            var jsonSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            
+            TempData["FilteredRentals"] = JsonConvert.SerializeObject(FilteredRenter, jsonSettings);
+            return RedirectToPage(new {Location, Type, AreaRange, PriceRange});
+        }
     }
+
+
 }
