@@ -1,40 +1,11 @@
 ﻿@page "{id:int}"
 @model Dotel2.Pages.RentHomeDetailsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper , Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+    Layout = "Shared/_Layout2";
 }
-<head>
-    <meta charset="utf-8">
-    
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- link fontawesome -->
-    <script src="https://kit.fontawesome.com/71fcac199f.js" crossorigin="anonymous"></script>
-
-    <!-- Template Stylesheet -->
-    <link href="~/css/style.css" rel="stylesheet">
-</head>
 
 
 
@@ -44,65 +15,10 @@
             height: 300px; /* Adjust the height as needed */
             width: 100%; /* Maintain aspect ratio */
             object-fit: cover; /* Ensure the image covers the entire container */
-            margin-top:24px;
+            margin-top: 24px;
         }</style>
-    
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-        <!-- Header Start -->
-        <div class="container-fluid nav-bar bg-transparent" style="background-color: #0F172B;">
-            <nav class="navbar navbar-expand-lg  navbar-light py-0 px-4" style="background-color: #0F172B;">
-                <a href="~/Index" class="navbar-brand d-flex align-items-center text-center">
-                    <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="~/img/index_img/Logo.png" alt="Icon" style="width: 100px; height: 100px;">
-                    </div>
-                    <h1 class="m-0 text-primary">DOTEL</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <a href="~/Index" class="nav-item nav-link">Trang chủ</a>
-                        <a href="~/RentHome" class="nav-item nav-link active">Cho thuê</a>
-                        <a href="#" class="nav-item nav-link ">Ở ghép</a>
-                        <a href="#" class="nav-item nav-link">Vận chuyển</a>
-                        <a href="#" class="nav-item nav-link">Dọn phòng</a>
-                        <a href="#" class="nav-item nav-link">Dịch vụ</a>
-                        <a href="#" class="nav-item nav-link">Bản tin</a>
-                        <a href="#" class="nav-item nav-link">Về Moro</a>
-                    </div>
 
-                    @*Code cu*@
-                    @*
-                    <a href="FormRentHome/Index" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
-
-                    <a href="#"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
-                    *@
-
-                    @*Thanh*@
-                    @if (!string.IsNullOrEmpty(Model.userSessionTime))
-                    {
-                        <a href="/FormRentHome/Index" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
-                        <a href="profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
-                        <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
-                    }
-                    else
-                    {
-                        <a href="login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
-                        <a href="register" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng ký</a>
-                    }
-                    @*Thanh*@
-                </div>
-            </nav>
-        </div>
-        <!-- Header End -->
+   
         <!-- Hot Room start -->
         <!-- Start Properties  -->
         <section id="aa-properties">
@@ -111,10 +27,10 @@
 
 
                     <div id="info" class="col-md-8 mb-4">
-                        
-                            <h1>@Model.Rental.RentalTitle</h1>
-                            <img src="/@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:700px;">
-                            <br />
+
+                        <h1>@Model.Rental.RentalTitle</h1>
+                        <img src="/@Model.Rental.RentalListImages.FirstOrDefault().Sourse" alt="@Model.Rental.RentalTitle" style="width:100%; height:700px;">
+                        <br />
 
                         <div class="row">
                             @foreach (var image in Model.Rental.RentalListImages.Skip(1))
@@ -125,17 +41,17 @@
                             }
                         </div>
                         <div>
-                            @foreach(var video in Model.Rental.RentalVideos)
+                            @foreach (var video in Model.Rental.RentalVideos)
                             {
                                 <div class="col-md-6 mb-3">
                                     <video src="/@video.Sourse" alt="Property Image" controls style="max-width: 400px; max-height: 300px;"></video>
                                 </div>
-                                    
+
                             }
                         </div>
-                            <p>@Model.Rental.Description</p>
-                            
-                       
+                        <p>@Model.Rental.Description</p>
+
+
                     </div>
 
                     <div class="col-md-4">
@@ -146,171 +62,32 @@
                                 <div class="aa-properties-single-sidebar">
                                     <div class="heart-btn">
                                         <div class="content">
-                                            <span class="heart"></span>
-                                            <span class="text">Yêu thích</span>
-                                            <span class="numb"></span>
                                         </div>
                                     </div>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('.content').click(function () {
-                                                $('.content').toggleClass("heart-active")
-                                                $('.text').toggleClass("heart-active")
-                                                $('.numb').toggleClass("heart-active")
-                                                $('.heart').toggleClass("heart-active")
-                                            });
-                                        });
-                                    </script>
                                     <br>
                                 </div>
 
 
                                 <div class="aa-properties-single-sidebar">
                                     <h3>Có thể bạn quan tâm</h3>
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h5 class="media-heading"><a href="Blog_Full trang.html">Điểm nổi bật của căn hộ Legacy Central là gì?</a></h5>
-                                            <p>Khi tìm hiểu về bất kỳ dự án bất động sản nào, yếu tố về vị trí bao giờ cũng đóng vai trò quan trọng bậc nhất...</p>
 
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="aa-properties-single-sidebar">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Nỗi sợ mang tên không thuê được căn hộ giá rẻ</a></h5>
-                                                <p>Dưới cái tiết trời se lạnh đầu mùa của Hà Nội, anh Phùng cố gắng nán lại ngoài đường để nhận thêm vài cuốc Grab trong ngày đông mưa gió...</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="media">
 
-                                            <div class="media-body">
-                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Thuê phòng trọ qua Internet và những lưu ý</a></h5>
-                                                <p>Cuộc cách mạng công nghệ 4.0 đã phát triển một cách mạnh mẽ và nhanh chóng, chất lượng cuộc sống con người ngày càng được nâng cao...</p>
-
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="media">
-
-                                            <div class="media-body">
-                                                <h5 class="media-heading"><a href="Blog_Full trang.html">Khách thuê căn hộ bất lực về tình trạng xả rác thiếu ý thức</a></h5>
-                                                <p>Anh Tâm trước đây từng thuê phòng trọ để ở, nhưng vì người hàng xóm kế bên mới...</p>
-
-                                            </div>
-                                        </div>
-                                        <hr>
-
-                                        <div class="media-body">
-                                            <h6 class="media-right"><a href="Renthome.html">Trở về trang thuê trọ </a></h6>
-                                        </div>
+                                    <div class="media-body">
+                                        <h6 class="media-right"><a href="/Index">Trở về trang thuê trọ </a></h6>
                                     </div>
                                 </div>
+
 
                             </div>
                         </aside>
                     </div>
-                    <!-- Newsletter Start -->
-                    <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10 border rounded p-1">
-                                <div class="border rounded text-center p-1">
-                                    <div class="bg-white rounded text-center p-5">
-                                        <h4 class="mb-4">Thắc mắc của bạn<span class="text-primary text-uppercase"> - Hỗ trợ giải đáp</span></h4>
-                                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                                            <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Câu hỏi của bạn">
-                                            <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Gửi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Newsletter Start -->
+                    
+
+
                     <!-- Messenger Plugin chat Code -->
-                    <div id="fb-root"></div>
-
-                    <!-- Your Plugin chat code -->
-                    <div id="fb-customer-chat" class="fb-customerchat">
-                    </div>
-
-                   
-                    <!-- Messenger Plugin chat Code -->
-                    <!-- Footer Start  -->
-                    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-                        <div class="container pb-5">
-                            <div class="row g-5">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="bg-primary rounded p-4">
-                                        <a href="index.html"><h1 class="text-white text-uppercase mb-3">DOTEL</h1></a>
-                                        <p class="text-white mb-0">
-                                            <a class="text-dark fw-medium" href="https://freewebsitecode.com/hotel-html-template-pro"></a>“Để việc tìm một mái ấm và chia sẻ không gian trở nên tối ưu và thuận tiện nhất, DOTEL
-                                            mang đến cho người dùng sự trải nghiệm hoàn mỹ về dịch vụ.”
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3">
-                                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Liên hệ</h6>
-                                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Trường Đại Học FPT Cơ Sỏ Hòa Lạc, Thạch Thất , Hà Nội</p>
-                                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 678</p>
-                                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>dotel@gmail.com</p>
-                                    <div class="d-flex pt-2">
-                                        <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-youtube"></i></a>
-                                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-md-12">
-                                    <div class="row gy-5 g-4">
-                                        <div class="col-md-6">
-                                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Chính sách</h6>
-                                            <a class="btn btn-link" href="">Chính sách bảo mật</a>
-                                            <a class="btn btn-link" href="">Chính sách giao dịch</a>
-                                            <a class="btn btn-link" href="">Chính sách dịch vụ</a>
-                                            <a class="btn btn-link" href="">Chính sách kiểm duyệt</a>
-                                            <a class="btn btn-link" href="">Hỗ trợ</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Dịch vụ</h6>
-                                            <a class="btn btn-link" href="#">Cho thuê</a>
-                                            <a class="btn btn-link" href="#">Ở ghép</a>
-                                            <a class="btn btn-link" href="#">Vận chuyển</a>
-                                            <a class="btn btn-link" href="#">Dọn phòng</a>
-                                            <a class="btn btn-link" href="#">Bản tin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="copyright">
-                                <div class="row">
-                                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                        <a class="border-bottom" href="https://www.instagram.com/luoisskincare/"></a> Đã đăng ký với Bộ Công Thương.
-
-
-                                        <a class="border-bottom" href="https://www.instagram.com/luoisskincare/">CÔNG TY THHH DOTEL</a>
-                                    </div>
-                                    <div class="col-md-6 text-center text-md-end">
-                                        <div class="footer-menu">
-                                            <a href="">Trang chủ</a>
-                                            <a href="">Cookies</a>
-                                            <a href="">Hỗ trợ</a>
-                                            <a href="">FQAs</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-
-                    <!-- Footer End -->
-                    </div>
                 </div>
+            </div>
         </section>
         <!-- Booking End -->
         <!-- Back to Top -->
@@ -320,7 +97,7 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        
+
 
         <script src="~/lib/wow/wow.min.js"></script>
         <script src="~/lib/easing/easing.min.js"></script>
@@ -330,11 +107,11 @@
         <script src="~/lib/tempusdominus/js/moment.min.js"></script>
         <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
         <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        
+
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <!-- Template Javascript -->
-        <script src="~/js/main.js"></script>
+
     </div>
 </body>
