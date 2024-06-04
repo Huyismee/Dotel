@@ -37,7 +37,9 @@ namespace Dotel2.Pages
         public string PriceRange { get; set; }
 
         public List<Rental> FilteredRenter { get; set; }
-
+        //Thanh
+        public string? userSessionTime { get; set; }
+        //
         public void OnGet()
         {
             var userSession = HttpContext.Session.GetString("UserSession");
