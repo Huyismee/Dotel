@@ -36,6 +36,8 @@ namespace Dotel2.Pages
         [BindProperty(SupportsGet = true)]
         public string PriceRange { get; set; }
 
+        public string userSessionTime { get; set; }
+
         public List<Rental> FilteredRenter { get; set; }
         //Thanh
         public string? userSessionTime { get; set; }
