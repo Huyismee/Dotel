@@ -35,7 +35,7 @@ namespace Dotel2.Pages.Register
 
             //Add role
             var checkRole = _context.Roles.ToList();
-            if(checkRole.Any())
+            if(!checkRole.Any())
             {
                 var addRole1 = new Role
                 {
