@@ -33,7 +33,7 @@ namespace Dotel2.Pages
             userSessionTime = userSession;
             //
             Rental = repository.GetRental(Id);
-            User = userRepository.getUserbyRentalId(Id);
+            //User = userRepository.getUserbyRentalId(Id);
 
             if (!string.IsNullOrEmpty(Rental.Description))
             {
