@@ -77,43 +77,42 @@
                 </form>
 
             </div>
-        </div>
-    </div>
-
-    <!-- Filter End -->
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <h6 class="section-title text-start text-primary text-uppercase">Về Dotel</h6>
-                    <h1 class="mb-4">Chào mừng bạn đến <span class="text-primary text-uppercase">Dotel</span></h1>
-                    <p class="mb-4" style="text-align: justify;">Đi tìm nhà trọ - một nỗi lo của người người nhà nhà đặc biệt là các bạn sinh viên khó có thể tìm thấy một không gian thật yên tâm đặt niềm tin cho nơi ở của mình. Trải nghiệm và thấu hiểu được những điều đó, chúng tôi mong muốn xây dựng một hệ sinh thái để giúp mọi người dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp</p>
-                    <div class="row g-3 pb-4">
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">10.000</h2>
-                                    <p class="mb-0">Bài đăng</p>
+        </div>      
+        <!-- Filter End -->
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h6 class="section-title text-start text-primary text-uppercase">Về Dotel</h6>
+                        <h1 class="mb-4">Chào mừng bạn đến <span class="text-primary text-uppercase">Dotel</span></h1>
+                        <p class="mb-4" style="text-align: justify;">Đi tìm nhà trọ - một nỗi lo của người người nhà nhà đặc biệt là các bạn sinh viên khó có thể tìm thấy một không gian thật yên tâm đặt niềm tin cho nơi ở của mình. Trải nghiệm và thấu hiểu được những điều đó, chúng tôi mong muốn xây dựng một hệ sinh thái để giúp mọi người dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp</p>
+                        <div class="row g-3 pb-4">
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntPosts"]</h2>
+                                        <p class="mb-0">Bài đăng</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">100</h2>
-                                    <p class="mb-0">Đối tác</p>
+                            @* <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">100</h2>
+                                        <p class="mb-0">Đối tác</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">200.000</h2>
-                                    <p class="mb-0">Người dùng</p>
+                            </div> *@
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntUsers"]</h2>
+                                        <p class="mb-0">Người dùng</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

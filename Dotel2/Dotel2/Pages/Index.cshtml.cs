@@ -12,9 +12,11 @@ namespace Dotel2.Pages
 
         private readonly ILogger<IndexModel> _logger;
         private readonly IRentalRepository rentalRepository;
-        public IndexModel(IRentalRepository repository)
+        private readonly DotelDBContext _context;
+        public IndexModel(IRentalRepository repository, DotelDBContext context)
         {
             rentalRepository = repository;
+            _context = context;
         }
         public bool IsLoggedIn { get; private set; }
         public List<Rental> rentals { get; private set; }
@@ -68,6 +70,8 @@ namespace Dotel2.Pages
                 //images[r.RentalId] = curListImg;
 
             }
+            ViewData["CntPost"] = rentals.Count;
+            ViewData["CntUser"] = _context.Users.ToList().Count;
         }
         public IActionResult OnPostIncrementViewCount(int rentalId)
         {

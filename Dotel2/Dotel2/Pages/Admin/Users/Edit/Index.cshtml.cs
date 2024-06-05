@@ -11,23 +11,47 @@ namespace Dotel2.Pages.Admin.Users.Edit
         {
             _context = context;
         }
-        public User User { get; set; }
-        public void OnGet(int? id)
+        public class EditUserViewModel
         {
-            if (id == null) NotFound();
+            public int UserId { get; set; }
+            public string Fullname { get; set; }
+            public string Email { get; set; }
+            public string MainPhoneNumber { get; set; }
+            public string? SecondaryPhoneNumber { get; set; }
+            public bool Status { get; set; }
+            public int RoleId { get; set; }
+        }
+        [BindProperty]
+        public EditUserViewModel EditUser { get; set; }
+        public User User { get; set; }
+        public IActionResult OnGet(int id)
+        {
             User = _context.Users.FirstOrDefault(u => u.UserId == id);
-            if (User == null) NotFound();
+            if (User == null) { return NotFound(); }
+            EditUser = new EditUserViewModel
+            {
+                UserId = User.UserId,
+                Fullname = User.Fullname,
+                Email = User.Email,
+                MainPhoneNumber = User.MainPhoneNumber,
+                SecondaryPhoneNumber = User.SecondaryPhoneNumber,
+                Status = User.Status,
+                RoleId = User.RoleId
+            };
+            return Page();
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid) return Page();
-            _context.Attach(User).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (Exception ex) { }
-            return RedirectToPage("./Index");
+            if (!ModelState.IsValid) { return Page(); }
+            var user = _context.Users.FirstOrDefault(u => u.UserId == EditUser.UserId);
+            if (user == null) { return NotFound(); };
+            user.Fullname = EditUser.Fullname;
+            user.Email = EditUser.Email;
+            user.SecondaryPhoneNumber = EditUser.SecondaryPhoneNumber;
+            user.Status = EditUser.Status;
+            user.RoleId = EditUser.RoleId;
+            _context.SaveChanges();
+            return RedirectToPage("/Admin/Users/Index");
         }
     }
 }
