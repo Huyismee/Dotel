@@ -137,32 +137,33 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- About End -->
-    <!-- Room Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Tìm phòng trọ</h6>
-                <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
-            </div>
-            <div id="results" class="row g-4">
-                @foreach (var rental in Model.rentals)
-                {
-                    <div class="col-md-4">
-                        <div class="card">
-                            @if (rental.RentalListImages.Count > 0)
-                            {
-                                <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
-                            }
-                            <div class="card-body">
-                                <h5 class="card-title"> @rental.RentalTitle </h5>
-                                <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
-                                <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
-                                <form method="post" asp-page-handler="IncrementViewCount">
-                                    <input type="hidden" name="rentalId" value="@rental.RentalId" />
-                                    <button type="submit" class="btn btn-primary">View Detail</button>
-                                </form>
+        <!-- About End -->
+        <!-- Room Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Tìm phòng trọ</h6>
+                    <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
+                </div>
+                <div id="results" class="row g-4">
+                    @foreach (var rental in Model.rentals)
+                    {
+                        <div class="col-md-4">
+                            <div class="card">
+                                @if (rental.RentalListImages.Count > 0)
+                                {
+                                    <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title"> @rental.RentalTitle </h5>
+                                    <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
+                                    <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
+                                    <form method="post" asp-page-handler="IncrementViewCount">
+                                        <input type="hidden" name="rentalId" value="@rental.RentalId" />
+                                        <input type="hidden" name="userId" value="@rental.UserId" />
+                                        <button type="submit" class="btn btn-primary">View Detail</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
