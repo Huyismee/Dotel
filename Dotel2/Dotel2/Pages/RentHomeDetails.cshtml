@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{Id:int}" 
 @model Dotel2.Pages.RentHomeDetailsModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper , Microsoft.AspNetCore.Mvc.TagHelpers
@@ -19,6 +19,28 @@
 
             
         }
+
+        .detail-heading {
+            font-size: 1.5em;
+            color: #333; /* Adjust color as needed */
+            margin-bottom: 10px;
+        }
+
+        .detail-info {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+            .detail-info p {
+                margin: 0;
+                padding: 5px 0;
+                font-size: 1.1em;
+            }
+
+            .detail-info i {
+                margin-right: 5px;
+                color: #007bff; /* Adjust color as needed */
+            }
 
         
         
@@ -57,12 +79,22 @@
                                 <h3>Địa chỉ: @Model.Rental.Location</h3>
                                 <div>@Html.Raw(Model.Rental.Description)</div>
                                 <br />
+
+                                <h3 class="detail-heading">Chi tiết các tiện ích</h3>
+                                <div class="detail-info">
+                                    <p><i class="fas fa-bed"></i>Số phòng ngủ: @Model.Rental.BedroomNumber</p>
+                                    <p><i class="fa-solid fa-bath"></i> Phòng tắm: @(Model.Rental.Bathroom == true ? "Có":"Không" )</p>
+                                    <p><i class="fa-solid fa-fire-burner"></i> Bếp nấu ăn: @(Model.Rental.Kitchen==true? "Có": "Không")</p>
+                                    <p><i class="fa-solid fa-people-group"></i>Số người tối đa: @Model.Rental.MaxPeople</p>
+
+                                </div>
+
                                 <h4>Thông tin liên hệ </h4>
                                 <div>
                                 @if (Model.userSessionTime != null)
                                 {
-                                    <p> SDT:  @Model.User.MainPhoneNumber</p>
-                                    <p> Email: @Model.User.Email</p>
+                                    <p> SDT:  @Model.Rental.ContactPhoneNumber</p>
+                                    
                                 }
                                 else
                                 {

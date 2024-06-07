@@ -110,11 +110,12 @@
                                     <div class="card-body">
                                         <h5 class="card-title">@rental.RentalTitle</h5>
 
-                                        <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
-                                        <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
+                                        <p class="card-text"><small class="text-muted">Price: @rental.Price.ToString("N0")</small></p>
+
+                                        <p class="btn-delete-card-icon"><i class="bi bi-eye-fill"></i><small class="text-muted"> @rental.ViewNumber</small></p>
                                         <form method="post" asp-page-handler="IncrementViewCount">
                                             <input type="hidden" name="rentalId" value="@rental.RentalId" />
-                                            <input type="hidden" name="userId" value="@rental.UserId" />
+                                            
                                             <button type="submit" class="btn btn-primary">View Detail</button>
                                         </form>
                                     </div>

@@ -20,7 +20,7 @@ namespace Dotel2.Pages
         public List<Rental> Rentals { get; set; }
         public int Total { get; private set; }
 
-        public int PageSize { get; private set; } = 3;
+        public int PageSize { get; private set; } = 9;
 
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
@@ -72,13 +72,13 @@ namespace Dotel2.Pages
             }
         }
 
-        public IActionResult OnPostIncrementViewCount(int rentalId,int userId)
+        public IActionResult OnPostIncrementViewCount(int rentalId)
         {
             var rental = repository.GetRental(rentalId);
             if (rental != null)
             {
                 repository.getViewCountIncrease(rental);
-                TempData["UserId"] = userId;
+                
                 return RedirectToPage("RentHomeDetails", new { id = rentalId });
             }
             return NotFound();
