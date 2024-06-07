@@ -10,9 +10,10 @@ namespace EXE_Dotel.Repository.Rental
         DotelDBContext dBContext;
         public RentalRepostiory(DotelDBContext context) { dBContext = context; }
 
+        private int pagesize { get; set; } = 6;
         public List<Dotel2.Models.Rental> getFilteredRental(string location, string type, string square, string price)
         {
-            List<Dotel2.Models.Rental> rentals = getRentalWithImage();
+            List<Dotel2.Models.Rental> rentals = getRentalWithImage(pagesize);
 
             // Filter by location
             if (!string.IsNullOrEmpty(location))
@@ -173,11 +174,15 @@ namespace EXE_Dotel.Repository.Rental
             return dBContext.Rentals.ToList();
         }
 
-        public List<Dotel2.Models.Rental> getRentalWithImage()
+        public List<Dotel2.Models.Rental> getRentalWithImage(int pagesize)
         {
 
             return dBContext.Rentals
-            .Include(r => r.RentalListImages).OrderByDescending(r=>r.ViewNumber).ToList();
+            .Include(r => r.RentalListImages)
+            .OrderByDescending(r=>r.ViewNumber)
+            .Where(rental=>rental.Approval==true)
+            .Take(pagesize)
+            .ToList();
             ;
         }
 
@@ -197,7 +202,7 @@ namespace EXE_Dotel.Repository.Rental
         {
             return dBContext.Rentals.Include(rental => rental.RentalListImages)
                 .Skip((page - 1) * pageSize)
-                .Take(pageSize).OrderBy(re=>re.Price)
+                .Take(pageSize).OrderBy(re=>re.Price).Where(rental=> rental.Approval==true)
                 .ToList();
         }
 
