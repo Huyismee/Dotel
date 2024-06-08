@@ -72,12 +72,13 @@ namespace Dotel2.Pages
             }
         }
 
-        public IActionResult OnPostIncrementViewCount(int rentalId)
+        public IActionResult OnPostIncrementViewCount(int rentalId,int userId)
         {
             var rental = repository.GetRental(rentalId);
             if (rental != null)
             {
                 repository.getViewCountIncrease(rental);
+                TempData["UserId"] = userId;
                 return RedirectToPage("RentHomeDetails", new { id = rentalId });
             }
             return NotFound();

@@ -27,8 +27,13 @@ namespace Dotel2.Repository.Rental
 
         public void getViewCountIncrease(Models.Rental rental);
 
+
+        public List<Dotel2.Models.Rental> getApprovaledRentals();
+
         public List<Models.Rental> getFilteredRental(string location, string type, string square, string price);
 
         public List<Models.Rental> getFilterRentalPaging(string location, string type, string square, string price,int page, int pageSize);
+
+        
     }
 }

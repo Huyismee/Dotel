@@ -8,7 +8,7 @@
     Layout = "Shared/_Layout2";
 }
 
-    
+
 
 <body>
     <style>
@@ -18,14 +18,14 @@
         }
     </style>
 
-    
-        <!-- Filter Start -->
-        <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="bg-white shadow" style="padding: 35px;">
-                    
-                        <form method="post" asp-page-handler="Index" class="row g-2" id="filterForm">
-                            <div class="col-md-10">
+
+    <!-- Filter Start -->
+    <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
+
+                <form method="post" asp-page-handler="Index" class="row g-2" id="filterForm">
+                    <div class="col-md-10">
 
                         <div class="row g-2">
                             <div class="col-md-3">
@@ -78,209 +78,117 @@
 
             </div>
         </div>
-    </div>
-
-    <!-- Filter End -->
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <h6 class="section-title text-start text-primary text-uppercase">Về Dotel</h6>
-                    <h1 class="mb-4">Chào mừng bạn đến <span class="text-primary text-uppercase">Dotel</span></h1>
-                    <p class="mb-4" style="text-align: justify;">Đi tìm nhà trọ - một nỗi lo của người người nhà nhà đặc biệt là các bạn sinh viên khó có thể tìm thấy một không gian thật yên tâm đặt niềm tin cho nơi ở của mình. Trải nghiệm và thấu hiểu được những điều đó, chúng tôi mong muốn xây dựng một hệ sinh thái để giúp mọi người dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp</p>
-                    <div class="row g-3 pb-4">
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+        <!-- Filter End -->
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h6 class="section-title text-start text-primary text-uppercase">Về Dotel</h6>
+                        <h1 class="mb-4">Chào mừng bạn đến <span class="text-primary text-uppercase">Dotel</span></h1>
+                        <p class="mb-4" style="text-align: justify;">Đi tìm nhà trọ - một nỗi lo của người người nhà nhà đặc biệt là các bạn sinh viên khó có thể tìm thấy một không gian thật yên tâm đặt niềm tin cho nơi ở của mình. Trải nghiệm và thấu hiểu được những điều đó, chúng tôi mong muốn xây dựng một hệ sinh thái để giúp mọi người dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp</p>
+                        <div class="row g-3 pb-4">
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntPosts"]</h2>
+                                        <p class="mb-0">Bài đăng</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @* <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
                             <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">10.000</h2>
-                                    <p class="mb-0">Bài đăng</p>
+                            <div class="border rounded text-center p-4">
+                            <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                            <h2 class="mb-1" data-toggle="counter-up">100</h2>
+                            <p class="mb-0">Đối tác</p>
+                            </div>
+                            </div>
+                            </div> *@
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="border rounded p-1">
+                                    <div class="border rounded text-center p-4">
+                                        <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntUsers"]</h2>
+                                        <p class="mb-0">Người dùng</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">100</h2>
-                                    <p class="mb-0">Đối tác</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/sample13.jpg" style="margin-top: 25%;">
                             </div>
-                        </div>
-                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="border rounded p-1">
-                                <div class="border rounded text-center p-4">
-                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                    <h2 class="mb-1" data-toggle="counter-up">200.000</h2>
-                                    <p class="mb-0">Người dùng</p>
-                                </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/sample6.jpg">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/sample11.jpg">
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/sample8.jpg">
                             </div>
                         </div>
                     </div>
                     <a class="btn btn-primary py-3 px-5 mt-2" href="#">Khám phá thêm về chúng tôi</a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/sample13.jpg" style="margin-top: 25%;">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/sample6.jpg">
-                        </div>
-                        <div class="col-6 text-end">
-                            <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/sample11.jpg">
-                        </div>
-                        <div class="col-6 text-start">
-                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/sample8.jpg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-    <!-- Room Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Tìm phòng trọ</h6>
-                <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
-            </div>
-            <div id="results" class="row g-4">
-                @foreach (var rental in Model.rentals)
-                {
-                    <div class="col-md-4">
-                        <div class="card">
-                            @if (rental.RentalListImages.Count > 0)
-                            {
-                                <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
-                            }
-                            <div class="card-body">
-                                <h5 class="card-title"> @rental.RentalTitle </h5>
-                                <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
-                                <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
-                                <form method="post" asp-page-handler="IncrementViewCount">
-                                    <input type="hidden" name="rentalId" value="@rental.RentalId" />
-                                    <button type="submit" class="btn btn-primary">View Detail</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <!-- Room End -->
-    <!-- Roomates Start -->
-    @*  <div class="container-xxl py-5">
-    <div class="container">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-    <h6 class="section-title text-center text-primary text-uppercase">Tìm người ở ghép</h6>
-    <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
-    </div>
-    <div id="roommate" class="row g-4">
-    </div>
-    </div>
-    </div> *@
-    <!-- Room End -->
-    <!-- Video Start -->
-    <div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
-        <div class="row g-0">
-            <div class="col-md-6 bg-dark d-flex align-items-center">
-                <div class="p-5">
-                    <h6 class="section-title text-start text-white text-uppercase mb-3">DOTEL</h6>
-                    <h1 class="text-white mb-4">Không gian hiện đại<br> Cuộc sống an nhiên</h1>
-                    <p class="text-white mb-4">Hướng tới sự tiện lợi nhất của khách hàng, chúng tôi đem đến các dịch vụ vận chuyển, dọn phòng với các đối tác uy tín</p>
-                    <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3">Dịch vụ vận chuyển</a>
-                    <a href="#" class="btn btn-light py-md-3 px-md-5">Dịch vụ dọn phòng</a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    <img class="img-fluid" src="img/index_img/move.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
 
-        <!-- Service Start -->
+                </div>
+                
+            </div>
+        </div>
+        <!-- About End -->
+        <!-- Room Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Danh mục dịch vụ</h6>
-                    <h1 class="mb-5">DOTEL cung cấp <span class="text-primary text-uppercase">các dịch vụ</span></h1>
+                    <h6 class="section-title text-center text-primary text-uppercase">Tìm phòng trọ</h6>
+                    <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="service-item rounded" href="RentHome">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
+                <div id="results" class="row g-4">
+                    @foreach (var rental in Model.rentals)
+                    {
+                        <div class="col-md-4">
+                            <div class="card">
+                                @if (rental.RentalListImages.Count > 0)
+                                {
+                                    <img src="@rental.RentalListImages.FirstOrDefault().Sourse" class="card-img-top rental-card-img " alt="...">
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title"> @rental.RentalTitle </h5>
+                                    <p class="card-text"><small class="text-muted">Price: @rental.Price</small></p>
+                                    <p class="btn-delete-card-icon"><small class="text-muted">View count: @rental.ViewNumber</small></p>
+                                    <form method="post" asp-page-handler="IncrementViewCount">
+                                        <input type="hidden" name="rentalId" value="@rental.RentalId" />
+                                        <input type="hidden" name="userId" value="@rental.UserId" />
+                                        <button type="submit" class="btn btn-primary">View Detail</button>
+                                    </form>
                                 </div>
                             </div>
-                            <h5 class="mb-3">Tìm kiếm phòng trọ</h5>
-                            <p class="text-body mb-0">Dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp với các bài đăng đã được kiểm duyệt</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-user-group fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm người ở ghép</h5>
-                            <p class="text-body mb-0">Tiết kiệm thời gian tìm bạn ở ghép khi có thể kết nối với những người cùng sở thích, hoàn cảnh, vị trí</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-truck fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm đơn vị vận chuyển</h5>
-                            <p class="text-body mb-0">Bạn không còn lo lắng về việc vận chuyển trọ đến nơi ở mới vì Moro cung cấp dịch vụ vận chuyển đồ cho người thuê trọ</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.4s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-sharp fa-solid fa-broom fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm đơn vị dọn phòng</h5>
-                            <p class="text-body mb-0">Dịch vụ dọn phòng giúp bạn thuê người dọn phòng một cách dễ dàng, thuận tiện nhất</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-sharp fa-solid fa-newspaper fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Bản tin</h5>
-                            <p class="text-body mb-0">Bản tin cập nhật những bài viết, review, chia sẻ cho người dùng về dịch vụ chỗ ở, các lưu ý khi chọn phòng trọ, ...v.v đem đến cho khách hàng nguồn thông tin, tham khảo hữu ích.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-regular fa-handshake fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Hợp tác</h5>
-                            <p class="text-body mb-0">Với mong muốn đem đến những trải nghiệm tốt nhất cho người dùng, Dotel luôn mở rộng chào đón các mối quan hệ hợp tác đến từ các đối tác trong các lĩnh vực về nhà ở</p>
-                        </a>
-                    </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
+        <!-- Room End -->
+        <!-- Roomates Start -->
+        @*  <div class="container-xxl py-5">
+        <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-primary text-uppercase">Tìm người ở ghép</h6>
+        <h1 class="mb-5"><span class="text-primary text-uppercase">Bài đăng nổi bật</span></h1>
+        </div>
+        <div id="roommate" class="row g-4">
+        </div>
+        </div>
+        </div> *@
+        <!-- Room End -->
+        <!-- Video Start -->
+
+
+        <!-- Service Start -->
         <!-- Service End -->
         <!-- Testimonial Start -->
         @* <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
@@ -323,8 +231,8 @@
         </div>
         </div> *@
         <!-- Testimonial End -->
-       
-        
+
+
     </div>
 
 
