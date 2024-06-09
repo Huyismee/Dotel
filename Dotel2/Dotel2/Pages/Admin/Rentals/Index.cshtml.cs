@@ -21,13 +21,13 @@ namespace Dotel2.Pages.Admin.Rentals
         public List<Rental> Rentals { get; set; }
         public void OnGet()
         {
-            Rentals = _rentalRepository.GetRentals();
+            Rentals = _rentalRepository.GetRentals().Where(r => r.Approval).ToList();
+            ApprovedOnly = true;
         }
         public void OnPost()
         {
             Rentals = _rentalRepository.GetRentals();
-            if (ApprovedOnly)
-            Rentals = Rentals.Where(r => r.Approval).ToList();
+            Rentals = Rentals.Where(r => r.Approval == ApprovedOnly).ToList();
         }
     }
 }
