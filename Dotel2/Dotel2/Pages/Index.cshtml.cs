@@ -49,10 +49,11 @@ namespace Dotel2.Pages
                 userSession = JsonConvert.DeserializeObject<User>(userJson);
             }
 
+            var pagesize = 6;
 
             IsLoggedIn = !string.IsNullOrEmpty(userJson);
 
-            rentals = rentalRepository.getRentalWithImage();
+            rentals = rentalRepository.getRentalWithImage(pagesize);
             FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
            
             if (TempData.ContainsKey("FilteredRentals"))
@@ -60,6 +61,7 @@ namespace Dotel2.Pages
                 var rentalsJson = TempData["FilteredRentals"].ToString();
                 FilteredRenter = JsonConvert.DeserializeObject<List<Rental>>(rentalsJson);
                 rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
+
             }
 
             
@@ -74,14 +76,16 @@ namespace Dotel2.Pages
             ViewData["CntPost"] = rentals.Count;
 /*            ViewData["CntUser"] = _context.Users.ToList().Count;*/
         }
-        public IActionResult OnPostIncrementViewCount(int rentalId,int userid)
+        public IActionResult OnPostIncrementViewCount(int rentalId)
         {
             var rental = rentalRepository.GetRental(rentalId);
+           
+
 
             if (rental != null)
             {
                 rentalRepository.getViewCountIncrease(rental);
-                TempData["UserId"] = userid;
+                
                 return RedirectToPage("RentHomeDetails", new { id = rentalId });
             }
             return NotFound();

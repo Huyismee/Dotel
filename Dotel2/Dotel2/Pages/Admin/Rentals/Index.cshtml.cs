@@ -14,11 +14,20 @@ namespace Dotel2.Pages.Admin.Rentals
             _context = context;
             _rentalRepository = rentalRepository;
         }
-        public List <Rental> Rentals {  get; set; }
+        
+        [BindProperty]
+        public bool ApprovedOnly {  get; set; }
 
+        public List<Rental> Rentals { get; set; }
         public void OnGet()
         {
-            Rentals = _rentalRepository.getApprovaledRentals();
+            Rentals = _rentalRepository.GetRentals().Where(r => r.Approval).ToList();
+            ApprovedOnly = true;
+        }
+        public void OnPost()
+        {
+            Rentals = _rentalRepository.GetRentals();
+            Rentals = Rentals.Where(r => r.Approval == ApprovedOnly).ToList();
         }
     }
 }
