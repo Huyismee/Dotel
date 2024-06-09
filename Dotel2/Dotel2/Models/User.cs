@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Dotel2.Models
 {
@@ -25,7 +26,13 @@ namespace Dotel2.Models
         public string? PhoneVerificationCode { get; set; }
         public DateTime? PhoneVerificationCodeExpires { get; set; }
 
+        [JsonIgnore] // Ngăn chặn serialization của thuộc tính Role
         public virtual Role Role { get; set; } = null!;
         public virtual ICollection<Rental> Rentals { get; set; }
+
+        public static implicit operator User(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,8 @@
 using Dotel2.Models;
+using Dotel2.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages.ForgotPassword
 {
@@ -14,10 +16,10 @@ namespace Dotel2.Pages.ForgotPassword
         [BindProperty] public string username { get; set; }
         public void OnGet()
         {
-            var emailSession = HttpContext.Session.GetString("EmailSession");
-            if (!string.IsNullOrEmpty(emailSession))
+            var userVerification = HttpContext.Session.GetString("userVerification");
+            if (!string.IsNullOrEmpty(userVerification))
             {
-                HttpContext.Session.Remove("EmailSession");
+                HttpContext.Session.Remove("userVerification");
             }
         }
         public IActionResult OnPost()
@@ -30,7 +32,17 @@ namespace Dotel2.Pages.ForgotPassword
             }
             else
             {
-                HttpContext.Session.SetString("EmailSession", user.Email);
+                SendMail send = new SendMail();
+                var code = send.GenerateVerificationCode();
+                send.SendEmailVerification(user.Email, code);
+
+                user.EmailVerificationCode = code;
+                user.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
+                _context.SaveChanges();
+
+                string userVerification = JsonConvert.SerializeObject(user);
+                HttpContext.Session.SetString("userVerification", userVerification);
+                HttpContext.Session.SetString("forgot", "1");
                 return RedirectToPage("/requestcode/index");
             }
         }

@@ -24,7 +24,6 @@
     <div class="noi-dung">
         <div class="form1">
             <h2>Xác minh tài khoản</h2>
-            <form id="verifyEmail">
                 @if (TempData["ErrorMessage"] != null)
                 {
                     <div class="alert alert-danger">
@@ -37,9 +36,14 @@
                         @TempData["SuccessMessage"]
                     </div>
                 }
+            <form method="post" id="verifyEmail">
+                    <div class="input-form">
+                        <span>Tài khoản</span>
+                        <input type="text" value="@Model.UserVerification.Email" readonly>
+                    </div>
                 <div class="input-form">
                     <span>Nhập mã xác thực</span>
-                    <input type="text" id="code" required>
+                    <input type="text" name="code" id="code" required>
                 </div>
 
                 <div class="input-form">
@@ -56,3 +60,28 @@
 </section>  
 </body>
 </html>
+<style>
+    /* Định nghĩa lớp chung cho alert */
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Định nghĩa lớp cho alert-danger (Thông báo lỗi) */
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    /* Định nghĩa lớp cho alert-success (Thông báo thành công) */
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+</style>

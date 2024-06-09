@@ -1,4 +1,5 @@
 ﻿using Dotel2.Models;
+using Dotel2.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -32,29 +33,27 @@ namespace Dotel2.Pages.Login
 
         public IActionResult OnPost()
         {
-            if (LoginSuccessful())
-            {
-                return RedirectToPage("/Index");
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Tài khoản hoặc mật khẩu không đúng.";
-                return Page();
-            }
-        }
-
-        public bool LoginSuccessful()
-        {
             var hashedPassword = GetHashedPassword(Password);
             User user = null;
-
+            SendMail send = new SendMail();
             if (IsValidEmail(Email))
             {
                 user = _context.Users.FirstOrDefault(s => s.Email.Equals(Email) && s.Password.Equals(hashedPassword));
                 if (user != null && user.CheckEmail != true)
                 {
                     TempData["ErrorMessage"] = "Email chưa được xác thực.";
-                    return false;
+
+                    var code = send.GenerateVerificationCode();
+                    send.SendEmailVerification(user.Email, code);
+
+                    user.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
+                    user.EmailVerificationCode = code;
+                    _context.SaveChanges();
+
+                    string userVerification = JsonConvert.SerializeObject(user);
+                    HttpContext.Session.SetString("userVerification", userVerification);
+
+                    return RedirectToPage("/RequestCode/Index");
                 }
             }
             else if (IsValidPhone(Email))
@@ -62,38 +61,41 @@ namespace Dotel2.Pages.Login
                 user = _context.Users.FirstOrDefault(s => s.MainPhoneNumber.Equals(Email) && s.Password.Equals(hashedPassword));
                 if (user != null && user.CheckPhone != true)
                 {
+                    string userVerification = JsonConvert.SerializeObject(user);
+                    HttpContext.Session.SetString("userVerification", userVerification);
+
                     TempData["ErrorMessage"] = "Số điện thoại chưa được xác thực.";
-                    return false;
+                    return RedirectToPage("/RequestCode/Index");
                 }
             }
             else
             {
                 TempData["ErrorMessage"] = "Định dạng tài khoản không hợp lệ.";
-                return false;
+                return Page();
             }
 
             if (user == null)
             {
-                return false;
+                return Page();
             }
             else
             {
                 if (!user.Status) // Deactivated
                 {
                     TempData["ErrorMessage"] = "Tài khoản đã bị khóa.";
-                    return false;
+                    return Page();
                 }
                 else if (user.RoleId != 2) // Not a guest
                 {
                     TempData["ErrorMessage"] = "Truy cập bị từ chối.";
-                    return false;
+                    return Page();
                 }
 
                 // Set session
                 string userJson = JsonConvert.SerializeObject(user);
                 HttpContext.Session.SetString("userJson", userJson);
 
-                return true;
+                return RedirectToPage("/Index");
             }
         }
 

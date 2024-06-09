@@ -33,6 +33,7 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public string Address { get; set; }
         [BindProperty] public string Description { get; set; }
         [BindProperty] public string TypeRoom { get; set; }
+        [BindProperty] public int Phone { get; set; }
         [BindProperty] public int NumberP { get; set; }
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
@@ -61,7 +62,7 @@ namespace Dotel2.Pages.FormRentHome
                 Price = Price,
                 RoomArea = Area,
                 Description = Description,
-                ContactPhoneNumber = user.MainPhoneNumber,
+                ContactPhoneNumber = Phone.ToString(),
                 Location = Address,
                 Type = TypeRoom,
                 MaxPeople = NumberP,
