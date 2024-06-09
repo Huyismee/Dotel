@@ -91,52 +91,25 @@
                         <h1 class="mb-4">Chào mừng bạn đến <span class="text-primary text-uppercase">Dotel</span></h1>
                         <p class="mb-4" style="text-align: justify;">Đi tìm nhà trọ - một nỗi lo của người người nhà nhà đặc biệt là các bạn sinh viên khó có thể tìm thấy một không gian thật yên tâm đặt niềm tin cho nơi ở của mình. Trải nghiệm và thấu hiểu được những điều đó, chúng tôi mong muốn xây dựng một hệ sinh thái để giúp mọi người dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp</p>
                         <div class="row g-3 pb-4">
-                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                                <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
-                                        <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntPosts"]</h2>
-                                        <p class="mb-0">Bài đăng</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @* <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="border rounded p-1">
-                            <div class="border rounded text-center p-4">
-                            <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
-                            <h2 class="mb-1" data-toggle="counter-up">100</h2>
-                            <p class="mb-0">Đối tác</p>
-                            </div>
-                            </div>
-                            </div> *@
-                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
-                                        <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntUsers"]</h2>
-                                        <p class="mb-0">Người dùng</p>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/sample13.jpg" style="margin-top: 25%;">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="uploads/66/img/1.jpeg" style="margin-top: 25%;">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/sample6.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="uploads/45/img/1.jpg">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/sample11.jpg">
+                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="uploads/38/img/1.jpeg">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/sample8.jpg">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="uploads/47/img/1.jpg">
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="#">Khám phá thêm về chúng tôi</a>
 
                 </div>
                 
@@ -162,7 +135,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"> @rental.RentalTitle </h5>
                                     
-                                    <p class="card-text"><small class="text-muted">Price: @(rental.Price.ToString("N0"))</small></p>
+                                    <p class="card-text"><small class="text-muted">Giá: @(rental.Price.ToString("N0"))đ</small></p>
                                     
                                 
                                 <p class="btn-delete-card-icon"><i class="bi bi-eye-fill"></i><small class="text-muted"> @rental.ViewNumber</small></p>
