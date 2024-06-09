@@ -49,7 +49,7 @@ namespace Dotel2.Pages
                 userSession = JsonConvert.DeserializeObject<User>(userJson);
             }
 
-
+            var pagesize = 6;
 
             IsLoggedIn = !string.IsNullOrEmpty(userJson);
 
