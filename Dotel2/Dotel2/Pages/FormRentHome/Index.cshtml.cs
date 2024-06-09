@@ -8,6 +8,7 @@ using Dotel2.Models;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages.FormRentHome
 {
@@ -34,8 +35,8 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
         public ActionResult OnGet() {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            if (string.IsNullOrEmpty(userSession))
+            var userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
             {
                 return RedirectToPage("/Login/index");
             }
@@ -44,12 +45,12 @@ namespace Dotel2.Pages.FormRentHome
 
         public ActionResult OnPost()
         {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            var user = _context.Users.FirstOrDefault(s => s.Email == userSession);
-            if (user == null)
+            var userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
             {
                 return RedirectToPage("/login");
             }
+            var user = JsonConvert.DeserializeObject<User>(userJson);
 
             var rental = new Rental
             {
