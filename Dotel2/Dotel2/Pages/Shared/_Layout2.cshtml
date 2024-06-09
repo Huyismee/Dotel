@@ -94,19 +94,20 @@
 
 
                         <a href="#" class="nav-item nav-link">Dịch vụ</a>
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("userJson")))
+                        {
+                            <a href="/FormRentHome" class="nav-item nav-link btn btn-primary px-3 d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
+                            <a href="/profile"><i class="nav-item nav-link fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
+                            <a href="/login" class="nav-item nav-link btn btn-secondary px-3  d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
+                        }
+                        else
+                        {
+                            <a href="/login" class="nav-item nav-link btn btn-secondary px-3  d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
+                            <a href="/register" class="nav-item nav-link btn btn-secondary px-3  d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng ký</a>
+                        }
                     </div>
 
-                    @if (!string.IsNullOrEmpty(Model.userSessionTime))
-                    {
-                        <a href="/FormRentHome" class="btn btn-primary px-3 d-none d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
-                        <a href="/profile"><i class="fa-regular fa-circle-user  fa-2x" style="color: #FEA116; margin-left: 20px;"></i></a>
-                        <a href="/login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
-                    }
-                    else
-                    {
-                        <a href="/login" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng nhập</a>
-                        <a href="/register" class="btn btn-secondary px-3 d-none d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng ký</a>
-                    }
+                   
                     @*Thanh*@
                 </div>
             </nav>
@@ -207,7 +208,7 @@
                         <div class="bg-primary rounded p-4">
                             <a href="index.html"><h1 class="text-white text-uppercase mb-3">Dotel</h1></a>
                             <p class="text-white mb-0">
-                                <a class="text-dark fw-medium" href="https://freewebsitecode.com/hotel-html-template-pro"></a>“Để việc tìm một mái ấm và chia sẻ không gian trở nên tối ưu và thuận tiện nhất, MORO
+                                <a class="text-dark fw-medium" href="https://freewebsitecode.com/hotel-html-template-pro"></a>“Để việc tìm một mái ấm và chia sẻ không gian trở nên tối ưu và thuận tiện nhất, Dotel
                                 mang đến cho người dùng sự trải nghiệm hoàn mỹ về dịch vụ.”
                             </p>
                         </div>
@@ -216,31 +217,22 @@
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Liên hệ</h6>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Trường Đại Học FPT cơ sở Hòa Lạc, Thạch Thất, Hà Nội</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 678</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>dotel@gmail.com</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>dotelonline@gmail.com</p>
                         <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/luoisskincare"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/luoisskincare/"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/dotelonline1"><i class="fab fa-twitter"></i></a>
+
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
                         <div class="row gy-5 g-4">
                             <div class="col-md-6">
                                 <h6 class="section-title text-start text-primary text-uppercase mb-4">Chính sách</h6>
-                                <a class="btn btn-link" href="">Chính sách bảo mật</a>
-                                <a class="btn btn-link" href="">Chính sách giao dịch</a>
-                                <a class="btn btn-link" href="">Chính sách dịch vụ</a>
-                                <a class="btn btn-link" href="">Chính sách kiểm duyệt</a>
-                                <a class="btn btn-link" href="">Hỗ trợ</a>
+
                             </div>
                             <div class="col-md-6">
                                 <h6 class="section-title text-start text-primary text-uppercase mb-4">Dịch vụ</h6>
                                 <a class="btn btn-link" href="RentHome">Cho thuê</a>
-                                <a class="btn btn-link" href="#">Ở ghép</a>
-                                <a class="btn btn-link" href="#">Vận chuyển</a>
-                                <a class="btn btn-link" href="#">Dọn phòng</a>
-                                <a class="btn btn-link" href="#">Bản tin</a>
+
                             </div>
                         </div>
                     </div>
@@ -250,14 +242,12 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            <a class="border-bottom" href="https://www.instagram.com/luoisskincare/" style="margin-top: 30px;"></a>Copyright © 2022 Dotel.COM
+                            <a class="border-bottom" href="https://www.instagram.com/luoisskincare/" style="margin-top: 30px;"></a>Copyright © 2022 Dotel.Online
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="">Trang chủ</a>
                                 <a href="">Cookies</a>
-                                <a href="">Hỗ trợ</a>
-                                <a href="">FQAs</a>
                                 <img src="img/index_img/DK.png" style="width: 140px; height: 50px;">
                             </div>
                         </div>
