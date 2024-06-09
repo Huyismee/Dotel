@@ -33,7 +33,6 @@ namespace Dotel2.Pages
             userSessionTime = userSession;
             //
             Rental = repository.GetRental(Id);
-            //User = userRepository.getUserbyRentalId(Id);
 
             if (!string.IsNullOrEmpty(Rental.Description))
             {
@@ -41,16 +40,7 @@ namespace Dotel2.Pages
             }
 
 
-            if (TempData["UserId"] != null)
-            {
-                int userId = (int)TempData["UserId"];
-                User = userRepository.getUserbyRentalId(userId);
-            }
-            else
-            {
-                // Handle the case where userId is not available
-                return RedirectToPage("Error"); // Redirect to an error page or handle as needed
-            }
+           
             return Page();
         }
 
@@ -88,6 +78,7 @@ namespace Dotel2.Pages
                 { @"(?<=\n|^)Phí dịch vụ:", "<h3>Phí dịch vụ:</h3><ul>" }, // Section headers
                 { @"(?<=\n|^)Phòng được trang bị đầy đủ nội thất và thiết bị:", "</ul><h3>Phòng được trang bị đầy đủ nội thất và thiết bị:</h3><p>" },
                 { @"(?<=\n|^)Điểm nổi bật của {RentalTitle}:", "</p><h3>Điểm nổi bật của {RentalTitle}:</h3><ul>" },
+
                 { @"(?<=\n|^)HOLA GATE không chỉ đầy đủ tiện nghi mà còn có vị trí đẹp, không gian thoáng đãng và nhiều dịch vụ hỗ trợ tiện lợi. Hãy liên hệ ngay để trải nghiệm!", 
                 "</ul><p>HOLA GATE không chỉ đầy đủ tiện nghi mà còn có vị trí đẹp, không gian thoáng đãng và nhiều dịch vụ hỗ trợ tiện lợi. Hãy liên hệ ngay để trải nghiệm!</p>" }
             };

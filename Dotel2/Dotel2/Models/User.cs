@@ -19,7 +19,7 @@ namespace Dotel2.Models
         public bool Status { get; set; }
         public int RoleId { get; set; }
 
-        public virtual Role Role { get; set; } = null!;
-        public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual Role? Role { get; set; } = null!;
+        public virtual ICollection<Rental>? Rentals { get; set; }
     }
 }
