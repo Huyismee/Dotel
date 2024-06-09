@@ -17,6 +17,20 @@
         <h1 class="mt-4">
             @ViewData["Title"]
         </h1>
+        <div>
+            <form method="post">
+                <div class="form-group"
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="approvedOnly" asp-for="ApprovedOnly"/>
+                    <label class="form-check-lable" for="approvedOnly"> Hiện trọ đã được duyệt</label>
+                </div>
+            </div>
+                <button type="submit" class="btn btn-primary">Lọc</button>
+            </form>
+        </div>
+        <div>
+
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -55,6 +69,8 @@
                 }
             </tbody>
         </table>
+        </div>
     </div>
+
 </body>
 </html>
