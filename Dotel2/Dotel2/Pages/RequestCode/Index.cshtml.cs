@@ -74,7 +74,7 @@ namespace Dotel2.Pages.RequestCode
                     _context.SaveChanges();
                     if (forgot != null && forgot == "1")
                     {
-                        TempData["SuccessMessage"] = "Đổi mật khẩu thành công.";
+                        return RedirectToPage("/Reset/Index");
                     }
                     TempData["SuccessMessage"] = "Xác thực email thành công.";
                     return RedirectToPage("/Login/Index");

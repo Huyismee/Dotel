@@ -1,6 +1,7 @@
 using Dotel2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -16,29 +17,39 @@ namespace Dotel2.Pages.Reset
         [BindProperty] public string Email { get; set; }
         public IActionResult OnGet()
         {
-            var emailSession = HttpContext.Session.GetString("EmailSession");
-            if (string.IsNullOrEmpty(emailSession))
+            var forgot = HttpContext.Session.GetString("forgot");
+
+            var userVerification = HttpContext.Session.GetString("userVerification");
+            if (string.IsNullOrEmpty(userVerification))
             {
-                return RedirectToPage("/forgotpassword/index");
+                if (forgot != null && forgot == "1")
+                {
+                    return RedirectToPage("/ForgotPassword/index");
+                }
+
+                return RedirectToPage("/Login/index");
             }
-            else
-            {
-                Email = emailSession;
-                return Page();
-            }
+            return Page();
         }
 
         public IActionResult OnPost()
         {
 
-            var emailSession = HttpContext.Session.GetString("EmailSession");
-            if (string.IsNullOrEmpty(emailSession))
+            var forgot = HttpContext.Session.GetString("forgot");
+
+            var userVerification = HttpContext.Session.GetString("userVerification");
+            if (string.IsNullOrEmpty(userVerification))
             {
-                return RedirectToPage("/forgotpassword/index");
-            }
-            else
+                if (forgot != null && forgot == "1")
+                {
+                    return RedirectToPage("/ForgotPassword/index");
+                }
+
+                return RedirectToPage("/Login/index");
+            }else
             {
-                Email = emailSession;
+                var user = JsonConvert.DeserializeObject<User>(userVerification);
+                Email = user.Email;
             }
 
             var emailExist = _context.Users.FirstOrDefault(s => s.Email.Equals(Email));
