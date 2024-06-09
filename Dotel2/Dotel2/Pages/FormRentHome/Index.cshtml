@@ -20,6 +20,26 @@
             background-attachment: fixed;
             background-size: cover;
         }
+
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            outline: 0;
+            border: 1px solid #fff;
+            color: #fff;
+            background: transparent;
+            font-size: 15px;
+            appearance: none; /* Ẩn mũi tên mặc định của select */
+        }
+
+        .input-group select:focus {
+            border-color: #fff; /* Màu viền khi select được focus */
+        }
+
+        .input-group select option {
+            color: #000; /* Màu chữ của các option */
+            background-color: #fff; /* Màu nền của các option */
+        }
     </style>
 </head>
 <body>
@@ -41,30 +61,36 @@
 
             <div class="row">
                 <div class="input-group">
-                    <input type="text" name="price" id="price" required />
+                    <input type="number" min="1" name="numberP" id="numberP" required />
+                    <label for="numberP"><i class="fa-solid fa-user"></i> Số người tối đa</label>
+                </div>
+                <div class="input-group">
+                    <select name="typeRoom" id="typeRoom" required>
+                        <option value="">Loại hình nhà ở</option>
+                        <option value="1">Nhà trọ</option>
+                        <option value="2">Chung cư</option>
+                        <option value="3">Nhà nguyên căn</option>
+                        <option value="4">Homestay</option>
+                        <option value="5">Chung cư mini</option>
+                        <option value="6">Chung cư cao cấp</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <input type="number" min="1" name="price" id="price" required />
                     <label for="price"><i class="fa-solid fa-money-bill"></i> Giá thuê</label>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="area" id="area" required />
+                    <input type="number" min="1" name="area" id="area" required />
                     <label for="area"><i class="fa-solid fa-layer-group"></i> Diện tích</label>
                 </div>
                 <div class="input-group">
                     <input type="text" name="address" id="address" required />
                     <label for="address"><i class="fa-solid fa-location-dot"></i> Địa điểm</label>
                 </div>
-
             </div>
-@*             <div class="input-group">
-                <h5 style="color: aliceblue;font-size: 15px;font-weight: bolder;">Cập nhật Giấy phép kinh doanh (Vui lòng chọn File PDF)</h5>
-                <label for="filepdf"></label>
-                <input type="file"
-                       id="filepdf"
-                       multiple="multiple"
-                       accept="application/pdf" />
-                <output style="display: flex; flex-wrap: wrap" id="resultpdf"></output>
-                <script src="js/form.js"></script>
-            </div> *@
-
             <div class="input-group">
                 <textarea id="description" name="description" rows="5" required></textarea>
                 <label for="description"><i class="fa-solid fa-clipboard"></i> Mô tả chi tiết</label>
@@ -83,7 +109,7 @@
             </div>
 
             <div class="container">
-                <input type="submit" class="btn"/>
+                <input type="submit" class="btn" />
             </div>
         </form>
     </div>

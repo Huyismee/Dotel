@@ -59,7 +59,7 @@ namespace Dotel2.Pages.Admin.Rentals
                 Location = rental.Location,
                 GoogleMap = rental.GoogleMap,
                 Approval = rental.Approval,
-                Status = rental.Status,
+                Status = (bool)rental.Status,
                 Type = rental.Type
             };
 
@@ -78,11 +78,11 @@ namespace Dotel2.Pages.Admin.Rentals
 
             rental.RentalTitle = EditRental.RentalTitle;
             rental.Description = EditRental.Description;
-            rental.Price = EditRental.Price;
+            rental.Price = (decimal)EditRental.Price;
             rental.RoomArea = EditRental.RoomArea;
             rental.MaxPeople = EditRental.MaxPeople;
             rental.ContactPhoneNumber = EditRental.ContactPhoneNumber;
-            rental.UserId = EditRental.UserId;
+            rental.UserId = (int)EditRental.UserId;
             rental.ViewNumber = EditRental.ViewNumber;
             rental.Bathroom = EditRental.Bathroom;
             rental.Kitchen = EditRental.Kitchen;
