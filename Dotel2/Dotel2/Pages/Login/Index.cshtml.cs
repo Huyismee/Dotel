@@ -1,6 +1,7 @@
 ﻿using Dotel2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -15,12 +16,13 @@ namespace Dotel2.Pages.Login
         }
         [BindProperty] public string username { get; set; }
         [BindProperty] public string password { get; set; }
+
         public void OnGet()
         {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            if (!string.IsNullOrEmpty(userSession))
+            string userJson = HttpContext.Session.GetString("userJson");
+            if (!string.IsNullOrEmpty(userJson))
             {
-                HttpContext.Session.Remove("UserSession");
+                HttpContext.Session.Remove("userJson");
             }
         }
         public IActionResult OnPost()
@@ -31,7 +33,7 @@ namespace Dotel2.Pages.Login
             }
             else
             {
-                TempData["ErrorMessage"] = "Username or Password invalid.";
+                TempData["ErrorMessage"] = "Tài khoản hoặc mật khẩu không đúng.";
                 return Page();
             }
         }
@@ -48,16 +50,20 @@ namespace Dotel2.Pages.Login
             {
                 if (user.Status == false) // Deactived
                 {
-                    TempData["ErrorMessage"] = "Account has been banned.";
+                    TempData["ErrorMessage"] = "Tài khoản đã bị khóa";
                     return false;
                 }
                 else if (user.RoleId != 2) //Guest
                 {
-                    TempData["ErrorMessage"] = "Access denied.";
+                    TempData["ErrorMessage"] = "Truy cập bị từ chối";
                     return false;
                 }
 
-                HttpContext.Session.SetString("UserSession", user.Email);// tạo session khi login
+                //set session
+                string userJson = JsonConvert.SerializeObject(user);
+/*                Console.WriteLine(userJson);*/
+                HttpContext.Session.SetString("userJson", userJson);
+
                 return true;
             }
         }

@@ -44,32 +44,55 @@
 
         
         
-    </style>
 
-    <section id="aa-properties">
+    </style>
+    <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
+            </div>
+        </div>
+    </div>
+    <section id="aa-properties container-xxl">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach (var image in Model.Rental.RentalListImages)
-                            {
-                                <div class="carousel-item @(image == Model.Rental.RentalListImages.First() ? "active" : "")">
-                                    
-                                        <img class="sub-image" src="@image.Sourse" alt="Image">
-                                    
+                    <div class="aa-properties-content">
+                        <div class="aa-properties-details">
+                            <div class="aa-properties-details-img">
+                                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach (var image in Model.Rental.RentalListImages)
+                                        {
+                                            <div class="carousel-item @(image == Model.Rental.RentalListImages.First() ? "active" : "")">
+
+                                                <img class="sub-image" src="/@image.Sourse" alt="Image">
+
+                                            </div>
+                                        }
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                            }
+                            </div>
+                            <div class="aa-properties-info mb-0">
+                               <div id="contact">
+                                <h1 style="color: #FEA116; margin-top: 15px;">@Model.Rental.RentalTitle</h1>
+                                <h3>Địa chỉ: @Model.Rental.Location</h3>
+                                <div>@Html.Raw(Model.Rental.Description)</div>
+                                <br />
+                                
+                            </div>
+                            </div>
+                            
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
+                    
                 </div>
                 <div class="col-md-4">
                     <aside class="aa-properties-sidebar">
@@ -100,6 +123,7 @@
                                 {
                                     <a href="/login">Hãy đăng nhập để xem chi tiết</a>
                                 }
+
                                 </div>
                             </div>
                             

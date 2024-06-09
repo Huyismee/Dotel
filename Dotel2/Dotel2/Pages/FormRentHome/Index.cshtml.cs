@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Dotel2.Models;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages.FormRentHome
 {
@@ -26,12 +30,13 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public string Title { get; set; }
         [BindProperty] public decimal Price { get; set; }
         [BindProperty] public decimal Area { get; set; }
+        [BindProperty] public string Address { get; set; }
         [BindProperty] public string Description { get; set; }
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
         public ActionResult OnGet() {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            if (string.IsNullOrEmpty(userSession))
+            var userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
             {
                 return RedirectToPage("/Login/index");
             }
@@ -40,12 +45,12 @@ namespace Dotel2.Pages.FormRentHome
 
         public ActionResult OnPost()
         {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            var user = _context.Users.FirstOrDefault(s => s.Email == userSession);
-            if (user == null)
+            var userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
             {
                 return RedirectToPage("/login");
             }
+            var user = JsonConvert.DeserializeObject<User>(userJson);
 
             var rental = new Rental
             {
@@ -55,49 +60,52 @@ namespace Dotel2.Pages.FormRentHome
                 RoomArea = Area,
                 Description = Description,
                 ContactPhoneNumber = user.MainPhoneNumber,
+                Location = Address,
                 Status = true,
                 Approval = false,
                 ViewNumber = 0,
-                
-
             };
 
             _context.Rentals.Add(rental);
             _context.SaveChanges();
 
-            var imagePaths = new List<string>(); // Danh sách đường dẫn ảnh
-            var videoPaths = new List<string>(); // Danh sách đường dẫn video
+            var rentalId = rental.RentalId;
+
+            var imagePaths = new List<string>();
+
+            var rentalDirectory = Path.Combine(_uploadDirectory, rentalId.ToString());
+            var imageDirectory = Path.Combine(rentalDirectory, "img");
+
+            if (!Directory.Exists(imageDirectory))
+            {
+                Directory.CreateDirectory(imageDirectory);
+            }
+
+            int imageCount = 1;
 
             foreach (var file in MediaFiles)
             {
-                if (file.Length > 0)
+                if (file.Length > 0 && file.ContentType.StartsWith("image/"))
                 {
-                    var filePath = Path.Combine(_uploadDirectory, Path.GetFileName(file.FileName));
+                    string newFileName = $"{imageCount++}{Path.GetExtension(file.FileName)}";
+                    string filePath = Path.Combine(imageDirectory, newFileName);
+                    imagePaths.Add(Path.Combine("uploads", rentalId.ToString(), "img", newFileName));
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        file.CopyTo(stream);
-                    }
-
-                    if (file.ContentType.StartsWith("image/"))
-                    {
-                        imagePaths.Add(Path.Combine("uploads", file.FileName)); // Thêm đường dẫn ảnh vào danh sách
-                    }
-                    else if (file.ContentType.StartsWith("video/"))
-                    {
-                        videoPaths.Add(Path.Combine("uploads", file.FileName)); // Thêm đường dẫn video vào danh sách
+                        using (var image = Image.Load(file.OpenReadStream()))
+                        {
+                            var encoder = new JpegEncoder { Quality = 75 }; // Set chất lượng ảnh, giá trị từ 1-100
+                            image.Save(stream, encoder);
+                        }
                     }
                 }
             }
 
-            // Lưu đường dẫn ảnh và video vào cơ sở dữ liệu
+            // Lưu đường dẫn ảnh vào cơ sở dữ liệu
             foreach (var imagePath in imagePaths)
             {
-                rental.RentalListImages.Add(new RentalListImage { RentalId = rental.RentalId, Sourse = imagePath });
-            }
-
-            foreach (var videoPath in videoPaths)
-            {
-                rental.RentalVideos.Add(new RentalVideo { RentalId = rental.RentalId, Sourse = videoPath });
+                rental.RentalListImages.Add(new RentalListImage { RentalId = rentalId, Sourse = imagePath });
             }
 
             _context.SaveChanges();

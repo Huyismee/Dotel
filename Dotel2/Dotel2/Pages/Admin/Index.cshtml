@@ -4,15 +4,23 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] </title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
 <h1>Admin Dashboard</h1>
 
 <div>
     <ul>
-        <li>
+        <li class="list-group-item">
             <a asp-page="/Admin/Users/index">Người dùng</a>
         </li>
-        <li>
-            <a asp-page="/Admin/Rental">Danh sách trọ</a>
+        <li class ="list-group-item">
+            <a asp-page="/Admin/Rentals/Index">Danh sách trọ</a>
         </li>
     </ul>
 </div>

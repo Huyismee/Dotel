@@ -8,7 +8,7 @@
     Layout = "Shared/_Layout2";
 }
 
-    
+
 
 <body>
     <style>
@@ -21,68 +21,66 @@
        
     </style>
 
-    
-        <!-- Filter Start -->
-        <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="bg-white shadow" style="padding: 35px;">
-                    
-                        <form method="post" asp-page-handler="Index" class="row g-2" id="filterForm">
-                            <div class="col-md-10">
 
-                                <div class="row g-2">
-                                    <div class="col-md-3">
-                                        <div>
-                                            <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm" asp-for="Location" id="location">
-                                        </div>
-                                    </div>
-                                <div class="col-md-3">
-                                    <select class="form-select" asp-for="Type" id="housingType">
-                                        <option selected value="">Loại hình nhà ở</option>
-                                        <option value="Nha Tro">Nhà trọ</option>
-                                        <option value="Chung cu">Chung cư</option>
-                                        <option value="Nha nguyen can">Nhà nguyên căn</option>
-                                        <option value="Homestay">Homestay</option>
-                                        <option value="Chung cu mini">Chung cư mini</option>
+    <!-- Filter Start -->
+    <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
 
-                                        <option value="Chung cu cao cap">Chung cư cao cấp</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select class="form-select" asp-for="AreaRange" id="area">
-                                        <option selected value="">Diện tích</option>
-                                        <option value="Duoi 20 m2">Dưới 20 m2</option>
-                                        <option value="20-30">Từ 20 m2 - 30 m2</option>
-                                        <option value="30-50">Từ 30 m2 - 50 m2</option>
-                                        <option value="50-70">Từ 50 m2 - 70 m2</option>
-                                        <option value="70-90">Từ 70 m2 - 90 m2</option>
-                                        <option value="Tren 90">Trên 90 m2</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select class="form-select" asp-for="PriceRange" id="price">
-                                        <option selected value="">Mức giá</option>
-                                        <option value="Duoi 1000000">Dưới 1 triệu </option>
-                                        <option value="1000000-2000000">Từ 1 - 2 triệu</option>
-                                        <option value="2000000-3000000">Từ 2 - 3 triệu</option>
-                                        <option value="3000000-5000000">Từ 3 - 5 triệu</option>
-                                        <option value="5000000-7000000">Từ 5 - 7 triệu</option>
-                                        <option value="7000000-10000000">Từ 7 - 10 triệu</option>
-                                        <option value="10000000-15000000">Từ 10 - 15 triệu</option>
-                                        <option value="Tren 15000000">Trên 15 triệu</option>
-                                    </select>
-                                </div>
+                <form method="post" asp-page-handler="Index" class="row g-2" id="filterForm">
+                    <div class="col-md-10">
+
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <div>
+                                    <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm" asp-for="Location" id="location">
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary w-100" typw="Submit">Tìm kiếm</button>
+                            <div class="col-md-3">
+                                <select class="form-select" asp-for="Type" id="housingType">
+                                    <option selected value="">Loại hình nhà ở</option>
+                                    <option value="Nha Tro">Nhà trọ</option>
+                                    <option value="Chung cu">Chung cư</option>
+                                    <option value="Nha nguyen can">Nhà nguyên căn</option>
+                                    <option value="Homestay">Homestay</option>
+                                    <option value="Chung cu mini">Chung cư mini</option>
+
+                                    <option value="Chung cu cao cap">Chung cư cao cấp</option>
+                                </select>
                             </div>
-                        </form>
-                    
-                </div>
+                            <div class="col-md-3">
+                                <select class="form-select" asp-for="AreaRange" id="area">
+                                    <option selected value="">Diện tích</option>
+                                    <option value="Duoi 20 m2">Dưới 20 m2</option>
+                                    <option value="20-30">Từ 20 m2 - 30 m2</option>
+                                    <option value="30-50">Từ 30 m2 - 50 m2</option>
+                                    <option value="50-70">Từ 50 m2 - 70 m2</option>
+                                    <option value="70-90">Từ 70 m2 - 90 m2</option>
+                                    <option value="Tren 90">Trên 90 m2</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" asp-for="PriceRange" id="price">
+                                    <option selected value="">Mức giá</option>
+                                    <option value="Duoi 1000000">Dưới 1 triệu </option>
+                                    <option value="1000000-2000000">Từ 1 - 2 triệu</option>
+                                    <option value="2000000-3000000">Từ 2 - 3 triệu</option>
+                                    <option value="3000000-5000000">Từ 3 - 5 triệu</option>
+                                    <option value="5000000-7000000">Từ 5 - 7 triệu</option>
+                                    <option value="7000000-10000000">Từ 7 - 10 triệu</option>
+                                    <option value="10000000-15000000">Từ 10 - 15 triệu</option>
+                                    <option value="Tren 15000000">Trên 15 triệu</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100" typw="Submit">Tìm kiếm</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-       
         <!-- Filter End -->
         <!-- About Start -->
         <div class="container-xxl py-5">
@@ -97,31 +95,30 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">10.000</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntPosts"]</h2>
                                         <p class="mb-0">Bài đăng</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
-                                <div class="border rounded p-1">
-                                    <div class="border rounded text-center p-4">
-                                        <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">100</h2>
-                                        <p class="mb-0">Đối tác</p>
-                                    </div>
-                                </div>
+                            @* <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                            <div class="border rounded p-1">
+                            <div class="border rounded text-center p-4">
+                            <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                            <h2 class="mb-1" data-toggle="counter-up">100</h2>
+                            <p class="mb-0">Đối tác</p>
                             </div>
+                            </div>
+                            </div> *@
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">200.000</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">@ViewData["CntUsers"]</h2>
                                         <p class="mb-0">Người dùng</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="#">Khám phá thêm về chúng tôi</a>
                     </div>
                     <div class="col-lg-6">
                         <div class="row g-3">
@@ -139,7 +136,10 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="#">Khám phá thêm về chúng tôi</a>
+
                 </div>
+                
             </div>
         </div>
         <!-- About End -->
@@ -192,102 +192,9 @@
         </div> *@
         <!-- Room End -->
         <!-- Video Start -->
-        <div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
-            <div class="row g-0">
-                <div class="col-md-6 bg-dark d-flex align-items-center">
-                    <div class="p-5">
-                        <h6 class="section-title text-start text-white text-uppercase mb-3">DOTEL</h6>
-                        <h1 class="text-white mb-4">Không gian hiện đại<br> Cuộc sống an nhiên</h1>
-                        <p class="text-white mb-4">Hướng tới sự tiện lợi nhất của khách hàng, chúng tôi đem đến các dịch vụ vận chuyển, dọn phòng với các đối tác uy tín</p>
-                        <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3">Dịch vụ vận chuyển</a>
-                        <a href="#" class="btn btn-light py-md-3 px-md-5">Dịch vụ dọn phòng</a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <img class="img-fluid" src="img/index_img/move.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Service Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Danh mục dịch vụ</h6>
-                    <h1 class="mb-5">DOTEL cung cấp <span class="text-primary text-uppercase">các dịch vụ</span></h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="service-item rounded" href="RentHome">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-house fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm kiếm phòng trọ</h5>
-                            <p class="text-body mb-0">Dễ dàng, an tâm hơn và lựa chọn được một phòng trọ - căn hộ phù hợp với các bài đăng đã được kiểm duyệt</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-user-group fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm người ở ghép</h5>
-                            <p class="text-body mb-0">Tiết kiệm thời gian tìm bạn ở ghép khi có thể kết nối với những người cùng sở thích, hoàn cảnh, vị trí</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-truck fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm đơn vị vận chuyển</h5>
-                            <p class="text-body mb-0">Bạn không còn lo lắng về việc vận chuyển trọ đến nơi ở mới vì Moro cung cấp dịch vụ vận chuyển đồ cho người thuê trọ</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.4s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-sharp fa-solid fa-broom fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Tìm đơn vị dọn phòng</h5>
-                            <p class="text-body mb-0">Dịch vụ dọn phòng giúp bạn thuê người dọn phòng một cách dễ dàng, thuận tiện nhất</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="#">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-sharp fa-solid fa-newspaper fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Bản tin</h5>
-                            <p class="text-body mb-0">Bản tin cập nhật những bài viết, review, chia sẻ cho người dùng về dịch vụ chỗ ở, các lưu ý khi chọn phòng trọ, ...v.v đem đến cho khách hàng nguồn thông tin, tham khảo hữu ích.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-5 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa-regular fa-handshake fa-2x" style="color: #FEA116;"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Hợp tác</h5>
-                            <p class="text-body mb-0">Với mong muốn đem đến những trải nghiệm tốt nhất cho người dùng, Dotel luôn mở rộng chào đón các mối quan hệ hợp tác đến từ các đối tác trong các lĩnh vực về nhà ở</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Service End -->
         <!-- Testimonial Start -->
         @* <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
@@ -330,8 +237,8 @@
         </div>
         </div> *@
         <!-- Testimonial End -->
-       
-        
+
+
     </div>
 
 

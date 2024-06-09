@@ -215,5 +215,10 @@ namespace EXE_Dotel.Repository.Rental
                 dBContext.SaveChanges();
             }
         }
+        public List<Dotel2.Models.Rental> getApprovaledRentals()
+        {
+            var rentals = dBContext.Rentals.Where(r => r.Approval).ToList();
+            return rentals;
+        }
     }
 }
