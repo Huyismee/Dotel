@@ -32,6 +32,8 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public decimal Area { get; set; }
         [BindProperty] public string Address { get; set; }
         [BindProperty] public string Description { get; set; }
+        [BindProperty] public string TypeRoom { get; set; }
+        [BindProperty] public int NumberP { get; set; }
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
         public ActionResult OnGet() {
@@ -61,6 +63,8 @@ namespace Dotel2.Pages.FormRentHome
                 Description = Description,
                 ContactPhoneNumber = user.MainPhoneNumber,
                 Location = Address,
+                Type = TypeRoom,
+                MaxPeople = NumberP,
                 Status = true,
                 Approval = false,
                 ViewNumber = 0,

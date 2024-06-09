@@ -11,6 +11,9 @@ builder.Services.AddDbContext<DotelDBContext>();
 builder.Services.AddSession();
 builder.Services.AddScoped<IRentalRepository, RentalRepostiory>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

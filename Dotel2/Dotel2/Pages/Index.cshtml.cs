@@ -38,18 +38,19 @@ namespace Dotel2.Pages
         [BindProperty(SupportsGet = true)]
         public string PriceRange { get; set; }
 
+        public User userSession { get; set; }
+
         public List<Rental> FilteredRenter { get; set; }
-        //Thanh
-        public string? userSessionTime { get; set; }
-        //
         public void OnGet()
         {
-            var userSession = HttpContext.Session.GetString("UserSession");
-            //Thanh
-            userSessionTime = userSession;
-            //
+            var userJson = HttpContext.Session.GetString("userJson");
+            if (!string.IsNullOrEmpty(userJson))
+            {
+                userSession = JsonConvert.DeserializeObject<User>(userJson);
+            }
 
-            IsLoggedIn = !string.IsNullOrEmpty(userSession);
+
+            IsLoggedIn = !string.IsNullOrEmpty(userJson);
 
             rentals = rentalRepository.getRentalWithImage();
             FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
@@ -71,7 +72,7 @@ namespace Dotel2.Pages
 
             }
             ViewData["CntPost"] = rentals.Count;
-            ViewData["CntUser"] = _context.Users.ToList().Count;
+/*            ViewData["CntUser"] = _context.Users.ToList().Count;*/
         }
         public IActionResult OnPostIncrementViewCount(int rentalId,int userid)
         {

@@ -27,12 +27,8 @@ namespace Dotel2.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionString"));
-
-            }
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -98,13 +94,13 @@ namespace Dotel2.Models
                 entity.Property(e => e.Kitchen).HasColumnName("kitchen");
 
                 entity.Property(e => e.Location)
-                    .HasMaxLength(500)
+                    .IsUnicode(false)
                     .HasColumnName("location");
 
                 entity.Property(e => e.MaxPeople).HasColumnName("maxPeople");
 
                 entity.Property(e => e.Price)
-                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnType("money")
                     .HasColumnName("price");
 
                 entity.Property(e => e.RentalTitle)
@@ -128,7 +124,6 @@ namespace Dotel2.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Rentals)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Rental_UserId");
             });
 
@@ -228,10 +223,18 @@ namespace Dotel2.Models
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
+                entity.Property(e => e.CheckEmail).HasColumnName("checkEmail");
+
+                entity.Property(e => e.CheckPhone).HasColumnName("checkPhone");
+
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("email");
+
+                entity.Property(e => e.EmailVerificationCode).HasMaxLength(50);
+
+                entity.Property(e => e.EmailVerificationCodeExpires).HasColumnType("datetime");
 
                 entity.Property(e => e.Fullname)
                     .HasMaxLength(50)
@@ -246,6 +249,10 @@ namespace Dotel2.Models
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("password");
+
+                entity.Property(e => e.PhoneVerificationCode).HasMaxLength(50);
+
+                entity.Property(e => e.PhoneVerificationCodeExpires).HasColumnType("datetime");
 
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
 
