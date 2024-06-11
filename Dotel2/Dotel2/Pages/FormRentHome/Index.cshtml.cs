@@ -61,7 +61,7 @@ namespace Dotel2.Pages.FormRentHome
                 RentalTitle = Title,
                 Price = Price,
                 RoomArea = Area,
-                Description = Description,
+                Description = FormatDescriptionForSave(Description),
                 ContactPhoneNumber = Phone.ToString(),
                 Location = Address,
                 Type = TypeRoom,
@@ -117,6 +117,14 @@ namespace Dotel2.Pages.FormRentHome
 
             return RedirectToPage("/Index");
         }
+        public static string FormatDescriptionForSave(string description)
+        {
+            if (string.IsNullOrEmpty(description))
+                return description;
 
+            return description.Replace("\r\n", "<br>").Replace("\n", "<br>").Replace("\r", "<br>");
+        }
     }
+    
+
 }

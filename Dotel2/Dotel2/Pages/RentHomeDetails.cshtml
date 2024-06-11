@@ -84,7 +84,7 @@
                                <div id="contact">
                                 <h1 style="color: #FEA116; margin-top: 15px;">@Model.Rental.RentalTitle</h1>
                                 <h3>Địa chỉ: @Model.Rental.Location</h3>
-                                <div>@Html.Raw(Model.Rental.Description)</div>
+                                    <div><p>@Html.Raw(Model.Rental.Description.Replace("\n", "<br>").Replace("\r", ""))</p></div>
                                 <br />
                                 
                             </div>
