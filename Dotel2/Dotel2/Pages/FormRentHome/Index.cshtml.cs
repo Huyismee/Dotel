@@ -70,9 +70,9 @@ namespace Dotel2.Pages.FormRentHome
                 Approval = false,
                 ViewNumber = 0,
             };
-
             _context.Rentals.Add(rental);
             _context.SaveChanges();
+
 
             var rentalId = rental.RentalId;
 

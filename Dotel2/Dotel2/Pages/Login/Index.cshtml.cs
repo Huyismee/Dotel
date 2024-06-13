@@ -76,6 +76,7 @@ namespace Dotel2.Pages.Login
 
             if (user == null)
             {
+                TempData["ErrorMessage"] = "Tài Khoản hoặc mật khẩu không đúng.";
                 return Page();
             }
             else
