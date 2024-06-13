@@ -18,9 +18,9 @@ namespace Dotel2.Service
         {
             try
             {
-                var fromAddress = new MailAddress("nthanh174@outlook.com", "Thanh");
+                var fromAddress = new MailAddress("dotelhouse@outlook.com", "Dotel");
                 var toAddress = new MailAddress(email);
-                const string fromPassword = "Thanh1742001";
+                const string fromPassword = "dotel2024";
                 const string subject = "Email Verification";
                 string body = $"Your verification code is {verificationCode}";
 

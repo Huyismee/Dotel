@@ -24,11 +24,7 @@ namespace Dotel2.Pages.Login
 
         public void OnGet()
         {
-            string userJson = HttpContext.Session.GetString("userJson");
-            if (!string.IsNullOrEmpty(userJson))
-            {
-                HttpContext.Session.Remove("userJson");
-            }
+            HttpContext.Session.Clear();
         }
 
         public IActionResult OnPost()
@@ -56,7 +52,7 @@ namespace Dotel2.Pages.Login
                     return RedirectToPage("/RequestCode/Index");
                 }
             }
-            else if (IsValidPhone(Email))
+            /*else if (IsValidPhone(Email))
             {
                 user = _context.Users.FirstOrDefault(s => s.MainPhoneNumber.Equals(Email) && s.Password.Equals(hashedPassword));
                 if (user != null && user.CheckPhone != true)
@@ -67,7 +63,7 @@ namespace Dotel2.Pages.Login
                     TempData["ErrorMessage"] = "Số điện thoại chưa được xác thực.";
                     return RedirectToPage("/RequestCode/Index");
                 }
-            }
+            }*/
             else
             {
                 TempData["ErrorMessage"] = "Định dạng tài khoản không hợp lệ.";
@@ -76,6 +72,7 @@ namespace Dotel2.Pages.Login
 
             if (user == null)
             {
+                TempData["ErrorMessage"] = "Tài Khoản hoặc mật khẩu không đúng.";
                 return Page();
             }
             else
