@@ -17,6 +17,20 @@
         <h1 class="mt-4">
             @ViewData["Title"]
         </h1>
+        <div>
+            <form method="post">
+                <div class="form-group"
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="approvedOnly" asp-for="ApprovedOnly"/>
+                    <label class="form-check-lable" for="approvedOnly"> Trọ đã duyệt </label>
+                </div>
+            </div>
+                <button type="submit" class="btn btn-primary">Lọc</button>
+            </form>
+        </div>
+        <div>
+
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -29,6 +43,7 @@
                     <th>Sđt Liên hệ</th>
                     <th>Chủ trọ</th>
                     <th>Địa chỉ</th>
+                    <th>Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +61,7 @@
                             <td>@rental.ContactPhoneNumber</td>
                             <td>@rental.UserId</td>
                             <td>@rental.Location</td>
+                            <td>@(rental.Approval ? "Đã duyệt" : "Chưa duyệt")</td>
                             <td>
                                 <a asp-page="/Admin/Rentals/Edit" asp-route-id="@rental.RentalId">Edit</a>
                                 <a asp-page="/Admin/Rentals/Delete" asp-route-id="@rental.RentalId">Delete</a>
@@ -55,6 +71,8 @@
                 }
             </tbody>
         </table>
+        </div>
     </div>
+
 </body>
 </html>
