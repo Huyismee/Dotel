@@ -40,6 +40,48 @@
                 color: #000; /* Màu chữ của các option */
                 background-color: #fff; /* Màu nền của các option */
             }
+
+        /* Định dạng checkbox và label */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Khoảng cách giữa checkbox và label */
+            color: #fff; /* Màu chữ của label */
+        }
+
+            .checkbox-group input[type="checkbox"] {
+                width: auto; /* Để checkbox tự điều chỉnh kích thước */
+                margin: 0; /* Xóa margin mặc định */
+                padding: 0; /* Xóa padding mặc định */
+                appearance: none; /* Ẩn giao diện mặc định của checkbox */
+                cursor: pointer; /* Con trỏ chuột là bàn tay khi di chuột vào checkbox */
+                border: 1px solid #fff; /* Viền checkbox */
+                height: 20px; /* Chiều cao checkbox */
+                width: 20px; /* Chiều rộng checkbox */
+                border-radius: 3px; /* Độ cong của checkbox */
+                transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển đổi */
+            }
+
+                .checkbox-group input[type="checkbox"]:checked {
+                    background-color: #fff; /* Màu nền khi checkbox được chọn */
+                    border-color: #fff; /* Màu viền khi checkbox được chọn */
+                }
+
+                .checkbox-group input[type="checkbox"] + span {
+                    font-size: 15px; /* Kích thước chữ của label */
+                }
+
+                /* Hiệu ứng hover cho checkbox */
+                .checkbox-group input[type="checkbox"]:hover {
+                    background-color: rgba(255, 255, 255, 0.1); /* Màu nền khi hover */
+                }
+
+
+            /* Định dạng icon trong label */
+            .checkbox-group span i {
+                margin-right: 5px; /* Khoảng cách giữa icon và văn bản */
+            }
+
     </style>
 </head>
 <body>
@@ -90,13 +132,13 @@
 
 
             <div class="row">
-                <div class="input-group">
+                <div class="input-group checkbox-group">
                     <input type="checkbox" asp-for="Bathroom" id="bathroom" />
-                    <label for="bathroom"><i class="fa-solid fa-bath"></i> Có phòng tắm</label>
+                    <span><i class="fa-solid fa-bath"></i> Có phòng tắm</span>
                 </div>
-                <div class="input-group">
+                <div class="input-group checkbox-group">
                     <input type="checkbox" asp-for="Kitchen" id="kitchen" />
-                    <label for="kitchen"><i class="fa-solid fa-stove"></i> Có bếp</label>
+                    <span><i class="fa-solid fa-stove"></i> Có bếp</span>
                 </div>
                 <div class="input-group">
                     <input type="number" min="1" step="1" name="bedrooms" id="bedrooms" required />

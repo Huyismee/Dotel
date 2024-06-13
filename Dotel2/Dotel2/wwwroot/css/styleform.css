@@ -1,4 +1,4 @@
-*{
+﻿*{
     margin: 0;
     padding: 0;
     font-family: 'poppins', sans-serif;
@@ -143,8 +143,6 @@ input:valid~label, textarea:focus~label, textarea:valid~label{
     border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-
 }
 
 
