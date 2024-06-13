@@ -1,4 +1,4 @@
-﻿@page "{Id:int}" 
+﻿@page "{Id:int}"
 @model Dotel2.Pages.RentHomeDetailsModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper , Microsoft.AspNetCore.Mvc.TagHelpers
@@ -12,12 +12,9 @@
 <body>
     <style>
         .sub-image {
-            height:500px; /* Adjust the height as needed */
+            height: 500px; /* Adjust the height as needed */
             width: 100%; /* Maintain aspect ratio */
             object-fit: cover; /* Ensure the image covers the entire container */
-            
-
-            
         }
 
         .detail-heading {
@@ -41,9 +38,6 @@
                 margin-right: 5px;
                 color: #007bff; /* Adjust color as needed */
             }
-
-        
-        
 
     </style>
     <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -81,18 +75,29 @@
                                 </div>
                             </div>
                             <div class="aa-properties-info mb-0">
-                               <div id="contact">
-                                <h1 style="color: #FEA116; margin-top: 15px;">@Model.Rental.RentalTitle</h1>
-                                <h3>Địa chỉ: @Model.Rental.Location</h3>
-                                <div>@Html.Raw(Model.Rental.Description)</div>
-                                <br />
-                                
+                                <div id="contact">
+                                    <h1 style="color: #FEA116; margin-top: 15px;">@Model.Rental.RentalTitle</h1>
+                                    <h3>Địa chỉ: @Model.Rental.Location</h3>
+                                    <div><p>@Html.Raw(Model.Rental.Description.Replace("\n", "<br>").Replace("\r", ""))</p></div>
+                                    <br />
+
+                                </div>
+                                @if (Model.Rental.GoogleMap != null)
+                                {
+                                    <h3>Vị trí trên bản đồ</h3>
+                                    <div style="width: 100%" class="aa-properties-info mb-0">
+                                        <iframe width="600" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=@Model.Rental.GoogleMap&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                            <a href="https://www.gps.ie/">gps trackers</a>
+                                        </iframe>
+                                    </div>
+                                }
+                               
                             </div>
-                            </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="col-md-4">
                     <aside class="aa-properties-sidebar">
@@ -106,35 +111,35 @@
                                 <h3 class="detail-heading">Chi tiết các tiện ích</h3>
                                 <div class="detail-info">
                                     <p><i class="fas fa-bed"></i>Số phòng ngủ: @Model.Rental.BedroomNumber</p>
-                                    <p><i class="fa-solid fa-bath"></i> Phòng tắm: @(Model.Rental.Bathroom == true ? "Có":"Không" )</p>
-                                    <p><i class="fa-solid fa-fire-burner"></i> Bếp nấu ăn: @(Model.Rental.Kitchen==true? "Có": "Không")</p>
+                                    <p><i class="fa-solid fa-bath"></i> Phòng tắm: @(Model.Rental.Bathroom == true ? "Có" : "Không")</p>
+                                    <p><i class="fa-solid fa-fire-burner"></i> Bếp nấu ăn: @(Model.Rental.Kitchen == true ? "Có" : "Không")</p>
                                     <p><i class="fa-solid fa-people-group"></i>Số người tối đa: @Model.Rental.MaxPeople</p>
 
                                 </div>
 
                                 <h4>Thông tin liên hệ </h4>
                                 <div>
-                                @if (Model.userSessionTime != null)
-                                {
-                                    <p> SDT:  @Model.Rental.ContactPhoneNumber</p>
-                                    
-                                }
-                                else
-                                {
-                                    <a href="/login">Hãy đăng nhập để xem chi tiết</a>
-                                }
+                                    @if (Model.userSessionTime != null)
+                                    {
+                                        <p> SDT:  @Model.Rental.ContactPhoneNumber</p>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="/login">Hãy đăng nhập để xem chi tiết</a>
+                                    }
 
                                 </div>
                             </div>
-                            
+
                             <div class="aa-properties-single-sidebar">
                                 <div class="heart-btn"></div>
                             </div>
                             <div class="aa-properties-single-sidebar">
-                                
-                                
-                                    <h6 class="media-right"><a href="/Index">Trở về trang thuê trọ </a></h6>
-                                
+
+
+                                <h6 class="media-right"><a href="/Index">Trở về trang thuê trọ </a></h6>
+
                             </div>
                         </div>
                     </aside>
@@ -143,8 +148,8 @@
         </div>
     </section>
 
-   
-    
+
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

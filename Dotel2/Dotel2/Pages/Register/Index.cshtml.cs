@@ -84,6 +84,7 @@ namespace Dotel2.Pages.Register
                 Password = hashedPassword,
                 RoleId = 2, // Admin = 1, Guest = 2
                 Status = true,
+                
             };
             SendMail send = new SendMail();
             string verificationCode = send.GenerateVerificationCode();
