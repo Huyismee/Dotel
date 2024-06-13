@@ -32,14 +32,14 @@
             appearance: none; /* Ẩn mũi tên mặc định của select */
         }
 
-        .input-group select:focus {
-            border-color: #fff; /* Màu viền khi select được focus */
-        }
+            .input-group select:focus {
+                border-color: #fff; /* Màu viền khi select được focus */
+            }
 
-        .input-group select option {
-            color: #000; /* Màu chữ của các option */
-            background-color: #fff; /* Màu nền của các option */
-        }
+            .input-group select option {
+                color: #000; /* Màu chữ của các option */
+                background-color: #fff; /* Màu nền của các option */
+            }
     </style>
 </head>
 <body>
@@ -53,7 +53,18 @@
           ">
                 ĐĂNG BÀI CHO THUÊ
             </h1>
-
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
             <div class="input-group">
                 <input type="text" name="title" id="name" required />
                 <label for="title"><i class="fa-regular fa-newspaper"></i> Tiêu đề bài đăng</label>
@@ -77,13 +88,29 @@
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="input-group">
-                    <input type="number" min="1" name="price" id="price" required />
+                    <input type="checkbox" asp-for="Bathroom" id="bathroom" />
+                    <label for="bathroom"><i class="fa-solid fa-bath"></i> Có phòng tắm</label>
+                </div>
+                <div class="input-group">
+                    <input type="checkbox" asp-for="Kitchen" id="kitchen" />
+                    <label for="kitchen"><i class="fa-solid fa-stove"></i> Có bếp</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" min="1" step="1" name="bedrooms" id="bedrooms" required />
+                    <label for="bedrooms"><i class="fa-solid fa-bed"></i> Số phòng ngủ</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <input type="number" min="1" step="1" name="price" id="price" required />
                     <label for="price"><i class="fa-solid fa-money-bill"></i> Giá thuê</label>
                 </div>
                 <div class="input-group">
-                    <input type="number" min="1" name="area" id="area" required />
+                    <input type="number" min="1" step="1" name="area" id="area" required />
                     <label for="area"><i class="fa-solid fa-layer-group"></i> Diện tích</label>
                 </div>
                 <div class="input-group">
@@ -93,7 +120,7 @@
             </div>
 
             <div class="input-group">
-                <input type="number" id="phone" name="phone" required></input>
+                <input type="text" id="phone" name="phone" required></input>
                 <label for="phone"><i class="fa-solid fa-clipboard"></i>Số điện thoại liên hệ</label>
             </div>
 

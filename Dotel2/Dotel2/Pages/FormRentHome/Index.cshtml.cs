@@ -9,6 +9,7 @@ using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Dotel2.Pages.FormRentHome
 {
@@ -33,8 +34,11 @@ namespace Dotel2.Pages.FormRentHome
         [BindProperty] public string Address { get; set; }
         [BindProperty] public string Description { get; set; }
         [BindProperty] public string TypeRoom { get; set; }
-        [BindProperty] public int Phone { get; set; }
+        [BindProperty] public string Phone { get; set; }
         [BindProperty] public int NumberP { get; set; }
+        [BindProperty] public bool Bathroom { get; set; }
+        [BindProperty] public bool Kitchen { get; set; }
+        [BindProperty] public int Bedrooms { get; set; }
         [BindProperty] public List<IFormFile> MediaFiles { get; set; }
 
         public ActionResult OnGet() {
@@ -55,6 +59,16 @@ namespace Dotel2.Pages.FormRentHome
             }
             var user = JsonConvert.DeserializeObject<User>(userJson);
 
+
+            // Validate số điện thoại theo Regular Expression
+            if (!Regex.IsMatch(Phone, @"^0\d{9}$"))
+            {
+                TempData["ErrorMessage"] = "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.";
+                return Page();
+            }
+
+            Console.WriteLine(Kitchen);
+            Console.WriteLine(Bathroom);
             var rental = new Rental
             {
                 UserId = user.UserId,
@@ -66,6 +80,9 @@ namespace Dotel2.Pages.FormRentHome
                 Location = Address,
                 Type = TypeRoom,
                 MaxPeople = NumberP,
+                Kitchen = Kitchen,
+                Bathroom = Bathroom,
+                BedroomNumber = Bedrooms,
                 Status = true,
                 Approval = false,
                 ViewNumber = 0,

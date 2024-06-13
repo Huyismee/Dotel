@@ -23,6 +23,7 @@ namespace Dotel2.Pages.Register
 
         public void OnGet()
         {
+            HttpContext.Session.Clear();
         }
 
         public IActionResult OnPost()
@@ -37,7 +38,7 @@ namespace Dotel2.Pages.Register
                     return Page();
                 }
             }
-            else if (IsValidPhone(input))
+            /*else if (IsValidPhone(input))
             {
                 var phoneExist = _context.Users.FirstOrDefault(s => s.MainPhoneNumber.Equals(input));
                 if (phoneExist != null)
@@ -45,10 +46,10 @@ namespace Dotel2.Pages.Register
                     TempData["ErrorMessage"] = "Số điện thoại đã tồn tại.";
                     return Page();
                 }
-            }
+            }*/
             else
             {
-                TempData["ErrorMessage"] = "Định dạng email hoặc số điện thoại không hợp lệ.";
+                TempData["ErrorMessage"] = "Định dạng email không hợp lệ.";
                 return Page();
             }
 
@@ -89,19 +90,19 @@ namespace Dotel2.Pages.Register
             if (IsValidEmail(input))
             {
                 newUser.Email = input;
-                newUser.CheckEmail = false; // Initially, email verification is false
+                newUser.CheckEmail = true;
                 newUser.EmailVerificationCode = verificationCode;
                 newUser.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
                 send.SendEmailVerification(input, verificationCode);
             }
-            else if (IsValidPhone(input))
+            /*else if (IsValidPhone(input))
             {
                 newUser.MainPhoneNumber = input;
                 newUser.CheckPhone = false; // Initially, phone verification is false
                 newUser.PhoneVerificationCode = verificationCode;
                 newUser.PhoneVerificationCodeExpires = DateTime.Now.AddHours(1);
                 send.SendSMSVerification(input, verificationCode);
-            }
+            }*/
 
             _context.Users.Add(newUser);
             _context.SaveChanges();
@@ -110,8 +111,9 @@ namespace Dotel2.Pages.Register
             string userVerification = JsonConvert.SerializeObject(newUser);
             HttpContext.Session.SetString("userVerification", userVerification);
 
-            TempData["SuccessMessage"] = "Đăng ký thành công. Vui lòng kiểm tra email hoặc điện thoại của bạn để xác nhận.";
-            return RedirectToPage("/RequestCode/Index");
+            /*TempData["SuccessMessage"] = "Đăng ký thành công. Vui lòng kiểm tra email hoặc điện thoại của bạn để xác nhận.";*/
+            TempData["SuccessMessage"] = "Đăng ký thành công.";
+            return RedirectToPage("/Login/Index");
         }
 
         private string GetHashedPassword(string password)
