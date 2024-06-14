@@ -28,13 +28,13 @@ namespace Dotel2.Pages.Register
 
         public IActionResult OnPost()
         {
-            var input = Request.Form["EmailOrPhone"];
+            var input = Request.Form["EmailOrPhone"].ToString().ToLower();
             if (IsValidEmail(input))
             {
                 var emailExist = _context.Users.FirstOrDefault(s => s.Email.Equals(input));
                 if (emailExist != null)
                 {
-                    TempData["ErrorMessage"] = "Email đã tồn tại.";
+                    TempData["ErrorMessage"] = "Email đã tồn tại."  ;
                     return Page();
                 }
             }
@@ -80,7 +80,7 @@ namespace Dotel2.Pages.Register
 
             var newUser = new User
             {
-                Fullname = Request.Form["FullName"],
+                Fullname = Request.Form["FullName"].ToString().ToLower(),
                 Password = hashedPassword,
                 RoleId = 2, // Admin = 1, Guest = 2
                 Status = true,
