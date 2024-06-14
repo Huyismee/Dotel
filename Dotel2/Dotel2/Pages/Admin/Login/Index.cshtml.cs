@@ -19,11 +19,7 @@ namespace Dotel2.Pages.Admin.Login
 
         public void OnGet()
         {
-            string userJson = HttpContext.Session.GetString("userJson");
-            if (!string.IsNullOrEmpty(userJson))
-            {
-                HttpContext.Session.Remove("userJson");
-            }
+            HttpContext.Session.Clear();
         }
         public IActionResult OnPost()
         {
