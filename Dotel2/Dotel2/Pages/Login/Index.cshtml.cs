@@ -34,7 +34,7 @@ namespace Dotel2.Pages.Login
             SendMail send = new SendMail();
             if (IsValidEmail(Email))
             {
-                user = _context.Users.FirstOrDefault(s => s.Email.Equals(Email) && s.Password.Equals(hashedPassword));
+                user = _context.Users.FirstOrDefault(s => s.Email.Equals(Email.ToLower()) && s.Password.Equals(hashedPassword));
                 if (user != null && user.CheckEmail != true)
                 {
                     TempData["ErrorMessage"] = "Email chưa được xác thực.";
