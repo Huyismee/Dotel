@@ -94,7 +94,6 @@ namespace Dotel2.Models
                 entity.Property(e => e.Kitchen).HasColumnName("kitchen");
 
                 entity.Property(e => e.Location)
-                    .IsUnicode(false)
                     .HasColumnName("location");
 
                 entity.Property(e => e.MaxPeople).HasColumnName("maxPeople");

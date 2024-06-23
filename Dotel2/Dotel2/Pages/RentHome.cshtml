@@ -24,12 +24,12 @@
                     <div class="col-md-10">
 
                         <div class="row g-2">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div>
                                     <input class="form-select" style="background-image: none;" type="text" placeholder="Địa điểm" asp-for="Location" id="location">
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <select class="form-select" asp-for="Type" id="housingType">
                                     <option selected value="">Loại hình nhà ở</option>
                                     <option value="Nha">Nhà trọ</option>
@@ -41,29 +41,25 @@
                                     <option value="Chung cu cao cap">Chung cư cao cấp</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <select class="form-select" asp-for="AreaRange" id="area">
-                                    <option selected value="">Diện tích</option>
-                                    <option value="Duoi 20 m2">Dưới 20 m2</option>
-                                    <option value="20-30">Từ 20 m2 - 30 m2</option>
-                                    <option value="30-50">Từ 30 m2 - 50 m2</option>
-                                    <option value="50-70">Từ 50 m2 - 70 m2</option>
-                                    <option value="70-90">Từ 70 m2 - 90 m2</option>
-                                    <option value="Tren 90">Trên 90 m2</option>
-                                </select>
+                            <div class="col-md-2">
+                                <div>
+                                    <input class="form-select" style="background-image: none;" type="text" placeholder="Diên tích nhỏ nhất" asp-for="MinArea" >
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <select class="form-select" asp-for="PriceRange" id="price">
-                                    <option selected value="">Mức giá</option>
-                                    <option value="Duoi 1000000">Dưới 1 triệu </option>
-                                    <option value="1000000-2000000">Từ 1 - 2 triệu</option>
-                                    <option value="2000000-3000000">Từ 2 - 3 triệu</option>
-                                    <option value="3000000-5000000">Từ 3 - 5 triệu</option>
-                                    <option value="5000000-7000000">Từ 5 - 7 triệu</option>
-                                    <option value="7000000-10000000">Từ 7 - 10 triệu</option>
-                                    <option value="10000000-15000000">Từ 10 - 15 triệu</option>
-                                    <option value="Tren 15000000">Trên 15 triệu</option>
-                                </select>
+                            <div class="col-md-2">
+                                <div>
+                                    <input class="form-select" style="background-image: none;" type="text" placeholder="Diện tích lớn nhất" asp-for="MaxArea">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <input class="form-select" style="background-image: none;" type="text" placeholder="Giá thấp nhất" asp-for="MinPrice">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <input class="form-select" style="background-image: none;" type="text" placeholder="Giá cao nhất" asp-for="MaxPrice">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,9 +105,7 @@
                                     }
                                     <div class="card-body">
                                         <h5 class="card-title">@rental.RentalTitle</h5>
-
                                         <p class="card-text"><small class="text-muted">Price: @rental.Price.ToString("N0")</small></p>
-
                                         <p class="btn-delete-card-icon"><i class="bi bi-eye-fill"></i><small class="text-muted"> @rental.ViewNumber</small></p>
                                         <form method="post" asp-page-handler="IncrementViewCount">
                                             <input type="hidden" name="rentalId" value="@rental.RentalId" />
@@ -132,8 +126,10 @@
                                     <a asp-page="RentHome"
                                        asp-route-Location="@Model.Location"
                                        asp-route-Type="@Model.Type"
-                                       asp-route-AreaRange="@Model.AreaRange"
-                                       asp-route-PriceRange="@Model.PriceRange"
+                                       asp-route-MinArea="@Model.MinArea"
+                                       asp-route-MaxArea="@Model.MaxArea"
+                                       asp-route-MinPrice="@Model.MinPrice"
+                                       asp-route-MaxPrice="@Model.MaxPrice"
                                        asp-route-CurrentPage="@(Model.CurrentPage - 1)"
                                        class="page-link">Previous</a>
                                 </li>
@@ -145,8 +141,10 @@
                                     <a asp-page="RentHome"
                                        asp-route-Location="@Model.Location"
                                        asp-route-Type="@Model.Type"
-                                       asp-route-AreaRange="@Model.AreaRange"
-                                       asp-route-PriceRange="@Model.PriceRange"
+                                       asp-route-MinArea="@Model.MinArea"
+                                       asp-route-MaxArea="@Model.MaxArea"
+                                       asp-route-MinPrice="@Model.MinPrice"
+                                       asp-route-MaxPrice="@Model.MaxPrice"
                                        asp-route-CurrentPage="@i"
                                        class="page-link">@i</a>
                                 </li>
@@ -158,8 +156,10 @@
                                     <a asp-page="RentHome"
                                        asp-route-Location="@Model.Location"
                                        asp-route-Type="@Model.Type"
-                                       asp-route-AreaRange="@Model.AreaRange"
-                                       asp-route-PriceRange="@Model.PriceRange"
+                                       asp-route-MinArea="@Model.MinArea"
+                                       asp-route-MaxArea="@Model.MaxArea"
+                                       asp-route-MinPrice="@Model.MinPrice"
+                                       asp-route-MaxPrice="@Model.MaxPrice"
                                        asp-route-CurrentPage="@(Model.CurrentPage + 1)"
                                        class="page-link">Next</a>
                                 </li>

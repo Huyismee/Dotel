@@ -2,6 +2,7 @@ using Dotel2.Models;
 using Dotel2.Repository.Rental;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages.Admin.Rentals
 {
@@ -19,10 +20,24 @@ namespace Dotel2.Pages.Admin.Rentals
         public bool ApprovedOnly {  get; set; }
 
         public List<Rental> Rentals { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            string userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
+            {
+                return RedirectToPage("/Login/index");
+            }
+            else
+            {
+                var user = JsonConvert.DeserializeObject<User>(userJson);
+                if (user.RoleId != 1)
+                {
+                    return RedirectToPage("/Login/index");
+                }
+            }
             Rentals = _rentalRepository.GetRentals().Where(r => r.Approval).ToList();
             ApprovedOnly = true;
+            return Page();
         }
         public void OnPost()
         {

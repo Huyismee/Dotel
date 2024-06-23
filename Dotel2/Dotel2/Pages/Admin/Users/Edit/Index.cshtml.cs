@@ -1,6 +1,7 @@
 using Dotel2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Dotel2.Pages.Admin.Users.Edit
 {
@@ -26,6 +27,19 @@ namespace Dotel2.Pages.Admin.Users.Edit
         public User User { get; set; }
         public IActionResult OnGet(int id)
         {
+            string userJson = HttpContext.Session.GetString("userJson");
+            if (string.IsNullOrEmpty(userJson))
+            {
+                return RedirectToPage("/Login/index");
+            }
+            else
+            {
+                var user = JsonConvert.DeserializeObject<User>(userJson);
+                if (user.RoleId != 1)
+                {
+                    return RedirectToPage("/Login/index");
+                }
+            }
             User = _context.Users.FirstOrDefault(u => u.UserId == id);
             if (User == null) { return NotFound(); }
             EditUser = new EditUserViewModel

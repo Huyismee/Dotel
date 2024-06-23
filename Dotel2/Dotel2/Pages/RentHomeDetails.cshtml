@@ -65,11 +65,11 @@
                                         }
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="carousel-control-prev-icon" style="background-image: url(/img/left-arrow.png)" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="carousel-control-next-icon" style="background-image: url(/img/right-arrow.png)" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
@@ -105,7 +105,6 @@
                             <div id="contact">
                                 <h1>@Model.Rental.RentalTitle</h1>
                                 <h3>Địa chỉ: @Model.Rental.Location</h3>
-                                <div>@Html.Raw(Model.Rental.Description)</div>
                                 <br />
 
                                 <h3 class="detail-heading">Chi tiết các tiện ích</h3>
