@@ -16,9 +16,9 @@ namespace Dotel2.Repository.Rental
         public List<Dotel2.Models.Rental> getRentalWithImage(int pagesize);
 
 
-        public List<Models.Rental> getRentersPaging(int  page, int pageSize);
+        public List<Models.Rental> getRentersPaging(List<Dotel2.Models.Rental> rentals, int page, int pageSize);
 
-        public int getListRentalsCount();
+        public int getListRentalsCount(List<Models.Rental> rentals);
 
         public Models.Rental getRentalWithListImages(int rentalId);
 
@@ -32,8 +32,10 @@ namespace Dotel2.Repository.Rental
 
         public List<Models.Rental> getFilteredRental(string location, string type, string square, string price);
 
-        public List<Models.Rental> getFilterRentalPaging(string location, string type, string square, string price,int page, int pageSize);
+        public List<Dotel2.Models.Rental> getFilterRentalPaging(string? location, string? type, decimal? maxSquare,
+            decimal? minSquare, decimal? minPrice, decimal? maxPrice);
 
-        
+
+
     }
 }

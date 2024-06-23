@@ -34,17 +34,21 @@ namespace Dotel2.Pages
 
         [BindProperty(SupportsGet =true)]
 
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         [BindProperty(SupportsGet =true)]
 
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string AreaRange { get; set; }
-
+        public Decimal? MinArea { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string PriceRange { get; set; }
+        public Decimal? MaxArea { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Decimal? MinPrice { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Decimal? MaxPrice { get; set; }
+
         public List<Rental> FilteredRenter { get; private set; }
 
         public void OnGet()
@@ -55,21 +59,12 @@ namespace Dotel2.Pages
             //
             Console.WriteLine($"Current Page: {CurrentPage}");
 
-            Total = repository.getListRentalsCount();
+            FilteredRenter = repository.getFilterRentalPaging(Location,Type, MaxArea, MinArea, MinPrice, MaxPrice);
+            Total = repository.getListRentalsCount(FilteredRenter);
             TotalPages = (int)Math.Ceiling(Total / (double)PageSize);
-            Rentals = repository.getRentersPaging(CurrentPage, PageSize);
-            FilteredRenter= repository.getFilterRentalPaging(Location,Type, AreaRange, PriceRange, CurrentPage, PageSize);
+            FilteredRenter = repository.getRentersPaging(FilteredRenter, CurrentPage, PageSize);
 
-            foreach (var rental in Rentals)
-            {
-                Console.WriteLine(rental);
-            }
-            if (TempData.ContainsKey("FilteredRentals"))
-            {
-                var rentalsJson = TempData["FilteredRentals"].ToString();
-                FilteredRenter = JsonConvert.DeserializeObject<List<Rental>>(rentalsJson);
-                Rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
-            }
+
         }
 
         public IActionResult OnPostIncrementViewCount(int rentalId)
@@ -85,16 +80,7 @@ namespace Dotel2.Pages
         }
         public IActionResult OnPostIndex()
         {
-            Console.WriteLine(Location);
-            Console.WriteLine(Type);
-            FilteredRenter = repository.getFilterRentalPaging(Location,Type,AreaRange,PriceRange,CurrentPage,PageSize);
-            var jsonSettings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
-
-            TempData["FilteredRentals"] = JsonConvert.SerializeObject(FilteredRenter, jsonSettings);
-            return RedirectToPage(new { Location, Type, AreaRange, PriceRange });
+            return RedirectToPage(new { Location, Type, MaxArea, MinArea, MinPrice, MaxPrice, CurrentPage, PageSize });
         }
     }
 }

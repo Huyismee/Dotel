@@ -29,7 +29,7 @@ namespace Dotel2.Pages
         public IActionResult OnGet(int Id)
         {
             //Thanh
-            var userSession = HttpContext.Session.GetString("UserSession");
+            var userSession = HttpContext.Session.GetString("userJson");
             userSessionTime = userSession;
             //
             Rental = repository.GetRental(Id);
