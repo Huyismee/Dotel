@@ -35,22 +35,22 @@ namespace Dotel2.Pages.Login
             if (IsValidEmail(Email))
             {
                 user = _context.Users.FirstOrDefault(s => s.Email.Equals(Email.ToLower()) && s.Password.Equals(hashedPassword));
-                if (user != null && user.CheckEmail != true)
-                {
-                    TempData["ErrorMessage"] = "Email chưa được xác thực.";
+                //if (user != null && user.CheckEmail != true)
+                //{
+                //    TempData["ErrorMessage"] = "Email chưa được xác thực.";
 
-                    var code = send.GenerateVerificationCode();
-                    send.SendEmailVerification(user.Email, code);
+                //    var code = send.GenerateVerificationCode();
+                //    send.SendEmailVerification(user.Email, code);
 
-                    user.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
-                    user.EmailVerificationCode = code;
-                    _context.SaveChanges();
+                //    user.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
+                //    user.EmailVerificationCode = code;
+                //    _context.SaveChanges();
 
-                    string userVerification = JsonConvert.SerializeObject(user);
-                    HttpContext.Session.SetString("userVerification", userVerification);
+                //    string userVerification = JsonConvert.SerializeObject(user);
+                //    HttpContext.Session.SetString("userVerification", userVerification);
 
-                    return RedirectToPage("/RequestCode/Index");
-                }
+                //    return RedirectToPage("/RequestCode/Index");
+                //}
             }
             /*else if (IsValidPhone(Email))
             {

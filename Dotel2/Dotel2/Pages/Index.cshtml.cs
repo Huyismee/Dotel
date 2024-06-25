@@ -33,10 +33,13 @@ namespace Dotel2.Pages
         public string Type { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string AreaRange { get; set; }
-
+        public Decimal? MinArea { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string PriceRange { get; set; }
+        public Decimal? MaxArea { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Decimal? MinPrice { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Decimal? MaxPrice { get; set; }
 
         public User userSession { get; set; }
 
@@ -54,16 +57,7 @@ namespace Dotel2.Pages
             IsLoggedIn = !string.IsNullOrEmpty(userJson);
 
             rentals = rentalRepository.getRentalWithImage(pagesize);
-            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
-           
-            if (TempData.ContainsKey("FilteredRentals"))
-            {
-                var rentalsJson = TempData["FilteredRentals"].ToString();
-                FilteredRenter = JsonConvert.DeserializeObject<List<Rental>>(rentalsJson);
-                rentals = FilteredRenter; // Set Rentals to FilteredRenter if available
-
-            }
-
+            
             
             
             foreach (var r in rentals)
@@ -94,16 +88,8 @@ namespace Dotel2.Pages
 
         public IActionResult OnPostIndex()
         {
-            Console.WriteLine(Location);
-            Console.WriteLine(Type);
-            FilteredRenter = rentalRepository.getFilteredRental(Location, Type, AreaRange, PriceRange);
-            var jsonSettings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
-            
-            TempData["FilteredRentals"] = JsonConvert.SerializeObject(FilteredRenter, jsonSettings);
-            return RedirectToPage(new {Location, Type, AreaRange, PriceRange});
+
+            return RedirectToPage("RentHome",new { Location, Type, MaxArea, MinArea, MinPrice, MaxPrice});
         }
     }
 
