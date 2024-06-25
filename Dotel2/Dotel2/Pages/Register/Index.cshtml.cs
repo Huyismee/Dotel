@@ -61,23 +61,6 @@ namespace Dotel2.Pages.Register
 
             var hashedPassword = GetHashedPassword(Request.Form["Password"]);
 
-            // Add role if not exist
-            var checkRole = _context.Roles.ToList();
-            if (!checkRole.Any())
-            {
-                var addRole1 = new Role
-                {
-                    RoleName = "Admin",
-                };
-                _context.Roles.Add(addRole1);
-                var addRole2 = new Role
-                {
-                    RoleName = "Guest",
-                };
-                _context.Roles.Add(addRole2);
-                _context.SaveChanges();
-            }
-
             var newUser = new User
             {
                 Fullname = Request.Form["FullName"].ToString().ToLower(),
@@ -86,15 +69,12 @@ namespace Dotel2.Pages.Register
                 Status = true,
                 
             };
-            SendMail send = new SendMail();
-            string verificationCode = send.GenerateVerificationCode();
+            //SendMail send = new SendMail();
+            //string verificationCode = send.GenerateVerificationCode();
             if (IsValidEmail(input))
             {
                 newUser.Email = input;
                 newUser.CheckEmail = true;
-                newUser.EmailVerificationCode = verificationCode;
-                newUser.EmailVerificationCodeExpires = DateTime.Now.AddHours(1);
-                send.SendEmailVerification(input, verificationCode);
             }
             /*else if (IsValidPhone(input))
             {
@@ -109,8 +89,8 @@ namespace Dotel2.Pages.Register
             _context.SaveChanges();
 
 
-            string userVerification = JsonConvert.SerializeObject(newUser);
-            HttpContext.Session.SetString("userVerification", userVerification);
+            //string userVerification = JsonConvert.SerializeObject(newUser);
+            //HttpContext.Session.SetString("userVerification", userVerification);
 
             /*TempData["SuccessMessage"] = "Đăng ký thành công. Vui lòng kiểm tra email hoặc điện thoại của bạn để xác nhận.";*/
             TempData["SuccessMessage"] = "Đăng ký thành công.";

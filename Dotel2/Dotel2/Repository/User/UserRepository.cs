@@ -10,9 +10,9 @@ namespace Dotel2.Repository.User
             this.context = dBContext;
         }
 
-        public Models.User getUserbyRentalId(int rentalId)
+        public Models.User getUserbyRentalId(int uId)
         {
-            return context.Users.FirstOrDefault(user => user.UserId == rentalId);
+            return context.Users.FirstOrDefault(user => user.UserId == uId);
         }
     }
 }

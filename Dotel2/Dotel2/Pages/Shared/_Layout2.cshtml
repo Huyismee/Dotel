@@ -1,7 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@using Dotel2.Models
 @inject IHttpContextAccessor HttpContextAccessor
 @{
     var userSession = HttpContextAccessor.HttpContext?.Session.GetString("userSession");
+    int UserId = 0;
+    if (!string.IsNullOrEmpty(Context.Session.GetString("userJson")))
+    {
+        User User = JsonConvert.DeserializeObject<User>(Context.Session.GetString("userJson"));
+        UserId = User.UserId;
+    }
 }
 
 <!DOCTYPE html>
@@ -97,13 +105,20 @@
                         {
                             <a href="~/RentHome" class="nav-item nav-link">Cho thuê</a>
                         }
+                        @if (Context.Request.Path.StartsWithSegments("/Service"))
+                        {
+                            <a href="~/Service" class="nav-item nav-link active">Dịch vụ</a>
+                        }
+                        else
+                        {
+                            <a href="~/Service" class="nav-item nav-link">Dịch vụ</a>
+                        }
 
-
-                        <a href="#" class="nav-item nav-link">Dịch vụ</a>
+                        
                         @if (!string.IsNullOrEmpty(Context.Session.GetString("userJson")))
                         {
                             <a href="/FormRentHome" class="nav-item nav-link btn btn-primary px-3 d-lg-flex">Đăng tin<i class="fa-sharp fa-solid fa-circle-plus" style="margin-top: 5px;margin-left: 7px;"></i></a>
-                            <a href="/profile" style="display: flex; justify-content: center; align-items: center;">
+                            <a href="/profile/@UserId" style="display: flex; justify-content: center; align-items: center;">
                                 <i class="fa-regular fa-circle-user fa-2x" style="color: #FEA116;"></i>
                             </a>
                             <a href="/login" class="nav-item nav-link btn btn-secondary px-3  d-lg-flex" style="color: #FEA116; margin-left: 20px;">Đăng xuất</a>
@@ -168,7 +183,7 @@
                             <h4 class="mb-4">Thắc mắc của bạn<span class="text-primary text-uppercase"> - Hỗ trợ giải đáp</span></h4>
                             <div class="position-relative mx-auto" style="max-width: 400px;">
                                 <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Câu hỏi của bạn">
-                                <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Gửi</button>
+                                <a href="https://m.me/106652955415850" target="_blank" type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Gửi</a>
                             </div>
                         </div>
                     </div>
